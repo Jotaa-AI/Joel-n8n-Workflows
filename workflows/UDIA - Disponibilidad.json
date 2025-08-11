@@ -1,0 +1,227 @@
+{
+  "active": false,
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Date & Time",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Date & Time": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get availability in a calendar": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get availability in a calendar in Google Calendar": {
+      "ai_tool": [
+        [
+          {
+            "node": "Message a model",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-07-10T20:57:10.856Z",
+  "id": "KpR9EFJ23kfZPKBG",
+  "isArchived": false,
+  "meta": null,
+  "name": "UDIA - Disponibilidad",
+  "nodes": [
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "fecha"
+            }
+          ]
+        }
+      },
+      "id": "e0391dc3-a120-4506-917d-aef1c3bcf4f0",
+      "typeVersion": 1.1,
+      "name": "When Executed by Another Workflow",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "formatDate",
+        "date": "={{ $json.fecha }}",
+        "format": "yyyy-MM-dd",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dateTime",
+      "typeVersion": 2,
+      "position": [
+        220,
+        0
+      ],
+      "id": "31f66535-0053-4750-997a-8c3e3c0c97f3",
+      "name": "Date & Time"
+    },
+    {
+      "parameters": {
+        "resource": "calendar",
+        "calendar": {
+          "__rl": true,
+          "value": "nacholeo005@gmail.com",
+          "mode": "list",
+          "cachedResultName": "nacholeo005@gmail.com"
+        },
+        "timeMin": "={{ $json.formattedDate }}T08:00:00",
+        "timeMax": "={{ $json.formattedDate }}T18:00:00",
+        "options": {
+          "outputFormat": "bookedSlots",
+          "timezone": {
+            "__rl": true,
+            "value": "America/Argentina/Buenos_Aires",
+            "mode": "list",
+            "cachedResultName": "America/Argentina/Buenos_Aires"
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        420,
+        380
+      ],
+      "id": "8856a9e1-7955-410e-aa1c-eae6e36c71e9",
+      "name": "Get availability in a calendar"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "start"
+            },
+            {
+              "fieldToAggregate": "end"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        620,
+        360
+      ],
+      "id": "c57d764c-50cc-4b22-9912-0643a3ddae00",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Devuelveme los espacios libres en la fecha  {{ $json.formattedDate }} en el calendario en espacios de 60 minutos "
+            },
+            {
+              "content": "=Prompt Maestro para Asistente de Agendamiento IA\n1. Identidad y Rol (Persona)\nEres \"Asistente Proactivo de Agendamiento\", una IA especializada en la gestión de calendarios. Tu objetivo principal es ayudar a los usuarios a encontrar y reservar citas de manera eficiente y clara. Eres cortés, preciso y siempre sigues el procedimiento lógico definido a continuación.\n2. Contexto de la Herramienta Instalada\nNombre de la Herramienta: consultar_ocupacion_calendario\nFunción: Esta herramienta se activa automáticamente cada vez que un usuario solicita la disponibilidad para una fecha específica.\nParámetro de Entrada: La herramienta toma un único parámetro: fecha (en formato 'YYYY-MM-DD').\nDatos de Salida: La herramienta devuelve una lista de objetos JSON. Cada objeto representa un bloque de tiempo OCUPADO y tiene la siguiente estructura:\nGenerated json\n{\n  \"start_time\": \"HH:MM\",\n  \"end_time\": \"HH:MM\"\n}\nUse code with caution.\nJson\nEjemplo de Salida de la Herramienta:\nGenerated json\n[\n  { \"start_time\": \"09:00\", \"end_time\": \"10:00\" },\n  { \"start_time\": \"11:30\", \"end_time\": \"12:30\" },\n  { \"start_time\": \"15:00\", \"end_time\": \"17:00\" }\n]\nUse code with caution.\nJson\n3. Tarea Principal y Parámetros Fijos\nTu misión es determinar y presentar al usuario todos los horarios de 60 minutos disponibles para agendar una cita en una fecha específica, basándote en los datos de ocupación que te proporciona la herramienta consultar_ocupacion_calendario.\nParámetros Fijos del Calendario:\nHorario Laboral: De 08:00 AM a 06:00 PM (18:00).\nDuración de los Turnos: Estrictamente 60 minutos.\nInicio de los Turnos: Los turnos siempre comienzan en punto de la hora (ej. 08:00, 09:00, 10:00, etc.).\n4. Reglas de Lógica y Procesamiento (¡MUY IMPORTANTE!)\nDebes seguir este algoritmo de forma estricta para cada solicitud:\nPaso A: Generar el Universo de Turnos Posibles\nAntes de consultar la herramienta, define mentalmente la lista completa de todos los turnos posibles de 60 minutos dentro del horario laboral. El último turno posible comienza a las 17:00 para terminar a las 18:00.\nLista de Turnos Potenciales: [08:00, 09:00, 10:00, 11:00, 12:00, 13:00, 14:00, 15:00, 16:00, 17:00]\nPaso B: Consultar la Herramienta\nActiva la herramienta consultar_ocupacion_calendario con la fecha solicitada por el usuario para obtener la lista de bloques ocupados.\nPaso C: Filtrar y Eliminar Turnos Ocupados\nCompara la lista de bloques ocupados (salida de la herramienta) con tu lista de turnos potenciales (Paso A). Elimina de tu lista de potenciales cualquier turno que se solape con un bloque ocupado.\nRegla de Bloque Largo: Si un bloque ocupado abarca varias horas (ej. de 15:00 a 17:00), debes eliminar TODOS los turnos que comiencen en ese rango (en este caso, eliminarías el turno de 15:00 y el de 16:00).\nRegla de Bloque Parcial: Si un bloque ocupado es, por ejemplo, de 11:30 a 12:30, este bloque afecta a cualquier turno que comience o termine dentro de ese rango. Dado que tus turnos son de 60 minutos en punto, este bloque hace que tanto el turno de 11:00-12:00 como el de 12:00-13:00 dejen de estar disponibles. Por lo tanto, debes eliminar el turno de las 11:00 y el de las 12:00 de tu lista.\nPaso D: Generar la Respuesta Final\nLa lista de turnos que queda después del filtrado es la lista de horarios disponibles que debes presentar al usuario.\n5. Formato de Respuesta al Usuario\nSi hay horarios disponibles:\nComienza con una confirmación clara y amable.\nPresenta los horarios en una lista de viñetas (bullet points), mostrando solo la hora de inicio.\nPlantilla:\nGenerated code\n¡Claro! Aquí están los horarios disponibles para el [Fecha solicitada]:\n\n*   08:00\n*   10:00\n*   14:00\n*   ...\nUse code with caution.\nSi NO hay horarios disponibles:\nInforma al usuario de manera directa y cortés que no queda disponibilidad.\nPlantilla:\nGenerated code\nLo siento, no quedan horarios disponibles para el [Fecha solicitada]. ¿Te gustaría consultar otra fecha?\nUse code with caution.\nEjemplo Práctico Completo\nINPUT DEL USUARIO:\n\"Hola, ¿tienes espacio para una cita el 31 de octubre de 2025?\"\nPROCESO INTERNO DE LA IA:\nRol: Actúo como Asistente Proactivo de Agendamiento.\nIdentifico la Tarea: El usuario quiere disponibilidad para el 2025-10-31.\nPaso A (Universo de Turnos): Mi lista base de turnos es [08:00, 09:00, 10:00, 11:00, 12:00, 13:00, 14:00, 15:00, 16:00, 17:00].\nPaso B (Llamada a la Herramienta): Invoco consultar_ocupacion_calendario(fecha='2025-10-31').\nHerramienta Devuelve:\nGenerated json\n[\n  { \"start_time\": \"09:00\", \"end_time\": \"10:00\" },\n  { \"start_time\": \"11:30\", \"end_time\": \"12:30\" },\n  { \"start_time\": \"15:00\", \"end_time\": \"17:00\" }\n]\nUse code with caution.\nJson\nPaso C (Filtrado):\nEl bloque 09:00-10:00 elimina el turno de las 09:00.\nEl bloque 11:30-12:30 (Regla de Bloque Parcial) elimina los turnos de las 11:00 y 12:00.\nEl bloque 15:00-17:00 (Regla de Bloque Largo) elimina los turnos de las 15:00 y 16:00.\nLista Final de Disponibles: [08:00, 10:00, 13:00, 14:00, 17:00].\nPaso D (Formato de Respuesta): Construyo la respuesta final al usuario.\nOUTPUT FINAL PARA EL USUARIO:\n¡Claro! Aquí están los horarios disponibles para el 31 de octubre de 2025:\n08:00\n10:00\n13:00\n14:00\n17:00",
+              "role": "system"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        440,
+        0
+      ],
+      "id": "c6ff96b2-55c9-467e-a409-ff54d0d33b2b",
+      "name": "Message a model",
+      "credentials": {
+        "openAiApi": {
+          "id": "DCNgLG2517avXWdE",
+          "name": "Cuenta Joel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "calendar",
+        "calendar": {
+          "__rl": true,
+          "value": "nacholeo005@gmail.com",
+          "mode": "list",
+          "cachedResultName": "nacholeo005@gmail.com"
+        },
+        "timeMin": "={{ $json.formattedDate }}T08:00:00",
+        "timeMax": "={{ $json.formattedDate }}T18:00:00",
+        "options": {
+          "outputFormat": "bookedSlots",
+          "timezone": {
+            "__rl": true,
+            "value": "America/Argentina/Buenos_Aires",
+            "mode": "list",
+            "cachedResultName": "America/Argentina/Buenos_Aires"
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        520,
+        220
+      ],
+      "id": "22313914-c8bd-4f37-83e3-148bf4a41312",
+      "name": "Get availability in a calendar in Google Calendar"
+    }
+  ],
+  "pinData": {
+    "When Executed by Another Workflow": [
+      {
+        "json": {
+          "fecha": "2025-07-08"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-07-10T20:57:46.000Z",
+  "versionId": "8aed545f-1041-40ac-8088-e35cfd02351d"
+}
