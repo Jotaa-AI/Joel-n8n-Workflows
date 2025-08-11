@@ -1,0 +1,19 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2025-08-01T11:07:56.284Z",
+  "id": "8TEMN9tdzwAFn6Te",
+  "isArchived": false,
+  "meta": null,
+  "name": "Formulario MCStore",
+  "nodes": [],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-08-01T11:07:56.284Z",
+  "versionId": "67833b3e-93e9-467f-badc-b2cf192cf3fa"
+}
