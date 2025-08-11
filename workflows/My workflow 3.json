@@ -1,0 +1,36 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2025-07-06T15:59:13.711Z",
+  "id": "Pte7C9OwQ4zTR5Rt",
+  "isArchived": true,
+  "meta": null,
+  "name": "My workflow 3",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "form_interactivo",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "d5ca397d-af87-4c9c-bf14-d6ce8d07f35b",
+      "name": "Webhook",
+      "webhookId": "ae812df0-25a2-415b-98d4-4652a889892f"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-07-10T16:49:45.000Z",
+  "versionId": "4aeb1aa6-cf7d-4bf8-a459-8993de01581f"
+}
