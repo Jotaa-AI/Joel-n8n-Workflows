@@ -1,0 +1,195 @@
+{
+  "active": false,
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Create an event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create an event": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-07-10T20:55:09.868Z",
+  "id": "xtsJugIU5uaFXLaE",
+  "isArchived": false,
+  "meta": null,
+  "name": "UDIA - Agenda Citas",
+  "nodes": [
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "fecha"
+            },
+            {
+              "name": "horario"
+            },
+            {
+              "name": "nombre completo"
+            },
+            {
+              "name": "email"
+            }
+          ]
+        }
+      },
+      "id": "91f3f1ae-04d4-424f-85e2-9a3a9cc3932a",
+      "typeVersion": 1.1,
+      "name": "When Executed by Another Workflow",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        20,
+        -80
+      ]
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "nacholeo005@gmail.com",
+          "mode": "list",
+          "cachedResultName": "nacholeo005@gmail.com"
+        },
+        "start": "={{ $json.fecha }}T{{ $json.horario }}.000Z",
+        "end": "={{ new Date(new Date($json.fecha + 'T' + $json.horario + 'Z').getTime() + 60*60000).toISOString() }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        240,
+        -80
+      ],
+      "id": "09e4dd6f-9788-46c0-a894-8f81eb5148ab",
+      "name": "Create an event"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1sn92CnKu-dzSAYnTjCjXS13VHAWjL3IpZ3HfMx9i0PA",
+          "mode": "list",
+          "cachedResultName": "AGENDAS UDIA",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1sn92CnKu-dzSAYnTjCjXS13VHAWjL3IpZ3HfMx9i0PA/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1sn92CnKu-dzSAYnTjCjXS13VHAWjL3IpZ3HfMx9i0PA/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "numero": "1234",
+            "id calendar ": "={{ $json.id }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "numero",
+              "displayName": "numero",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "id calendar ",
+              "displayName": "id calendar ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        460,
+        -80
+      ],
+      "id": "61500904-6c57-4951-9ba3-d6b0026b18d6",
+      "name": "Append row in sheet"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "978e771f-26a5-4a30-bffd-9069230d38a8",
+              "name": "listo",
+              "value": "listo!",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        680,
+        -80
+      ],
+      "id": "bec8dc27-d7c4-4ffe-9d9b-661ba84f9b2b",
+      "name": "Edit Fields"
+    }
+  ],
+  "pinData": {
+    "When Executed by Another Workflow": [
+      {
+        "json": {
+          "fecha": "2025-07-08",
+          "horario": "14:00:00",
+          "nombre completo": "Ignacio Leo",
+          "email": "hola@gmail.com"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-07-10T20:57:57.000Z",
+  "versionId": "fa7096ed-7dbf-49ea-9f8c-aaafc3083139"
+}
