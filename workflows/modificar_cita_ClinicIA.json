@@ -1,0 +1,668 @@
+{
+  "active": false,
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Airtable1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Airtable1": {
+      "main": [
+        [
+          {
+            "node": "Airtable2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Airtable2": {
+      "main": [
+        [
+          {
+            "node": "Airtable",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-06-12T19:25:15.152Z",
+  "id": "eKGgAA7hkPFaJVr4",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "modificar_cita_ClinicIA",
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "id": "c055762a-8fe7-4141-a639-df2372f30060",
+      "typeVersion": 1.1,
+      "name": "When Executed by Another Workflow",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        260,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        508,
+        560
+      ],
+      "id": "ba13b5fe-e396-4ff9-83de-5f50e801aaa7",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "DCNgLG2517avXWdE",
+          "name": "Cuenta Joel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Información del cliente: {{ $json.query }}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Eres un extractor de información especializado. Tu única función es procesar mensajes de clientes y devolver EXCLUSIVAMENTE un objeto JSON válido sin ningún texto adicional, explicación o formato markdown.\nInstrucciones críticas:\n\nResponde ÚNICAMENTE con el objeto JSON, sin texto antes ni después\nNO uses bloques de código (```json)\nNO incluyas explicaciones, comentarios o texto adicional\nNO envuelvas el JSON en comillas\nDevuelve el JSON como objeto directo\n\nEstructura requerida:\n{\n  \"nombre_cliente\": \"nombre completo extraído\",\n  \"fecha_iso\": \"fecha en formato ISO 8601 con zona horaria +02:00\",\n  \"telefono\": \"numero de telefono extraido\"\n}\nReglas de procesamiento:\n\nnombre_cliente: Extrae el nombre completo tal como aparece\nfecha_iso: Convierte la fecha y hora al formato ISO 8601\nservicio_solicitado: Extrae el nombre del servicio solicitado\n\nEjemplo:\nEntrada: \"nombre: Joel Jimenez, telefono: 653035525, nueva_fecha: 16/06/2025 10:00\"\nSalida esperada:\n{\n\"nombre_cliente\": \"Joel Jiménez\",\n\"fecha_iso\": \"2025-06-13T08:00:00+02:00\",\n\"telefono\": \"653035525\"\n}\nIMPORTANTE: Tu respuesta debe ser ÚNICAMENTE el objeto JSON válido, sin ningún otro contenido."
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        480,
+        340
+      ],
+      "id": "5e2b185c-6366-458f-b520-e40a3b9305e9",
+      "name": "Basic LLM Chain1"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"nombre_cliente\": \"nombre completo extraído\",\n  \"fecha_iso\": \"fecha en formato ISO 8601 con zona horaria +02:00, restando 2 horas a la hora original\",\n  \"telefono\": \"telefono del cliente\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        628,
+        560
+      ],
+      "id": "dfbc7135-7d90-4f35-9f15-07c6a1204331",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a2af13a3-f1fa-4b50-8fba-a0684bc0e8bc",
+              "name": "nombre_cliente",
+              "value": "={{ $('Basic LLM Chain1').item.json.output.nombre_cliente }}",
+              "type": "string"
+            },
+            {
+              "id": "6c5cf25a-ac91-4084-bc88-5d63a6948311",
+              "name": "nueva_fecha_iso",
+              "value": "={{ $json.output.fecha_iso }}",
+              "type": "string"
+            },
+            {
+              "id": "52f909e4-cea4-4179-833d-18197ce5c5bf",
+              "name": "telefono",
+              "value": "={{ $('Basic LLM Chain1').item.json.output.telefono }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        856,
+        340
+      ],
+      "id": "388aabc8-d596-4247-81de-2ca77f55f39a",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "appwtKASSidizHxdl",
+          "mode": "list",
+          "cachedResultName": "CLINIC.IA",
+          "cachedResultUrl": "https://airtable.com/appwtKASSidizHxdl"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbl0nXwlRh6Vk3PY3",
+          "mode": "list",
+          "cachedResultName": "Citas",
+          "cachedResultUrl": "https://airtable.com/appwtKASSidizHxdl/tbl0nXwlRh6Vk3PY3"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Fecha de la Cita": "={{ $('Edit Fields').item.json.nueva_fecha_iso }}",
+            "id": "={{ $json.id }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "Nº Cita",
+              "displayName": "Nº Cita",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Cliente",
+              "displayName": "Cliente",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Teléfono (from Cliente)",
+              "displayName": "Teléfono (from Cliente)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Fecha de la Cita",
+              "displayName": "Fecha de la Cita",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Servicio",
+              "displayName": "Servicio",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Precio (from Servicio)",
+              "displayName": "Precio (from Servicio)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Duración (from Servicio)",
+              "displayName": "Duración (from Servicio)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Estado de la Cita",
+              "displayName": "Estado de la Cita",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Pendiente",
+                  "value": "Pendiente"
+                },
+                {
+                  "name": "Completada",
+                  "value": "Completada"
+                },
+                {
+                  "name": "Cancelada",
+                  "value": "Cancelada"
+                }
+              ],
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Recordatorio Cita",
+              "displayName": "Recordatorio Cita",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Nombre (from Cliente)",
+              "displayName": "Nombre (from Cliente)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Teléfono (from Cliente) 2",
+              "displayName": "Teléfono (from Cliente) 2",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Clientes 2",
+              "displayName": "Clientes 2",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Nombre del Servicio (from Servicio)",
+              "displayName": "Nombre del Servicio (from Servicio)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Recordatorio Siguiente Cita",
+              "displayName": "Recordatorio Siguiente Cita",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Días Restantes Recordatorio",
+              "displayName": "Días Restantes Recordatorio",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Fecha de Recordatorio",
+              "displayName": "Fecha de Recordatorio",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Mes de la Cita",
+              "displayName": "Mes de la Cita",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Notas Adicionales",
+              "displayName": "Notas Adicionales",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Activación recordatorio",
+              "displayName": "Activación recordatorio",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "ENVIAR",
+              "displayName": "ENVIAR",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Clientes",
+              "displayName": "Clientes",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Dias Restantes Recordatorio FINAL",
+              "displayName": "Dias Restantes Recordatorio FINAL",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Teléfono (from Clientes 3)",
+              "displayName": "Teléfono (from Clientes 3)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Nueva Cita",
+              "displayName": "Nueva Cita",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Estado Cambiado",
+              "displayName": "Estado Cambiado",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Método Pago 2",
+              "displayName": "Método Pago 2",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Bizum",
+                  "value": "Bizum"
+                },
+                {
+                  "name": "Efectivo",
+                  "value": "Efectivo"
+                }
+              ],
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Creado por",
+              "displayName": "Creado por",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "AVISAR",
+              "displayName": "AVISAR",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        1516,
+        340
+      ],
+      "id": "4a5ed86c-53e3-434e-8a7a-1829dd3c59fb",
+      "name": "Airtable",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "xnXPhiCbfi7JtT21",
+          "name": "Clinic.IA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appwtKASSidizHxdl",
+          "mode": "list",
+          "cachedResultName": "CLINIC.IA",
+          "cachedResultUrl": "https://airtable.com/appwtKASSidizHxdl"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblDNxhyGS0G8lEse",
+          "mode": "list",
+          "cachedResultName": "Clientes",
+          "cachedResultUrl": "https://airtable.com/appwtKASSidizHxdl/tblDNxhyGS0G8lEse"
+        },
+        "filterByFormula": "={Teléfono} = \"{{ $json.telefono }}\" ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        1076,
+        340
+      ],
+      "id": "d1e2fc44-f485-4997-9acf-670088c896be",
+      "name": "Airtable1",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "xnXPhiCbfi7JtT21",
+          "name": "Clinic.IA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appwtKASSidizHxdl",
+          "mode": "list",
+          "cachedResultName": "CLINIC.IA",
+          "cachedResultUrl": "https://airtable.com/appwtKASSidizHxdl"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbl0nXwlRh6Vk3PY3",
+          "mode": "list",
+          "cachedResultName": "Citas",
+          "cachedResultUrl": "https://airtable.com/appwtKASSidizHxdl/tbl0nXwlRh6Vk3PY3"
+        },
+        "filterByFormula": "={Teléfono (from Cliente)} = \"{{ $('Edit Fields').item.json.telefono }}\" ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        1296,
+        340
+      ],
+      "id": "727de278-6594-4059-bb38-7417c460eb8c",
+      "name": "Airtable2",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "xnXPhiCbfi7JtT21",
+          "name": "Clinic.IA"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-06-12T19:43:22.000Z",
+  "versionId": "94297133-4d22-41f6-9b8d-2578ebea2e4d"
+}
