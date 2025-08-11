@@ -1,0 +1,36 @@
+{
+  "active": true,
+  "connections": {},
+  "createdAt": "2025-07-29T11:48:52.345Z",
+  "id": "g67Ez3VhLZ3BslcN",
+  "isArchived": false,
+  "meta": null,
+  "name": "Derivar_mensajes",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "mensaje_IA",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "b120b368-193a-4246-b4e7-1c164c011719",
+      "name": "Webhook",
+      "webhookId": "1b018c47-499a-4ff8-854c-8328b99bfb8e"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-07-29T11:49:25.000Z",
+  "versionId": "fdafca26-55fe-46a1-af5f-bb9bcca4ffc7"
+}
