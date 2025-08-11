@@ -1,0 +1,132 @@
+{
+  "active": false,
+  "connections": {
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Evolution API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-06-08T08:45:02.579Z",
+  "id": "NXAGfkOV6b6fn8LO",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Control_errores",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "d41a191d-3cdc-491b-bf39-70277478f849",
+      "name": "Error Trigger"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "356fb2dd-84fd-4fe3-b6e1-20ade128d0d6",
+              "name": "url_error",
+              "value": "={{ $json.execution.url }}",
+              "type": "string"
+            },
+            {
+              "id": "a9c744e6-e856-4577-bb8e-7b6773d385f8",
+              "name": "error_type",
+              "value": "={{ $json.execution.error.context.data.error }}",
+              "type": "string"
+            },
+            {
+              "id": "7f9cd511-dc0e-493c-8396-f9d278fd0c9b",
+              "name": "execution.error.node.type",
+              "value": "={{ $json.execution.error.node.type }}",
+              "type": "string"
+            },
+            {
+              "id": "11cac6bd-7515-4ca2-b397-612b06a0eca8",
+              "name": "execution.error.node.name",
+              "value": "={{ $json.execution.error.node.name }}",
+              "type": "string"
+            },
+            {
+              "id": "f798b22c-75d8-4158-bad8-458f3e358bfb",
+              "name": "execution.error.node.credentials.highLevelOAuth2Api.name",
+              "value": "={{ $json.execution.error.node.credentials.highLevelOAuth2Api.name }}",
+              "type": "string"
+            },
+            {
+              "id": "b1cfa12f-9afb-4ad6-b4d6-3ac882068573",
+              "name": "workflow.name",
+              "value": "={{ $json.workflow.name }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        220,
+        0
+      ],
+      "id": "fd571ebd-fe8f-4fb1-b687-2afe3de5042d",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "Clinic.IA",
+        "remoteJid": "34653035525@s.whatsapp.net",
+        "messageText": "={{ $json.url_error }}\n{{ $json.error_type }}\n{{ $json.execution.error.node.name }}\n{{ $json.workflow.name }}",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        440,
+        0
+      ],
+      "id": "b573fb5e-eaf8-4a09-a433-1caa9872a549",
+      "name": "Evolution API",
+      "credentials": {
+        "evolutionApi": {
+          "id": "eUpVs7pHXu3sghG2",
+          "name": "Evolution account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-08-03T11:13:29.000Z",
+  "versionId": "a373ddd1-d83e-448c-bec6-0d138930d5ea"
+}
