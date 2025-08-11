@@ -1,0 +1,164 @@
+{
+  "active": true,
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "\"Trigger\"",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "\"Trigger\"": {
+      "main": [
+        [
+          {
+            "node": "Update a document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-01T16:06:20.892Z",
+  "id": "9VetMfa10zC9u6Vs",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Crear Albaran MC Store",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 1
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        736,
+        240
+      ],
+      "id": "d18e07da-a936-4aa2-9600-904421d19178",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "app1YHusrevWB1mhd",
+          "mode": "list",
+          "cachedResultName": "MC Store Management",
+          "cachedResultUrl": "https://airtable.com/app1YHusrevWB1mhd"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbldjfoFncKY1j3Qy",
+          "mode": "list",
+          "cachedResultName": "Pedidos de Clientes",
+          "cachedResultUrl": "https://airtable.com/app1YHusrevWB1mhd/tbldjfoFncKY1j3Qy"
+        },
+        "filterByFormula": "{Actualizado} = \"NO Actualizado\"",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        944,
+        240
+      ],
+      "id": "d98c993d-a3c3-4187-b0ff-751a288f33ad",
+      "name": "\"Trigger\"",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "fYikZL9kIA4GSbSE",
+          "name": "MC Store - n8n"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentURL": "1olzFS51kEtGb97CsEXVpz_DwKhluXmc0RozZFPmcTJg",
+        "actionsUi": {
+          "actionFields": [
+            {
+              "action": "replaceAll",
+              "text": "{{cliente}}",
+              "replaceText": "={{ $json['Empresa (from Clientes)'][0] }}",
+              "matchCase": true
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{direccion}}",
+              "replaceText": "C/ INDUSTRIA, 24",
+              "matchCase": true
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{poblacion}}",
+              "replaceText": "08232 EL MASNOU",
+              "matchCase": true
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{provincia}}",
+              "replaceText": "BARCEONA",
+              "matchCase": true
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{numero_albaran}}",
+              "replaceText": "={{ $json.ID }}",
+              "matchCase": true
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{fecha}}",
+              "replaceText": "={{ $json['Fecha del Pedido'] }}",
+              "matchCase": true
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.googleDocs",
+      "typeVersion": 2,
+      "position": [
+        1136,
+        240
+      ],
+      "id": "9d67733c-59c2-4abb-8eb2-ee527c38abb0",
+      "name": "Update a document",
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "jdL6gIsT7wmlfMOw",
+          "name": "Google Docs Joel"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-08-01T19:53:08.000Z",
+  "versionId": "a00a32af-b8d7-4d9b-ac65-589367e4d195"
+}
