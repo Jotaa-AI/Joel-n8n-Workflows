@@ -1,0 +1,586 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Subir a contactos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Subir a contactos": {
+      "main": [
+        [
+          {
+            "node": "buscar servicios",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "buscar servicios": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "subir a CRM",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-07-05T11:21:22.351Z",
+  "id": "1WYbbcHekgI2jY20",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "fuia-citadescubrimiento",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "fluia-descubrimiento",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "45eb338f-37b8-4cda-baad-3c034d989f30",
+      "name": "Webhook",
+      "webhookId": "77f91646-d0ab-4c6b-9331-cf5aa537de9c"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "4362ffd3-6dfc-4da9-b9b5-6d3fc19c596c",
+              "name": "nombre",
+              "value": "={{ $json.body.nombre }}",
+              "type": "string"
+            },
+            {
+              "id": "94d77225-146c-4067-b2c5-bc4aeb52df6e",
+              "name": "email",
+              "value": "={{ $json.body.email }}",
+              "type": "string"
+            },
+            {
+              "id": "ead77eff-d798-4ada-9736-849fc2840548",
+              "name": "telefono",
+              "value": "={{ $json.body.telefono }}",
+              "type": "string"
+            },
+            {
+              "id": "0bbaaa45-2582-4806-8a8e-a93a838b1b66",
+              "name": "tipoNegocio",
+              "value": "={{ $json.body.tipoNegocio }}",
+              "type": "string"
+            },
+            {
+              "id": "08f05d8f-b092-4d05-abd6-577084deb291",
+              "name": "numeroEmpleados",
+              "value": "={{ $json.body.numeroEmpleados }}",
+              "type": "string"
+            },
+            {
+              "id": "b5ae4716-ae28-477d-9b8d-d503e40c820f",
+              "name": "plataformasActuales",
+              "value": "={{ $json.body.plataformasActuales }}",
+              "type": "string"
+            },
+            {
+              "id": "fbf9f1cc-8d89-4774-ab5a-141a008980e3",
+              "name": "desafioCliente",
+              "value": "={{ $json.body.desafioCliente }}",
+              "type": "string"
+            },
+            {
+              "id": "3cd02221-545c-43eb-bf6f-ad3f368cb7e0",
+              "name": "fechaEnvio",
+              "value": "={{ $json.body.fechaEnvio }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        220,
+        0
+      ],
+      "id": "2c34603d-8a8c-41e3-b013-18453fe60bd0",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appALZGaTluNzH4t1",
+          "mode": "list",
+          "cachedResultName": "Agencia",
+          "cachedResultUrl": "https://airtable.com/appALZGaTluNzH4t1"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblEVokns3M7I7pL5",
+          "mode": "list",
+          "cachedResultName": "Contactos",
+          "cachedResultUrl": "https://airtable.com/appALZGaTluNzH4t1/tblEVokns3M7I7pL5"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Nombre Empresa": "={{ $json.nombre }}",
+            "Nombre Contacto": "={{ $json.nombre }}",
+            "Teléfono": "={{ $json.telefono }}",
+            "Email": "={{ $json.email }}",
+            "Observaciones": "=- Desafío del cliente: {{ $json.desafioCliente }} \n- Plataformas que usan: {{ $json.plataformasActuales }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Nombre Empresa",
+              "displayName": "Nombre Empresa",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Asignado",
+              "displayName": "Asignado",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Nombre Contacto",
+              "displayName": "Nombre Contacto",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Teléfono",
+              "displayName": "Teléfono",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Observaciones",
+              "displayName": "Observaciones",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Archivos",
+              "displayName": "Archivos",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Seguimiento Leads",
+              "displayName": "Seguimiento Leads",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        440,
+        0
+      ],
+      "id": "11da7b74-2273-47ba-8338-7fac18d68c21",
+      "name": "Subir a contactos",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "p9fDg1mpFSLR6cqL",
+          "name": "fluia"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appALZGaTluNzH4t1",
+          "mode": "list",
+          "cachedResultName": "Agencia",
+          "cachedResultUrl": "https://airtable.com/appALZGaTluNzH4t1"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblFMQPmp4ZiNEt5g",
+          "mode": "list",
+          "cachedResultName": "Servicios",
+          "cachedResultUrl": "https://airtable.com/appALZGaTluNzH4t1/tblFMQPmp4ZiNEt5g"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        660,
+        0
+      ],
+      "id": "95c5761b-a2ac-434c-8f68-cf7cabb14719",
+      "name": "buscar servicios",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "p9fDg1mpFSLR6cqL",
+          "name": "fluia"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appALZGaTluNzH4t1",
+          "mode": "list",
+          "cachedResultName": "Agencia",
+          "cachedResultUrl": "https://airtable.com/appALZGaTluNzH4t1"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblIvuNur5yJXdt1D",
+          "mode": "list",
+          "cachedResultName": "CRM",
+          "cachedResultUrl": "https://airtable.com/appALZGaTluNzH4t1/tblIvuNur5yJXdt1D"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Contactos": "=['{{ $('Subir a contactos').item.json.id }}']",
+            "Estado": "Nuevo prospecto ",
+            "Servicios": "=['{{ $json.data[0].id }}']"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Contactos",
+              "displayName": "Contactos",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Servicios",
+              "displayName": "Servicios",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Estado",
+              "displayName": "Estado",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Nuevo prospecto ",
+                  "value": "Nuevo prospecto "
+                },
+                {
+                  "name": "Seguimiento",
+                  "value": "Seguimiento"
+                },
+                {
+                  "name": "Agenda Cita Consultoria",
+                  "value": "Agenda Cita Consultoria"
+                },
+                {
+                  "name": "No Asiste a Cita",
+                  "value": "No Asiste a Cita"
+                },
+                {
+                  "name": "En Evaluación (Interesado)",
+                  "value": "En Evaluación (Interesado)"
+                },
+                {
+                  "name": "Venta Ganada",
+                  "value": "Venta Ganada"
+                },
+                {
+                  "name": "Venta Perdida",
+                  "value": "Venta Perdida"
+                },
+                {
+                  "name": "No nos Interesa",
+                  "value": "No nos Interesa"
+                },
+                {
+                  "name": "A futuro (Nutrición)",
+                  "value": "A futuro (Nutrición)"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Fecha Primer contacto",
+              "displayName": "Fecha Primer contacto",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Fecha Último contacto",
+              "displayName": "Fecha Último contacto",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Nombre Contacto (from Contactos)",
+              "displayName": "Nombre Contacto (from Contactos)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Teléfono (from Contactos)",
+              "displayName": "Teléfono (from Contactos)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Email (from Contactos)",
+              "displayName": "Email (from Contactos)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Observaciones (from Contactos)",
+              "displayName": "Observaciones (from Contactos)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Archivos (from Contactos)",
+              "displayName": "Archivos (from Contactos)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Nombre (from Servicios)",
+              "displayName": "Nombre (from Servicios)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Nombre Empresa (from Contactos)",
+              "displayName": "Nombre Empresa (from Contactos)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Copia de Contactos",
+              "displayName": "Copia de Contactos",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        1080,
+        0
+      ],
+      "id": "139149c7-7541-4121-b588-3b6046cfe83d",
+      "name": "subir a CRM",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "p9fDg1mpFSLR6cqL",
+          "name": "fluia"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        880,
+        0
+      ],
+      "id": "44d27278-d7c8-4059-b8f0-bd1a8ce400ac",
+      "name": "Aggregate"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Europe/Madrid",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "NXAGfkOV6b6fn8LO"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-07-16T17:49:17.000Z",
+  "versionId": "33eebcce-837d-4547-a02d-7fa90699f0f8"
+}
