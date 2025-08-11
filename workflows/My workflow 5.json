@@ -1,0 +1,2304 @@
+{
+  "active": false,
+  "connections": {
+    "MongoDB9": {
+      "main": [
+        [
+          {
+            "node": "AI Agent4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model6": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent4",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets7": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent4",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model7": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser3": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud6": {
+      "main": [
+        [
+          {
+            "node": "If12",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud8": {
+      "main": [
+        [
+          {
+            "node": "If10",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud9": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If9": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud9",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If10": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields7",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields7": {
+      "main": [
+        [
+          {
+            "node": "MongoDB12",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Trigger1": {
+      "main": [
+        [
+          {
+            "node": "If11",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If11": {
+      "main": [
+        [
+          {
+            "node": "MongoDB15",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields8": {
+      "main": [
+        [
+          {
+            "node": "MongoDB13",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If12": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields9",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields10",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields9": {
+      "main": [
+        [
+          {
+            "node": "MongoDB10",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields10": {
+      "main": [
+        [
+          {
+            "node": "MongoDB11",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If13": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields11",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "MongoDB9",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MongoDB14": {
+      "main": [
+        [
+          {
+            "node": "AI Agent4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MongoDB15": {
+      "main": [
+        [
+          {
+            "node": "If13",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields11": {
+      "main": [
+        [
+          {
+            "node": "MongoDB14",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent4": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain1": {
+      "main": [
+        [
+          {
+            "node": "If9",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Google Sheets2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets2": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Airtable": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets3": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Auto-fixing Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Auto-fixing Output Parser",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Auto-fixing Output Parser",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser1": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent2": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud2": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud1": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MongoDB": {
+      "main": [
+        [
+          {
+            "node": "AI Agent5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model8": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent5",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets8": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent5",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model9": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser4": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud7": {
+      "main": [
+        [
+          {
+            "node": "If17",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud10": {
+      "main": [
+        [
+          {
+            "node": "If15",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud11": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If14": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud11",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud10",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If15": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields12",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "MongoDB18",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Trigger": {
+      "main": [
+        [
+          {
+            "node": "If16",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If16": {
+      "main": [
+        [
+          {
+            "node": "MongoDB21",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields12": {
+      "main": [
+        [
+          {
+            "node": "MongoDB19",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If17": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields13",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields14",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields13": {
+      "main": [
+        [
+          {
+            "node": "MongoDB16",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields14": {
+      "main": [
+        [
+          {
+            "node": "MongoDB17",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If18": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields15",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "MongoDB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MongoDB20": {
+      "main": [
+        [
+          {
+            "node": "AI Agent5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MongoDB21": {
+      "main": [
+        [
+          {
+            "node": "If18",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields15": {
+      "main": [
+        [
+          {
+            "node": "MongoDB20",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent5": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "If14",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-07-30T19:31:00.389Z",
+  "id": "yVvqxbSGpGqWtdn2",
+  "isArchived": false,
+  "meta": null,
+  "name": "My workflow 5",
+  "nodes": [
+    {
+      "parameters": {
+        "collection": "Clientes",
+        "options": {},
+        "query": "={\n  \"phone_number\": \"{{ $('WhatsApp Trigger1').item.json.messages[0].from }}\"\n}"
+      },
+      "id": "cd9f0f88-28b8-45ca-906e-e879bcd87f81",
+      "name": "MongoDB9",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        976,
+        -1632
+      ],
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "5b86834c-2066-4384-a9b6-395bf4bdf7eb",
+      "name": "OpenAI Chat Model6",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        1232,
+        -1504
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1oC7icOFDfIpqrA8RpzsOrFtpc_Z76zPZa9dnjjCUkcs",
+          "mode": "list",
+          "cachedResultName": "Base de productos",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oC7icOFDfIpqrA8RpzsOrFtpc_Z76zPZa9dnjjCUkcs/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oC7icOFDfIpqrA8RpzsOrFtpc_Z76zPZa9dnjjCUkcs/edit#gid=0"
+        },
+        "options": {}
+      },
+      "id": "53715972-8290-4a9d-9255-04bbf9b319b7",
+      "name": "Google Sheets7",
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.5,
+      "position": [
+        1360,
+        -1504
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "2ce3cdaf-e6d2-4067-bd9d-85da35ac6548",
+      "name": "OpenAI Chat Model7",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        1632,
+        -1504
+      ]
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"respuesta\": \"Aquí deberas incorporar todo el Contenido\",\n  \"imagenes\": \"Aquí deberas incorporar todas las imagenes obtenidas\"\n}"
+      },
+      "id": "7f007efc-f436-449f-aef4-4a22d1da7141",
+      "name": "Structured Output Parser3",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        1760,
+        -1504
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "436071339586991",
+        "recipientPhoneNumber": "={{ $('WhatsApp Trigger1').item.json.contacts[0].wa_id }}",
+        "messageType": "image",
+        "mediaLink": "={{ $('Basic LLM Chain1').item.json.output.imagenes }}",
+        "additionalFields": {}
+      },
+      "id": "654aaabc-f67d-44c6-8fbe-2cd86807e03e",
+      "name": "WhatsApp Business Cloud6",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2448,
+        -1920
+      ],
+      "webhookId": "744123da-55b0-4170-9b82-c8800fe7b14b"
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "436071339586991",
+        "recipientPhoneNumber": "={{ $('WhatsApp Trigger1').item.json.contacts[0].wa_id }}",
+        "textBody": "={{ $('Basic LLM Chain1').item.json.output.respuesta }}",
+        "additionalFields": {}
+      },
+      "id": "56c1315d-aec7-4e24-ae7a-57d26e7b6289",
+      "name": "WhatsApp Business Cloud8",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2224,
+        -1536
+      ],
+      "webhookId": "3527e99a-75bf-4cbb-994d-633a75aa0f80"
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "436071339586991",
+        "recipientPhoneNumber": "={{ $('WhatsApp Trigger1').item.json.contacts[0].wa_id }}",
+        "textBody": "={{ $('Basic LLM Chain1').item.json.output.respuesta }}",
+        "additionalFields": {}
+      },
+      "id": "97917923-3ffa-4ca0-a026-74f334ce2298",
+      "name": "WhatsApp Business Cloud9",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2224,
+        -1920
+      ],
+      "webhookId": "3be381f9-2e4b-41ee-a4de-291331286d68"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "707f74fc-fddb-4d73-b862-2b18f73bb847",
+              "leftValue": "={{ $json.output.imagenes }}",
+              "rightValue": "https",
+              "operator": {
+                "type": "string",
+                "operation": "startsWith"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "efe82057-c1d9-4f4b-aceb-7c7961cab85f",
+      "name": "If9",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2000,
+        -1728
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "25da3798-ef4e-458f-bb42-d0e7716c08c4",
+              "leftValue": "={{ $('MongoDB15').item.json }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "d448a95e-4ca6-4cd7-9c2d-8d1f18994220",
+      "name": "If10",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2448,
+        -1536
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={\n    \"_id\": {{ $('MongoDB14').item.json._id }},\n  \"messages\": [\"{{ \"user: \"+ $('WhatsApp Trigger1').item.json.messages[0].text.body }}\", \"{{ \"assistant: \"+$('Basic LLM Chain1').item.json.output.respuesta }}\"]\n}",
+        "options": {}
+      },
+      "id": "2d6dff4e-98ef-4f82-9394-674672e2ae30",
+      "name": "Edit Fields7",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2672,
+        -1632
+      ]
+    },
+    {
+      "parameters": {
+        "updates": [
+          "messages"
+        ],
+        "options": {}
+      },
+      "id": "85b1a8e4-c830-4862-8f02-7ad1e2c0af4c",
+      "name": "WhatsApp Trigger1",
+      "type": "n8n-nodes-base.whatsAppTrigger",
+      "typeVersion": 1,
+      "position": [
+        -144,
+        -1728
+      ],
+      "webhookId": "885d4cb1-46a6-4daa-8b2f-50d98c7112f9"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "2f567c97-a97e-42fd-b7af-7c085f43e1ab",
+              "leftValue": "={{ $json.messages[0].text.body }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "8934013e-10ce-47d9-a9bd-733c79da6561",
+      "name": "If11",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        80,
+        -1728
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={\n  \"_id\": {{ $('MongoDB9').item.json._id }},\n  \"messages\": {{ $('MongoDB9').item.json.messages.concat([\n     \"user: \"+ $('WhatsApp Trigger1').item.json.messages[0].text.body, \"assistant: \"+$('Basic LLM Chain1').item.json.output.respuesta\n  ]) }}\n}",
+        "options": {}
+      },
+      "id": "d1339603-c964-4466-8e9c-ed3bc6d3ecb1",
+      "name": "Edit Fields8",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2672,
+        -1440
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "25da3798-ef4e-458f-bb42-d0e7716c08c4",
+              "leftValue": "={{ $('MongoDB15').item.json }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "389ffc04-97f6-4c45-9ae7-329eca2a4cc1",
+      "name": "If12",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2672,
+        -1920
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={\n    \"_id\": {{ $('MongoDB14').item.json._id }},\n  \"messages\": [\"{{ \"user: \"+ $('WhatsApp Trigger1').item.json.messages[0].text.body }}\", \"{{ \"assistant: \"+$('Basic LLM Chain1').item.json.output.respuesta }}\"]\n}",
+        "options": {}
+      },
+      "id": "046dbe61-ef0c-40f4-9a0e-9b47a73322e6",
+      "name": "Edit Fields9",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2896,
+        -2016
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={\n  \"_id\": {{ $('MongoDB9').item.json._id }},\n  \"messages\": {{ $('MongoDB9').item.json.messages.concat([\n     \"user: \"+ $('WhatsApp Trigger1').item.json.messages[0].text.body, \"assistant: \"+$('Basic LLM Chain1').item.json.output.respuesta\n  ]) }}\n}",
+        "options": {}
+      },
+      "id": "792d6ec1-99e6-49fe-a61a-264dd7026328",
+      "name": "Edit Fields10",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2896,
+        -1824
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "collection": "Clientes",
+        "updateKey": "_id",
+        "fields": "messages",
+        "options": {}
+      },
+      "id": "3caf1c90-9a2a-4819-b632-dd2112c68b83",
+      "name": "MongoDB10",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        3120,
+        -2016
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "collection": "Clientes",
+        "updateKey": "_id",
+        "fields": "messages",
+        "options": {}
+      },
+      "id": "25978180-b5bf-4d26-b57e-ed69a6e56d2f",
+      "name": "MongoDB11",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        3120,
+        -1824
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "collection": "Clientes",
+        "updateKey": "_id",
+        "fields": "messages",
+        "options": {}
+      },
+      "id": "771a7317-536f-40b9-85d2-59b66e6d6228",
+      "name": "MongoDB12",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        2896,
+        -1632
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "collection": "Clientes",
+        "updateKey": "_id",
+        "fields": "messages",
+        "options": {}
+      },
+      "id": "810119e4-cc40-44d7-85f3-d3e2254b25db",
+      "name": "MongoDB13",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        2896,
+        -1440
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "656dcd57-541e-4f67-9e67-ab0c7d3d5df1",
+              "leftValue": "={{ $('MongoDB15').item.json }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "f83523a3-9f65-4b98-94f2-41a051eba35d",
+      "name": "If13",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        528,
+        -1728
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "collection": "Clientes",
+        "fields": "phone_number,messages",
+        "options": {}
+      },
+      "id": "7b74eb79-4644-48da-be5d-f41f74beda39",
+      "name": "MongoDB14",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        976,
+        -1824
+      ],
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "collection": "Clientes",
+        "options": {},
+        "query": "={\n  \"phone_number\": \"{{ $('If11').item.json.messages[0].from }}\"\n}"
+      },
+      "id": "977243a2-b03e-4359-8321-558d89a9cfff",
+      "name": "MongoDB15",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        304,
+        -1728
+      ],
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={\n      \"phone_number\": \"{{ $('WhatsApp Trigger1').item.json.messages[0].from }}\",\n      \"messages\": [\"{{ \"user: \"+ $('WhatsApp Trigger1').item.json.messages[0].text.body }}\"]\n}",
+        "options": {}
+      },
+      "id": "2f7bced1-44cc-45c1-ba21-fbfe7cd273b7",
+      "name": "Edit Fields11",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        752,
+        -1824
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Aqui el mensaje del usuario: {{ $json.messages.join('\\n') + \"\\nuser:\"+$('WhatsApp Trigger1').item.json.messages[0].text.body+\"\\nassistant:\" }}",
+        "options": {
+          "systemMessage": "=*#Rol:*\nSos Mati, el asistente de Ecomflow con mas de 10 años de experiencia recomendando productos personalizados e ideales a cada cliente. Sos una pieza clave del marketing y ventas, responsable de hacer recomendaciones personalizadas y guiar a los clientes hacia los productos ideales para ellos. Ademas tenes una capacidad precisa para ejecutar tus funciones y asi responder de manera informada sobre nuestros productos.\n\n*#Tareas:*\nTus tareas incluyen:\n- Responder cualquier consulta sobre EcomFlow\n- Realizar recomendaciones personalizadas de productos a cada cliente, basandote en sus necesidades y preferencias especificas.\n- Guiar a los clientes hacia la compra del producto en la tienda, una vez sepas su producto ideal. \n- Generar una experiencia amigable y cercana, utilizando el acento y la jerga Argentina.\n- Leer todo el historial de conversacion con el usuario para dar una respuesta contextualizada, proactiva y enriquecedora para el usuario.\n- Ejecutar tus funciones cuando sea el momento oportuno.\n\n#Mensaje de Presentación\n\n\"Buenas, aca Mati! Como es tu nombre?\"\n\n# Especificaciones\n\n## General\n- Usá un lenguaje cordial y cercano, como si estuvieras charlando con un amigo.\n- Cuando el usuario este interesado en un producto deberas ejecutar tu funcion de leer hoja de google sheets, para leer la descripcion del producto y responderle de manera tal que tu respuesta refuerze su interes en el producto, podrias responder algo como \"Impresionante como realmente logra que al 90% de la gente se le deje de caer el pelo. Como tiene elementos premium como la caña, el potasio y el magnesio el resultado es ese tal cual\"\n- Cuando el usuario hable de un producto especifico deberas ejecutar tu funcion leer hoja de sheets, para encontrar ese producto especifico y poder brindar respuestas precisas sobre las caracteristicas del productos, ademas de mostrarle una imagen.\n\n# Notas\n- Utiliza solo los signos de cierre para la interrogacion y la exclamacion como se hace en inglés.\n- Sentite libre de tener errores ortograficos al no utilizar los signos de apertura, y actuar como un humano que comete errores.\n- Por favor, utiliza tu respuesta sin incluir asteriscos ni comillas.\n- Asegurate de que tu mensaje sea breve y directo, sin usar saltos de linea.\n\nSacale todos los signos de apertura, esos que van al inicio en exclamaciones e interrogaciones, y dejá solo los de cierre al final de las frases.\n\nTienes que eliminar los \"¿\" y los \"¡\"\n\nHacé que todos tus mensajes suenen relajados, bien chill e informales, como si estuvieras charlando con tu mejor amigo el argentino que toma mate todo el dia, usando jerga local."
+        }
+      },
+      "id": "cdb68fb6-3433-4fe6-9972-6f1104c19ccd",
+      "name": "AI Agent4",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        1200,
+        -1728
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Aqui el mensaje a reestructurar: {{ $json.output }}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Separa el contenido de la url de la imagen en formato JSON, aqui los ejemplos segun el caso: \n\n{\n  \"respuesta\": \"Aquí deberas incorporar todo el Contenido\",\n  \"imagenes\": \"Aquí deberas incorporar todas las imagenes obtenidas\"\n}\n\n#Notas:\n-*IMPORTANTE:* Si \"imagenes\" esta vacía devuélvela también vacía\n\n-*IMPORTANTE:* Aquí el mensaje recibido que debes reestructurar a JSON:\n{{ $json.output }}\n"
+            }
+          ]
+        }
+      },
+      "id": "6a2db5d2-401b-41b9-b3b0-98e505b7ed7d",
+      "name": "Basic LLM Chain1",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.4,
+      "position": [
+        1600,
+        -1728
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "bf261c68-09d0-4b4a-a94e-80615c5f579d",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        -112,
+        -3024
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        }
+      },
+      "id": "2b4671c5-6e4c-4bf3-9efa-d97792018c12",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.5,
+      "position": [
+        16,
+        -3024
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "3fff8bfe-5f1c-421e-b440-d1e131cdc991",
+              "leftValue": "",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "c30685a6-be28-4e84-9ec0-4a42c4a0fec3",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        256,
+        -3248
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        }
+      },
+      "id": "8c6175f6-87da-4d04-8b5f-79ea82afee28",
+      "name": "Google Sheets1",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        480,
+        -3344
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        }
+      },
+      "id": "d791eec9-e11a-49f1-ac6f-4221ba5339cd",
+      "name": "Google Sheets2",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        480,
+        -3152
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "ea0d7e35-a165-4946-9d21-146876c96024",
+      "name": "OpenAI Chat Model1",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        704,
+        -3024
+      ]
+    },
+    {
+      "parameters": {
+        "base": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "table": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "options": {}
+      },
+      "id": "edbe9845-736b-41c1-be13-8499c2a8aa12",
+      "name": "Airtable",
+      "type": "n8n-nodes-base.airtableTool",
+      "typeVersion": 2.1,
+      "position": [
+        832,
+        -3024
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        }
+      },
+      "id": "058a3659-e418-40d5-9e61-5d7d3c60b23d",
+      "name": "Google Sheets3",
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.5,
+      "position": [
+        960,
+        -3024
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "hasOutputParser": true,
+        "options": {}
+      },
+      "id": "7f89f01e-31d7-498c-9a61-87c7222ad3b1",
+      "name": "AI Agent1",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        800,
+        -3248
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "e629ea04-a778-4a30-a3f5-1149c1b30eca",
+      "name": "Auto-fixing Output Parser",
+      "type": "@n8n/n8n-nodes-langchain.outputParserAutofixing",
+      "typeVersion": 1,
+      "position": [
+        1088,
+        -3024
+      ]
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\"response\": {\n      \"Part_1\": \"Aqui deberas incorporar el contenido de la primer parte de la respuesta.\",\n\t  \"Part_2\": \"Aqui deberas incorporar el contenido de la primer parte de la respuesta.\",\n      \"Part_3\": \"Aqui deberas incorporar el contenido de la primer parte de la respuesta (opcional).\"\n      }\n  }"
+      },
+      "id": "a124ea79-da1b-48bd-9222-ea01c58a1ca0",
+      "name": "Structured Output Parser",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        1248,
+        -2816
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "88d60fc2-ea8c-4f6d-b0d8-aee99db24ccc",
+      "name": "OpenAI Chat Model2",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        -2816
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "5122b806-4b66-4822-9c76-0cb22c6eb4a1",
+      "name": "OpenAI Chat Model3",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        1520,
+        -3024
+      ]
+    },
+    {
+      "parameters": {
+        "hasOutputParser": true,
+        "options": {}
+      },
+      "id": "831615b7-2033-4ad2-a54d-d3e504f0b7e5",
+      "name": "AI Agent2",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        1488,
+        -3248
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "66778267-137d-42ae-aa98-fa1fb2938d4e",
+      "name": "Structured Output Parser1",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        1648,
+        -3024
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c0c8a694-cc7c-4db0-bccb-cac22e3af5ba",
+              "leftValue": "",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "0f71d32c-a90c-42bd-9151-727cdfdf14a6",
+      "name": "If1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1888,
+        -3248
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "additionalFields": {}
+      },
+      "id": "c10f5d46-1ab6-487b-8f88-e7b938d3ef3e",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2112,
+        -3344
+      ],
+      "webhookId": "16fc4579-8a3c-4eb5-bc30-5b8b10610577",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "additionalFields": {}
+      },
+      "id": "47b357ec-53ce-42af-8926-b357dc1f788f",
+      "name": "WhatsApp Business Cloud2",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2112,
+        -3152
+      ],
+      "webhookId": "e99c44a3-e52b-423e-add7-72e8adff8d64",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        }
+      },
+      "id": "eba5fb3d-e965-4477-928f-d9579862ec3b",
+      "name": "Google Sheets4",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2336,
+        -3152
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        }
+      },
+      "id": "d1c33922-a11b-4440-8fef-4c9ae3f17cc7",
+      "name": "Google Sheets5",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2560,
+        -3344
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "fe7ac42a-3453-4b86-9d1e-9bcfaea515c8",
+      "name": "AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        -144,
+        -3248
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "additionalFields": {}
+      },
+      "id": "e883041d-1826-440e-91ee-9832af237b33",
+      "name": "WhatsApp Business Cloud1",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2336,
+        -3344
+      ],
+      "webhookId": "90bddf98-5e8f-43f3-90a2-09c96d86cd52",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "collection": "Clientes",
+        "options": {},
+        "query": "={\n  \"phone_number\": \"{{ $('WhatsApp Trigger').item.json.messages[0].from }}\"\n}"
+      },
+      "id": "a259cff3-2f83-4fc6-b145-4d4c961af04d",
+      "name": "MongoDB",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        976,
+        -2432
+      ],
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "e0893384-d90d-4995-9358-5a2eacf54317",
+      "name": "OpenAI Chat Model8",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        1232,
+        -2304
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1oC7icOFDfIpqrA8RpzsOrFtpc_Z76zPZa9dnjjCUkcs",
+          "mode": "list",
+          "cachedResultName": "Base de productos",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oC7icOFDfIpqrA8RpzsOrFtpc_Z76zPZa9dnjjCUkcs/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1oC7icOFDfIpqrA8RpzsOrFtpc_Z76zPZa9dnjjCUkcs/edit#gid=0"
+        },
+        "options": {}
+      },
+      "id": "737780aa-1c4e-408f-a59a-74f724a0c42a",
+      "name": "Google Sheets8",
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.5,
+      "position": [
+        1360,
+        -2304
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "e00fbede-fd17-42cf-93e5-01d4772781c4",
+      "name": "OpenAI Chat Model9",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        1632,
+        -2304
+      ]
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"respuesta\": \"Aquí deberas incorporar todo el Contenido\",\n  \"imagenes\": \"Aquí deberas incorporar todas las imagenes obtenidas\"\n}"
+      },
+      "id": "08300012-50ab-41f6-8848-204f7af70a75",
+      "name": "Structured Output Parser4",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        1760,
+        -2304
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "436071339586991",
+        "recipientPhoneNumber": "={{ $('WhatsApp Trigger').item.json.contacts[0].wa_id }}",
+        "messageType": "image",
+        "mediaLink": "={{ $('Basic LLM Chain').item.json.output.imagenes }}",
+        "additionalFields": {}
+      },
+      "id": "2f5fe19c-0216-4fd7-95ce-b4073a2d768d",
+      "name": "WhatsApp Business Cloud7",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2448,
+        -2720
+      ],
+      "webhookId": "7af56f23-b196-46bd-90c8-d59ab1641736"
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "436071339586991",
+        "recipientPhoneNumber": "={{ $('WhatsApp Trigger').item.json.contacts[0].wa_id }}",
+        "textBody": "={{ $('Basic LLM Chain').item.json.output.respuesta }}",
+        "additionalFields": {}
+      },
+      "id": "a0034a9b-61ce-44f8-b910-a350a8509a52",
+      "name": "WhatsApp Business Cloud10",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2224,
+        -2336
+      ],
+      "webhookId": "650b3af1-f8db-487c-a8fc-7fca1d27f8ea"
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "436071339586991",
+        "recipientPhoneNumber": "={{ $('WhatsApp Trigger').item.json.contacts[0].wa_id }}",
+        "textBody": "={{ $('Basic LLM Chain').item.json.output.respuesta }}",
+        "additionalFields": {}
+      },
+      "id": "f35b4912-d58d-4593-bb14-79e3d7c515b9",
+      "name": "WhatsApp Business Cloud11",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2224,
+        -2720
+      ],
+      "webhookId": "31b34a90-2828-49a0-9370-e1ad8fcbf560"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "707f74fc-fddb-4d73-b862-2b18f73bb847",
+              "leftValue": "={{ $json.output.imagenes }}",
+              "rightValue": "https",
+              "operator": {
+                "type": "string",
+                "operation": "startsWith"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "c90c2025-5a26-45b0-b40c-3b42854a05dd",
+      "name": "If14",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2000,
+        -2528
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "25da3798-ef4e-458f-bb42-d0e7716c08c4",
+              "leftValue": "={{ $('MongoDB21').item.json }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "59b97bf7-7b4a-4ae3-a1f1-c4d91fa26309",
+      "name": "If15",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2448,
+        -2336
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={\n    \"_id\": {{ $('MongoDB20').item.json._id }},\n  \"messages\": [\"{{ \"user: \"+ $('WhatsApp Trigger').item.json.messages[0].text.body }}\", \"{{ \"assistant: \"+$('Basic LLM Chain').item.json.output.respuesta }}\"]\n}",
+        "options": {}
+      },
+      "id": "e1bf430b-0fb6-4d2f-975c-3a23fa38fc7d",
+      "name": "Edit Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2672,
+        -2432
+      ]
+    },
+    {
+      "parameters": {
+        "updates": [
+          "messages"
+        ],
+        "options": {}
+      },
+      "id": "ce558b32-5f7f-453c-b296-d318638cd026",
+      "name": "WhatsApp Trigger",
+      "type": "n8n-nodes-base.whatsAppTrigger",
+      "typeVersion": 1,
+      "position": [
+        -144,
+        -2528
+      ],
+      "webhookId": "885d4cb1-46a6-4daa-8b2f-50d98c7112f9"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "2f567c97-a97e-42fd-b7af-7c085f43e1ab",
+              "leftValue": "={{ $json.messages[0].text.body }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "88e48ef1-54f5-4f10-af8a-176e900d9758",
+      "name": "If16",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        80,
+        -2528
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={\n  \"_id\": {{ $('MongoDB').item.json._id }},\n  \"messages\": {{ $('MongoDB').item.json.messages.concat([\n     \"user: \"+ $('WhatsApp Trigger').item.json.messages[0].text.body, \"assistant: \"+$('Basic LLM Chain').item.json.output.respuesta\n  ]) }}\n}",
+        "options": {}
+      },
+      "id": "f1bee864-600b-487b-b616-4006f0b10d5d",
+      "name": "Edit Fields12",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2672,
+        -2240
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "25da3798-ef4e-458f-bb42-d0e7716c08c4",
+              "leftValue": "={{ $('MongoDB21').item.json }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "d064e906-c7b1-4517-8aec-80a601c3b01d",
+      "name": "If17",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2672,
+        -2720
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={\n    \"_id\": {{ $('MongoDB20').item.json._id }},\n  \"messages\": [\"{{ \"user: \"+ $('WhatsApp Trigger').item.json.messages[0].text.body }}\", \"{{ \"assistant: \"+$('Basic LLM Chain').item.json.output.respuesta }}\"]\n}",
+        "options": {}
+      },
+      "id": "3b425883-0149-426a-885d-d60705cb2aa4",
+      "name": "Edit Fields13",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2896,
+        -2816
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={\n  \"_id\": {{ $('MongoDB').item.json._id }},\n  \"messages\": {{ $('MongoDB').item.json.messages.concat([\n     \"user: \"+ $('WhatsApp Trigger').item.json.messages[0].text.body, \"assistant: \"+$('Basic LLM Chain').item.json.output.respuesta\n  ]) }}\n}",
+        "options": {}
+      },
+      "id": "311e62ae-9b23-4f6e-a120-3f614635b4cf",
+      "name": "Edit Fields14",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2896,
+        -2624
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "collection": "Clientes",
+        "updateKey": "_id",
+        "fields": "messages",
+        "options": {}
+      },
+      "id": "9c121092-00b8-4d98-9fd7-035679f28bf5",
+      "name": "MongoDB16",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        3120,
+        -2816
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "collection": "Clientes",
+        "updateKey": "_id",
+        "fields": "messages",
+        "options": {}
+      },
+      "id": "9740e485-6b99-4073-88e4-a330378b708b",
+      "name": "MongoDB17",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        3120,
+        -2624
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "collection": "Clientes",
+        "updateKey": "_id",
+        "fields": "messages",
+        "options": {}
+      },
+      "id": "4bec2613-063b-4c07-8cb8-f7dab2b2358d",
+      "name": "MongoDB18",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        2896,
+        -2432
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "collection": "Clientes",
+        "updateKey": "_id",
+        "fields": "messages",
+        "options": {}
+      },
+      "id": "492e16ee-8a3f-4c29-8f20-00dfddcae534",
+      "name": "MongoDB19",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        2896,
+        -2240
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "656dcd57-541e-4f67-9e67-ab0c7d3d5df1",
+              "leftValue": "={{ $('MongoDB21').item.json }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "5362e038-0acc-44d1-8735-0dcd9ec56b1e",
+      "name": "If18",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        528,
+        -2528
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "collection": "Clientes",
+        "fields": "phone_number,messages",
+        "options": {}
+      },
+      "id": "f025487e-2537-4c42-8608-1e2f1c0f99f9",
+      "name": "MongoDB20",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        976,
+        -2624
+      ],
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "collection": "Clientes",
+        "options": {},
+        "query": "={\n  \"phone_number\": \"{{ $('If16').item.json.messages[0].from }}\"\n}"
+      },
+      "id": "7aed35da-3cf4-4b14-ad29-ea1e37efd58b",
+      "name": "MongoDB21",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1.1,
+      "position": [
+        304,
+        -2528
+      ],
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={\n      \"phone_number\": \"{{ $('WhatsApp Trigger').item.json.messages[0].from }}\",\n      \"messages\": [\"{{ \"user: \"+ $('WhatsApp Trigger').item.json.messages[0].text.body }}\"]\n}",
+        "options": {}
+      },
+      "id": "5813f920-bbf9-4607-9005-dd0ebabef616",
+      "name": "Edit Fields15",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        752,
+        -2624
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Aqui el mensaje del usuario: {{ $json.messages.join('\\n') + \"\\nuser:\"+$('WhatsApp Trigger').item.json.messages[0].text.body+\"\\nassistant:\" }}",
+        "options": {
+          "systemMessage": "=*#Rol:*\nSos Mati, el asistente de Ecomflow con mas de 10 años de experiencia recomendando productos personalizados e ideales a cada cliente. Sos una pieza clave del marketing y ventas, responsable de hacer recomendaciones personalizadas y guiar a los clientes hacia los productos ideales para ellos. Ademas tenes una capacidad precisa para ejecutar tus funciones y asi responder de manera informada sobre nuestros productos.\n\n*#Tareas:*\nTus tareas incluyen:\n- Responder cualquier consulta sobre EcomFlow\n- Realizar recomendaciones personalizadas de productos a cada cliente, basandote en sus necesidades y preferencias especificas.\n- Guiar a los clientes hacia la compra del producto en la tienda, una vez sepas su producto ideal. \n- Generar una experiencia amigable y cercana, utilizando el acento y la jerga Argentina.\n- Leer todo el historial de conversacion con el usuario para dar una respuesta contextualizada, proactiva y enriquecedora para el usuario.\n- Ejecutar tus funciones cuando sea el momento oportuno.\n\n#Mensaje de Presentación\n\n\"Buenas, aca Mati! Como es tu nombre?\"\n\n# Especificaciones\n\n## General\n- Usá un lenguaje cordial y cercano, como si estuvieras charlando con un amigo.\n- Cuando el usuario este interesado en un producto deberas ejecutar tu funcion de leer hoja de google sheets, para leer la descripcion del producto y responderle de manera tal que tu respuesta refuerze su interes en el producto, podrias responder algo como \"Impresionante como realmente logra que al 90% de la gente se le deje de caer el pelo. Como tiene elementos premium como la caña, el potasio y el magnesio el resultado es ese tal cual\"\n- Cuando el usuario hable de un producto especifico deberas ejecutar tu funcion leer hoja de sheets, para encontrar ese producto especifico y poder brindar respuestas precisas sobre las caracteristicas del productos, ademas de mostrarle una imagen.\n\n# Notas\n- Utiliza solo los signos de cierre para la interrogacion y la exclamacion como se hace en inglés.\n- Sentite libre de tener errores ortograficos al no utilizar los signos de apertura, y actuar como un humano que comete errores.\n- Por favor, utiliza tu respuesta sin incluir asteriscos ni comillas.\n- Asegurate de que tu mensaje sea breve y directo, sin usar saltos de linea.\n\nSacale todos los signos de apertura, esos que van al inicio en exclamaciones e interrogaciones, y dejá solo los de cierre al final de las frases.\n\nTienes que eliminar los \"¿\" y los \"¡\"\n\nHacé que todos tus mensajes suenen relajados, bien chill e informales, como si estuvieras charlando con tu mejor amigo el argentino que toma mate todo el dia, usando jerga local."
+        }
+      },
+      "id": "22f4dc83-5f2a-412b-a187-5a432c94c75d",
+      "name": "AI Agent5",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        1200,
+        -2528
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Aqui el mensaje a reestructurar: {{ $json.output }}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Separa el contenido de la url de la imagen en formato JSON, aqui los ejemplos segun el caso: \n\n{\n  \"respuesta\": \"Aquí deberas incorporar todo el Contenido\",\n  \"imagenes\": \"Aquí deberas incorporar todas las imagenes obtenidas\"\n}\n\n#Notas:\n-*IMPORTANTE:* Si \"imagenes\" esta vacía devuélvela también vacía\n\n-*IMPORTANTE:* Aquí el mensaje recibido que debes reestructurar a JSON:\n{{ $json.output }}\n"
+            }
+          ]
+        }
+      },
+      "id": "f928786e-ef29-4603-8ce4-d17a755698ec",
+      "name": "Basic LLM Chain",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.4,
+      "position": [
+        1600,
+        -2528
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-07-30T19:31:00.389Z",
+  "versionId": "4d468183-d157-446d-adef-b62db503e49c"
+}
