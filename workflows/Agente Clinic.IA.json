@@ -1,0 +1,4410 @@
+{
+  "active": true,
+  "connections": {
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields13",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields13": {
+      "main": [
+        [
+          {
+            "node": "Switch2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch2": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields14",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields17",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields16",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields20",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields14": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields15",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields15": {
+      "main": [
+        [
+          {
+            "node": "Redis3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI4": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields18",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields16": {
+      "main": [
+        [
+          {
+            "node": "Convert to File3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File3": {
+      "main": [
+        [
+          {
+            "node": "OpenAI5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields17": {
+      "main": [
+        [
+          {
+            "node": "Convert to File4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File4": {
+      "main": [
+        [
+          {
+            "node": "OpenAI4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields18": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields25",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI5": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields19",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields19": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields25",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields20": {
+      "main": [
+        [
+          {
+            "node": "Convert to File5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File5": {
+      "main": [
+        [
+          {
+            "node": "OpenAI6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI6": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields21",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields21": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields25",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain1": {
+      "main": [
+        [
+          {
+            "node": "PRIMER_MENSAJE1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Auto-fixing Output Parser1": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Auto-fixing Output Parser1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser1": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Auto-fixing Output Parser1",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Redis3": {
+      "main": [
+        [
+          {
+            "node": "Wait5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Redis4": {
+      "main": [
+        [
+          {
+            "node": "If6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If6": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields23",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields22": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields25",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Redis5": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields22",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields23": {
+      "main": [
+        [
+          {
+            "node": "Redis5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Es cliente?1": {
+      "main": [
+        [
+          {
+            "node": "Aggregate2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Formateamos fecha_pendiente1": {
+      "main": [
+        [
+          {
+            "node": "Qué servicio tiene?1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI7": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AGENTE CLIENTE SIN CITA1",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "AGENTE LEAD1",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "AGENTE CLIENTE CON CITA1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Existente Con Cita1": {
+      "main": [
+        [
+          {
+            "node": "AGENTE CLIENTE CON CITA1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cliente Nuevo1": {
+      "main": [
+        [
+          {
+            "node": "AGENTE LEAD1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Existente Sin Cita1": {
+      "main": [
+        [
+          {
+            "node": "AGENTE CLIENTE SIN CITA1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "crear_nuevo_cliente1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AGENTE LEAD1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AGENTE CLIENTE SIN CITA1": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AGENTE CLIENTE CON CITA1": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AGENTE LEAD1": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Nombre cliente1": {
+      "main": [
+        [
+          {
+            "node": "Citas pendientes1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate2": {
+      "main": [
+        [
+          {
+            "node": "Cliente Existente?1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Citas pendientes1": {
+      "main": [
+        [
+          {
+            "node": "Aggregate3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cliente Existente?1": {
+      "main": [
+        [
+          {
+            "node": "If7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate3": {
+      "main": [
+        [
+          {
+            "node": "Tiene Cita?1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tiene Cita?1": {
+      "main": [
+        [
+          {
+            "node": "Switch3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Qué servicio tiene?1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields24",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Qué cita tiene?1": {
+      "main": [
+        [
+          {
+            "node": "Formateamos fecha_pendiente1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields24": {
+      "main": [
+        [
+          {
+            "node": "Existente Con Cita1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If7": {
+      "main": [
+        [
+          {
+            "node": "Nombre cliente1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Cliente Nuevo1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch3": {
+      "main": [
+        [
+          {
+            "node": "Qué cita tiene?1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Existente Sin Cita1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2 parte ": {
+      "main": [
+        [
+          {
+            "node": "Wait4",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "If parte ": {
+      "main": [
+        [
+          {
+            "node": "Wait3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait5": {
+      "main": [
+        [
+          {
+            "node": "Redis4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields25": {
+      "main": [
+        [
+          {
+            "node": "Es cliente?1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Sentiment Analysis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cancelar_cita_ClinicIA1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AGENTE CLIENTE CON CITA1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Think1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AGENTE LEAD1",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "AGENTE CLIENTE SIN CITA1",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "AGENTE CLIENTE CON CITA1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Servicios1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AGENTE LEAD1",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "AGENTE CLIENTE SIN CITA1",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "AGENTE CLIENTE CON CITA1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Fecha",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fecha": {
+      "main": [
+        [
+          {
+            "node": "Fecha Formateada",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fecha Formateada": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PRIMER_MENSAJE1": {
+      "main": [
+        [
+          {
+            "node": "If2 parte ",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait4": {
+      "main": [
+        [
+          {
+            "node": "PRIMER_MENSAJE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait3": {
+      "main": [
+        [
+          {
+            "node": "PRIMER_MENSAJE2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AGENTE CLIENTE SIN CITA1",
+            "type": "ai_memory",
+            "index": 0
+          },
+          {
+            "node": "AGENTE CLIENTE CON CITA1",
+            "type": "ai_memory",
+            "index": 0
+          },
+          {
+            "node": "AGENTE LEAD1",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PRIMER_MENSAJE": {
+      "main": [
+        [
+          {
+            "node": "If parte ",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "comprobar_hora_Clinic.IA": {
+      "ai_tool": [
+        [
+          {
+            "node": "AGENTE LEAD1",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "AGENTE CLIENTE SIN CITA1",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "AGENTE CLIENTE CON CITA1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "comprobar_disponibilidad_Clinic.IA": {
+      "ai_tool": [
+        [
+          {
+            "node": "AGENTE CLIENTE SIN CITA1",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "AGENTE CLIENTE CON CITA1",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "AGENTE LEAD1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agendar_Cita_Clinic.IA": {
+      "ai_tool": [
+        [
+          {
+            "node": "AGENTE LEAD1",
+            "type": "ai_tool",
+            "index": 0
+          },
+          {
+            "node": "AGENTE CLIENTE SIN CITA1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "modificar_cita_ClinicIA": {
+      "ai_tool": [
+        [
+          {
+            "node": "AGENTE CLIENTE CON CITA1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Sentiment Analysis",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sentiment Analysis": {
+      "main": [
+        [],
+        [],
+        [
+          {
+            "node": "Airtable1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Airtable1": {
+      "main": [
+        [
+          {
+            "node": "Airtable",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Obtener URL de YouTube",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain2",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtener URL de YouTube": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "extractTranscript": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "extractTranscript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain2": {
+      "main": [
+        [
+          {
+            "node": "Search a page",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search a page": {
+      "main": [
+        [
+          {
+            "node": "Create a page",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Basic LLM Chain2",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a page": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "PRIMER_MENSAJE3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Descargar Imagen": {
+      "main": [
+        [
+          {
+            "node": "Subir Archivo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtener URL Imagen": {
+      "main": [
+        [
+          {
+            "node": "Descargar Imagen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-06-05T17:17:32.727Z",
+  "id": "h9Ji1hFxWVKoJxAw",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Agente Clinic.IA",
+  "nodes": [
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "7600cd39-f566-4fa5-a7e0-b29e05b392bd",
+              "leftValue": "={{ $('Webhook').item.json.body.event }}",
+              "rightValue": "messages.upsert",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -14384,
+        -1616
+      ],
+      "id": "106a0e3a-7faf-4b38-a551-bd98331b2182",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e5b7b1a9-e0b7-4ff4-ab9d-79d78b3e8230",
+              "name": "Número",
+              "value": "={{ $('Code').item.json.extractedPhone }}",
+              "type": "string"
+            },
+            {
+              "id": "b1373777-68c4-4d3e-8eae-c77269e2163d",
+              "name": "Whatsapp_number",
+              "value": "={{ $('Webhook').item.json.body.data.key.remoteJid }}",
+              "type": "string"
+            },
+            {
+              "id": "b3a441af-a709-4998-98ed-887fa21983cd",
+              "name": "Whastapp_name",
+              "value": "={{ $('Webhook').item.json.body.data.pushName }}",
+              "type": "string"
+            },
+            {
+              "id": "c5600e5f-cfd4-466c-baf9-dc42ea14edb1",
+              "name": "message_id",
+              "value": "={{ $('Webhook').item.json.body.data.key.id }}",
+              "type": "string"
+            },
+            {
+              "id": "135da444-8b73-4671-abaf-22e1825ede87",
+              "name": "message_type",
+              "value": "={{ !!$('Webhook').item.json.body.data.message.conversation && 'Texto' ||\n   !!$('Webhook').item.json.body.data.message.audioMessage && 'audio' ||\n   !!$('Webhook').item.json.body.data.message.imageMessage && 'image' ||\n   !!$('Webhook').item.json.body.data.message.stickerMessage && 'sticker' }}",
+              "type": "string"
+            },
+            {
+              "id": "2797e7c1-0128-4d92-9a62-167b97a8a832",
+              "name": "message_receivedDate",
+              "value": "={{ DateTime.fromSeconds($('Webhook').item.json.body.data.messageTimestamp).toISO() }}",
+              "type": "string"
+            },
+            {
+              "id": "b10b61c5-c8fa-414a-93fe-c8c0fa35aa7a",
+              "name": "apikey",
+              "value": "={{ $('Webhook').item.json.body.apikey }}",
+              "type": "string"
+            },
+            {
+              "id": "7a9960cb-1f18-4c42-835d-4be20219affb",
+              "name": "instancia",
+              "value": "={{ $('Webhook').item.json.body.instance }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -14096,
+        -1712
+      ],
+      "id": "d7d3f283-debf-4b77-a3ec-1ca303e80c02",
+      "name": "Edit Fields13"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.message_type }}",
+                    "rightValue": "Texto",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Texto"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "077cd860-da61-4973-b37d-2c34d2cf9de9",
+                    "leftValue": "={{ $json.message_type }}",
+                    "rightValue": "audio",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Audio"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "97b51420-cf22-4718-8256-bd2bd0a3c6e6",
+                    "leftValue": "={{ $json.message_type }}",
+                    "rightValue": "image",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Image"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "e46a4113-4b7f-4e4c-a44f-0047f86f6f13",
+                    "leftValue": "={{ $json.message_type }}",
+                    "rightValue": "sticker",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Sticker"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -13808,
+        -1744
+      ],
+      "id": "adace16d-36c1-4b43-a5b3-e7589f864503",
+      "name": "Switch2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e40758b7-c873-4f70-b434-ba759e533d83",
+              "name": "mesagge_content",
+              "value": "={{ $('Webhook').item.json.body.data.message.conversation }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -13584,
+        -2208
+      ],
+      "id": "e0405c3b-1c42-4701-aaa0-67fce9a44d3e",
+      "name": "Edit Fields14"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "0b0e4dd0-d46b-4651-ae91-d13f9e626a5b",
+              "name": "Whatsapp_number",
+              "value": "={{ $json.Whatsapp_number }}",
+              "type": "string"
+            },
+            {
+              "id": "1a27c534-a2c5-400d-88de-d070cd2dd552",
+              "name": "Whatsapp_name",
+              "value": "={{ $json.Whastapp_name }}",
+              "type": "string"
+            },
+            {
+              "id": "910c9e55-ce6b-4af3-b1b4-6768d110765f",
+              "name": "message_id",
+              "value": "={{ $json.message_id }}",
+              "type": "string"
+            },
+            {
+              "id": "099559f5-b30d-44df-a483-c0becb52a129",
+              "name": "message_content",
+              "value": "={{ $json.mesagge_content }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -13360,
+        -2208
+      ],
+      "id": "11952024-3e34-4276-8d47-db32f62e492d",
+      "name": "Edit Fields15"
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "operation": "transcribe",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        -11904,
+        -1856
+      ],
+      "id": "f22cba04-4347-47f0-bd49-535bf2224378",
+      "name": "OpenAI4",
+      "credentials": {
+        "openAiApi": {
+          "id": "DCNgLG2517avXWdE",
+          "name": "Cuenta Joel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "18b52fda-d39d-4a0d-8b4b-dae73d818de1",
+              "name": "imagedata64",
+              "value": "={{ $('Webhook1').item.json.body.data.message.base64 }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -12336,
+        -1664
+      ],
+      "id": "e8798e8b-5e24-4b1e-8822-3d6747b63b62",
+      "name": "Edit Fields16"
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "imagedata64",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        -12128,
+        -1664
+      ],
+      "id": "405e4468-d714-44d7-8cdd-32937d3251f2",
+      "name": "Convert to File3"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6c0c61ff-4a2d-436c-ac64-35e63c0a7aa4",
+              "name": "audio64",
+              "value": "={{ $('Webhook').item.json.body.data.message.base64 }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -12336,
+        -1856
+      ],
+      "id": "d9dcf68d-9531-4f25-a85f-87a142d5d645",
+      "name": "Edit Fields17"
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "audio64",
+        "options": {
+          "fileName": "=file-{{ $now.format('yyyy-MM-dd:dd_HHMMSS') }}.ogg"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        -12128,
+        -1856
+      ],
+      "id": "4851a78e-3f43-4c20-baff-87a11b8e44b3",
+      "name": "Convert to File4"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "0b0e4dd0-d46b-4651-ae91-d13f9e626a5b",
+              "name": "Whatsapp_number",
+              "value": "={{ $('Edit Fields13').item.json.Whatsapp_number }}",
+              "type": "string"
+            },
+            {
+              "id": "1a27c534-a2c5-400d-88de-d070cd2dd552",
+              "name": "Whatsapp_name",
+              "value": "={{ $('Edit Fields13').item.json.Whastapp_name }}",
+              "type": "string"
+            },
+            {
+              "id": "910c9e55-ce6b-4af3-b1b4-6768d110765f",
+              "name": "message_id",
+              "value": "={{ $('Edit Fields13').item.json.message_id }}",
+              "type": "string"
+            },
+            {
+              "id": "099559f5-b30d-44df-a483-c0becb52a129",
+              "name": "message_content",
+              "value": "={{ $json.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -11680,
+        -1856
+      ],
+      "id": "e120c329-4bd4-4650-9b0a-d12bf52f1a9b",
+      "name": "Edit Fields18"
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "operation": "analyze",
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "GPT-4O"
+        },
+        "text": "Eres un asistente virtual, analisa esta imagen. Tu respuesta debe comenzar con: \"Imagen enviada ____\"",
+        "inputType": "base64",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        -11904,
+        -1664
+      ],
+      "id": "9c039b90-43b5-4693-a3bb-3aa95d7e613f",
+      "name": "OpenAI5",
+      "credentials": {
+        "openAiApi": {
+          "id": "DCNgLG2517avXWdE",
+          "name": "Cuenta Joel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "0b0e4dd0-d46b-4651-ae91-d13f9e626a5b",
+              "name": "Whatsapp_number",
+              "value": "={{ $('Edit Fields13').item.json.Whatsapp_number }}",
+              "type": "string"
+            },
+            {
+              "id": "1a27c534-a2c5-400d-88de-d070cd2dd552",
+              "name": "Whatsapp_name",
+              "value": "={{ $('Edit Fields13').item.json.Whastapp_name }}",
+              "type": "string"
+            },
+            {
+              "id": "910c9e55-ce6b-4af3-b1b4-6768d110765f",
+              "name": "message_id",
+              "value": "={{ $('Edit Fields13').item.json.message_id }}",
+              "type": "string"
+            },
+            {
+              "id": "099559f5-b30d-44df-a483-c0becb52a129",
+              "name": "message_content",
+              "value": "={{ $json.content }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -11680,
+        -1664
+      ],
+      "id": "ab9da053-a6d2-4c06-8ad1-181c6d0aa347",
+      "name": "Edit Fields19"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "18b52fda-d39d-4a0d-8b4b-dae73d818de1",
+              "name": "stickerdata64",
+              "value": "={{ $('Webhook1').item.json.body.data.message.base64 }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -12336,
+        -1456
+      ],
+      "id": "dbc96a54-f16e-443f-a5d6-2322e5daa11c",
+      "name": "Edit Fields20"
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "stickerdata64",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        -12128,
+        -1456
+      ],
+      "id": "cb9d9666-edd8-49d3-b10d-a61c50d548d9",
+      "name": "Convert to File5"
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "operation": "analyze",
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4O-MINI"
+        },
+        "text": "Eres un asistente virtual, analisa esta imagen. Tu respuesta debe comenzar con: \"Sticker enviado ____\"",
+        "inputType": "base64",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        -11904,
+        -1456
+      ],
+      "id": "6de3da58-1a5e-4508-8adf-7ebf0177d8b2",
+      "name": "OpenAI6",
+      "credentials": {
+        "openAiApi": {
+          "id": "DCNgLG2517avXWdE",
+          "name": "Cuenta Joel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "0b0e4dd0-d46b-4651-ae91-d13f9e626a5b",
+              "name": "Whatsapp_number",
+              "value": "={{ $('Edit Fields13').item.json.Whatsapp_number }}",
+              "type": "string"
+            },
+            {
+              "id": "1a27c534-a2c5-400d-88de-d070cd2dd552",
+              "name": "Whatsapp_name",
+              "value": "={{ $('Edit Fields13').item.json.Whastapp_name }}",
+              "type": "string"
+            },
+            {
+              "id": "910c9e55-ce6b-4af3-b1b4-6768d110765f",
+              "name": "message_id",
+              "value": "={{ $('Edit Fields13').item.json.message_id }}",
+              "type": "string"
+            },
+            {
+              "id": "099559f5-b30d-44df-a483-c0becb52a129",
+              "name": "message_content",
+              "value": "={{ $json.content }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -11680,
+        -1456
+      ],
+      "id": "ea2d2bf5-8962-442a-9a47-74e0f6e90639",
+      "name": "Edit Fields21"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Respuesta a formatear: {{ $json.output }}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=#Tarea\nTu tarea es procesar la siguiente respuesta del agente: \n{{ $json.output }}. \n\nDebes dividirla en hasta tres partes para simular una conversación natural, limpiar signos iniciales no deseados y eliminar frases genéricas que rompen la humanización.\nLa salida debe ser un JSON con tres partes, listo para enviarse con pausas en n8n.\n\n##Tarea 1: Dividir la respuesta en hasta 3 partes\n- Analiza la respuesta y divídela en hasta tres partes, cada una con sentido completo.\n- No cortes frases a menos que haya un punto o una pausa natural (como una coma seguida de una nueva idea).\n- Quita el punto final de cada parte para que la conversación sea más fluida y menos formal.\n- Si la respuesta es demasiado corta para tres partes (menos de 2 oraciones), deja las partes vacías (ejemplo: parte2 y parte3 como \"\")\n- Si la respuesta tiene más de tres oraciones, prioriza las primeras tres y combina ideas secundarias en la tercera parte.\n- Asegúrate de que cada parte sea breve (máximo 15 palabras) para que sea digerible en un chat.\n\n##Tarea 2: Limpiar signos y frases no deseadas\n→ Elimina los signos iniciales de exclamación (\"¡\") e interrogación (\"¿\") en cada parte, pero manten los de cierre (\"!\", \"?\") para naturalidad.\n- Quita frases genéricas o robóticas como:\n  - “¿Cómo más te puedo ayudar?”\n  - “¿Tienes alguna otra pregunta?”\n  - “Por favor, reserva ahora”\n  - “Estoy aquí para asistirte”\n  - Cualquier variante similar que suene automatizada.\n- Si la respuesta contiene jerga técnica (ejemplo: \"procesando\", \"solicitud\"), reemplazala por un término simple (ejemplo: \"arreglando\", \"pedido\").\n- Asegurate de que las partes mantengan el tono cálido y no introduzcan formalidades.\n\n##Tarea 3: Formato de salida\n- Devuelve las partes en un JSON con las claves \"parte1\", \"parte2\", \"parte3\".\n- Si una parte está vacía, déjala como cadena vacía (“”).\n- Ejemplo de formato:\n{\n  \"parte1\": \"Texto de la primera parte\",\n  \"parte2\": \"Texto de la segunda parte\",\n  \"parte3\": \"Texto de la tercera parte\"\n}"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        -6960,
+        -1664
+      ],
+      "id": "a54eec17-4109-48a6-8fcd-c5c9d5545a46",
+      "name": "Basic LLM Chain1",
+      "retryOnFail": true,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "options": {
+          "prompt": "Instructions:\n--------------\nTu respuesta debe ser exclusivamente un objeto JSON válido que incluya únicamente las claves:\n- \"parte_1\"\n- \"parte_2\"\n- \"parte_3\"\n\nCada clave debe tener como valor una cadena de texto (string). No incluyas texto adicional, backticks, ni formato Markdown. No uses comillas simples. Tampoco incluyas explicaciones antes o después del objeto JSON. Asegúrate de colocar dos puntos (:) después de cada clave y encerrar los valores entre comillas dobles. Cualquier salida que no sea JSON válido o que contenga texto adicional no cumplirá las restricciones.\n\n--------------\nCompletion:\n--------------\n{completion}\n--------------\n\nAbove, the Completion did not satisfy the constraints given in the Instructions.\nError:\n--------------\n{error}\n--------------\n\nPlease try again. Please only respond with an answer that satisfies the constraints laid out in the Instructions:"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserAutofixing",
+      "typeVersion": 1,
+      "position": [
+        -6864,
+        -1440
+      ],
+      "id": "f3a6a84e-94ed-499e-be3e-17179be3356d",
+      "name": "Auto-fixing Output Parser1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {
+          "temperature": 0
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -6848,
+        -1248
+      ],
+      "id": "7cdf0fb4-2d69-4060-9bf5-08d2574c87d5",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "DCNgLG2517avXWdE",
+          "name": "Cuenta Joel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\"parte_1\": \"contenido de la primera parte de la respuesta\",\n\t\"parte_2\": \"contenido de la segunda parte de la respuesta\",\n\t\"parte_3\": \"contenido de la tercera parte de la respuesta\"\t\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        -6720,
+        -1248
+      ],
+      "id": "60ad733b-f821-41a4-83ed-4e5ce9c34754",
+      "name": "Structured Output Parser1"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        -14096,
+        -1504
+      ],
+      "id": "60018377-3ffe-4a82-b448-f32a7de2aed5",
+      "name": "No Operation, do nothing"
+    },
+    {
+      "parameters": {
+        "operation": "push",
+        "list": "={{ $json.Whatsapp_number }}",
+        "messageData": "={{ $json.message_content }}"
+      },
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        -13136,
+        -2208
+      ],
+      "id": "59b737d0-5f2e-4e0d-b9d6-7287a784c115",
+      "name": "Redis3",
+      "credentials": {
+        "redis": {
+          "id": "5yTuvizcwYu5k42W",
+          "name": "Redis Joel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "propertyName": "mensajes",
+        "key": "={{ $('Redis3').item.json.Whatsapp_number }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        -12624,
+        -2208
+      ],
+      "id": "a669fe55-2a53-41d6-a70c-1a4f45ed21c5",
+      "name": "Redis4",
+      "credentials": {
+        "redis": {
+          "id": "5yTuvizcwYu5k42W",
+          "name": "Redis Joel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "54b6a403-1743-4ccd-b39c-5dcc6ab9bd52",
+              "leftValue": "={{ $json.mensajes.first() }}",
+              "rightValue": "={{ $('Webhook').item.json.body.data.message.conversation }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -12336,
+        -2208
+      ],
+      "id": "4f9378bf-8e4f-4dbe-8cb1-e7fc37e3950e",
+      "name": "If6",
+      "notesInFlow": false
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        -12128,
+        -2064
+      ],
+      "id": "abe75976-7c30-4031-b5df-dd575ee46aa2",
+      "name": "No Operation, do nothing4"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b1f7110b-700c-4833-bfb9-3e6f6e6d89c4",
+              "name": "Número",
+              "value": "={{ $('Code').item.json.extractedPhone }}",
+              "type": "string"
+            },
+            {
+              "id": "0b0e4dd0-d46b-4651-ae91-d13f9e626a5b",
+              "name": "Whatsapp_number",
+              "value": "={{ $('Redis3').item.json.Whatsapp_number }}",
+              "type": "string"
+            },
+            {
+              "id": "1a27c534-a2c5-400d-88de-d070cd2dd552",
+              "name": "Whatsapp_name",
+              "value": "={{ $('Redis3').item.json.Whatsapp_name }}",
+              "type": "string"
+            },
+            {
+              "id": "910c9e55-ce6b-4af3-b1b4-6768d110765f",
+              "name": "message_id",
+              "value": "={{ $('Redis3').item.json.message_id }}",
+              "type": "string"
+            },
+            {
+              "id": "099559f5-b30d-44df-a483-c0becb52a129",
+              "name": "message_content",
+              "value": "={{ $('Edit Fields23').item.json.mensajes_nuevos.replaceAll('\"', '').replaceAll('[','').replaceAll(',', ' ').replaceAll(']','') }} ",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -11680,
+        -2256
+      ],
+      "id": "ebec3a6b-8d52-4c14-b9b2-e8963830fe79",
+      "name": "Edit Fields22"
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "key": "={{ $('Redis3').item.json.Whatsapp_number }}"
+      },
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        -11904,
+        -2256
+      ],
+      "id": "f5ed1df6-6542-409a-9ed1-fa456e48080e",
+      "name": "Redis5",
+      "credentials": {
+        "redis": {
+          "id": "5yTuvizcwYu5k42W",
+          "name": "Redis Joel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7d0df451-32c6-4a99-bcf0-344a9e97b494",
+              "name": "mensajes_nuevos",
+              "value": "={{$json[\"mensajes\"].slice().reverse()}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -12128,
+        -2256
+      ],
+      "id": "74fb8e42-32d4-4216-8d01-c1c26242d257",
+      "name": "Edit Fields23"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "chatgpt-4o-latest",
+          "mode": "list",
+          "cachedResultName": "chatgpt-4o-latest"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -6976,
+        -1440
+      ],
+      "id": "8c7b6064-7027-4aa3-99af-0edc1bec705d",
+      "name": "OpenAI Chat Model3",
+      "credentials": {
+        "openAiApi": {
+          "id": "DCNgLG2517avXWdE",
+          "name": "Cuenta Joel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appwtKASSidizHxdl",
+          "mode": "list",
+          "cachedResultName": "CLINIC.IA",
+          "cachedResultUrl": "https://airtable.com/appwtKASSidizHxdl"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblDNxhyGS0G8lEse",
+          "mode": "list",
+          "cachedResultName": "Clientes",
+          "cachedResultUrl": "https://airtable.com/appwtKASSidizHxdl/tblDNxhyGS0G8lEse"
+        },
+        "filterByFormula": "={Teléfono} ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        -11168,
+        -1664
+      ],
+      "id": "0226895c-d87a-4e56-a7b7-0d88c2517cc2",
+      "name": "Es cliente?1",
+      "executeOnce": true,
+      "alwaysOutputData": true,
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "xnXPhiCbfi7JtT21",
+          "name": "Clinic.IA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Obtener la fecha original\nconst fecha = new Date($input.first().json['Fecha de la Cita']);\n\n// Sumar 2 horas a la fecha\nfecha.setHours(fecha.getHours() + 2);\n\n// Formatear la fecha\nconst dia = fecha.getDate().toString().padStart(2, '0');\nconst mes = (fecha.getMonth() + 1).toString().padStart(2, '0');\nconst año = fecha.getFullYear();\nconst hora = fecha.getHours().toString().padStart(2, '0');\nconst minutos = fecha.getMinutes().toString().padStart(2, '0');\n\n// Formatear como string\nconst fechaFormateada = `${dia}/${mes}/${año} a las ${hora}:${minutos}`;\n\n// Crear el objeto de salida con la fecha formateada\nconst item = {\n  json: {\n    ...$input.first().json,  // Mantener los datos originales\n    fechaFormateada: fechaFormateada  // Añadir el nuevo campo\n  }\n};\n\n// Devolver como array de objetos\nreturn [item];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -8896,
+        -1360
+      ],
+      "id": "c5dc5864-45ce-489b-8938-e11201e43260",
+      "name": "Formateamos fecha_pendiente1"
+    },
+    {
+      "parameters": {
+        "model": "gpt-4.1",
+        "options": {
+          "temperature": 0.7
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.1,
+      "position": [
+        -8016,
+        -1840
+      ],
+      "id": "b92d8e0b-bb14-4781-9e3b-8490899f9c69",
+      "name": "OpenAI7",
+      "credentials": {
+        "openAiApi": {
+          "id": "DCNgLG2517avXWdE",
+          "name": "Cuenta Joel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c61bcb28-9d3a-42ac-aa98-22e039edf447",
+              "name": "Cliente existente con cita pendiente",
+              "value": "=Es un cliente y tiene una cita para el dia {{ $json.Fecha_Cita }}, su nombre es {{ $json.Nombre }}, su teléfono es {{ $json['Teléfono'] }} y quiere hacerse un servicio de {{ $json.Servicio_Pendiente }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -8240,
+        -1360
+      ],
+      "id": "6ff78ddb-287b-4d9b-be1e-413b28e48536",
+      "name": "Existente Con Cita1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2ab68246-a499-460f-a3a9-c065d5d2a5ec",
+              "name": "Cliente_nuevo",
+              "value": "=Es un cliente nuevo, hay que agregarlo a la base de datos. Su teléfono es: {{ $('Edit Fields25').item.json['Número'] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -8240,
+        -1968
+      ],
+      "id": "2ce3abb6-0c71-46d1-9c9a-ec0d0d19c851",
+      "name": "Cliente Nuevo1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "31ef283a-103f-486e-b745-1b2580598151",
+              "name": "Cliente existente sin cita pendiente",
+              "value": "=Es un cliente existente, su nombre es {{ $('Nombre cliente1').first().json.Nombre }}, su teléfono es {{ $('Nombre cliente1').first().json['Teléfono'] }} pero aún no tiene cita agendada ",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -8240,
+        -1664
+      ],
+      "id": "ff280d29-1ae9-4ea7-b4d0-b8e688f58e0b",
+      "name": "Existente Sin Cita1"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appwtKASSidizHxdl",
+          "mode": "list",
+          "cachedResultName": "CLINIC.IA",
+          "cachedResultUrl": "https://airtable.com/appwtKASSidizHxdl"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblDNxhyGS0G8lEse",
+          "mode": "list",
+          "cachedResultName": "Clientes",
+          "cachedResultUrl": "https://airtable.com/appwtKASSidizHxdl/tblDNxhyGS0G8lEse"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Nombre": "={{ $fromAI(\"Nombre\",\"Nombre del usuario\") }}",
+            "Teléfono": "={{ $fromAI(\"Telefono\",\"Telefono del cliente\") }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Nombre",
+              "displayName": "Nombre",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Total de Citas",
+              "displayName": "Total de Citas",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Teléfono",
+              "displayName": "Teléfono",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Historial Citas",
+              "displayName": "Historial Citas",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Preferencias",
+              "displayName": "Preferencias",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Citas",
+              "displayName": "Citas",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Citas 2",
+              "displayName": "Citas 2",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Citas 3",
+              "displayName": "Citas 3",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Citas 4",
+              "displayName": "Citas 4",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Citas 5",
+              "displayName": "Citas 5",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Citas 6",
+              "displayName": "Citas 6",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Citas 7",
+              "displayName": "Citas 7",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Citas 8",
+              "displayName": "Citas 8",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Citas 9",
+              "displayName": "Citas 9",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Citas 10",
+              "displayName": "Citas 10",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtableTool",
+      "typeVersion": 2.1,
+      "position": [
+        -7776,
+        -1840
+      ],
+      "id": "d8b6d4c5-e6a2-4769-a114-594197fae849",
+      "name": "crear_nuevo_cliente1",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "xnXPhiCbfi7JtT21",
+          "name": "Clinic.IA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=El cliente ha dicho lo siguiente: {{ $('Edit Fields25').item.json.message_content }} \nInformación extra: {{ $json['Cliente existente sin cita pendiente'] }}\nHoy es: {{ $('Fecha Formateada').item.json.formattedDate }}",
+        "options": {
+          "systemMessage": "=# Role and Objective\n\nEres **MarIA**, la asistente virtual experta en atención al cliente para **Clinic.IA** (centro de estética en Santa Perpetua de Mogoda). Tu personalidad es **amable, eficiente y clara**. Ayudas a clientes con dudas, modificas o cancelas citas, y consultas disponibilidad usando la información y herramientas disponibles.\n\n# Important Context\n\n- **Nombre del cliente:** {{ $('Nombre cliente1').first().json.Nombre }} *(Nunca debes pedirlo ni pedir que lo escriba)*\n- **Teléfono del cliente:** {{ $('Nombre cliente1').first().json['Teléfono'] }} *(Nunca debes pedirlo)*\n- **Fecha actual:**{{ $('Fecha Formateada').item.json.formattedDate }}\n- **Año predeterminado:** Asume que todas las fechas mencionadas por el cliente son de **2025**, salvo que el cliente especifique otro año.\n\n# Tono y Solicitud de Datos personales\n\n- **Nunca uses expresiones como “te registro en el sistema”, “creo tu usuario”, “te doy de alta”, “almaceno tus datos”, ni ningún término técnico o interno.**\n- Incorpora frases típicas como “¡Listo!”, “Qué bueno!” y emojis 😃🍽️ para reforzar la identidad del centro de estética.\n- Evita sonar formal, técnico o genérico (nada de “Estimado cliente” o “Procesando solicitud”).\n\n# Persistence Reminder\n\nEres un agente autónomo. Persiste y sigue interactuando hasta que la petición esté completamente resuelta. Solo terminas cuando estés segura de haber completado la gestión o de que falta una acción o información por parte del cliente.\n\n# Tool-Calling Reminder\n\nUtiliza SIEMPRE las herramientas cuando sea necesario validar, consultar o modificar datos de las citas. Nunca inventes respuestas ni asumas resultados. Si una herramienta falla, informa del problema e indica al cliente cómo proceder.\n\n# Planning Reminder\n\nAntes de ejecutar cualquier herramienta ejecuta la herramienta \"Think\" y PLANIFICA el próximo paso de manera explícita: asegúrate de tener toda la información necesaria (por ejemplo, nueva fecha/hora, confirmación del cliente, etc). Reflexiona brevemente sobre el resultado de la llamada anterior. Si falta información, pídesela exactamente.\n\n# Instructions and Reasoning Steps\n\n## 1. Detecta la intención principal del mensaje del cliente:\n- ¿Desea agendar una cita?\n- ¿Consulta por disponibilidad u horarios?\n- ¿Tiene una duda sobre servicios o precios?\n\n## 2. Flujos por tipo de solicitud\n\n### Intención: CONSULTAR DISPONIBILIDAD/HORARIOS\n\n**a) Si pregunta por disponibilidad en un día:**\n- Pide la fecha concreta, valida con \"comprobar_hora_JessEspai\".\n- Si válida, usa \"comprobar_disponibilidad_ClinicIA\".\n- Informa de los huecos libres y pregunta si desea reservar alguno.\n    - Si no hay huecos: \"Ya no quedan horas disponibles ese día. ¿Quieres mirar otra fecha?\"\n\n**b) Si solo pregunta por horarios generales:**  \n- Indica horarios de apertura/cierre del centro de forma clara.\n\n### Intención: AGENDAR CITA\n   - Solicita fecha y hora: “¿Para qué día y hora te gustaría reservar tu cita?”\n   - Valida la fecha y hora con la herramienta \"comprobar_hora_ClinicIA\" enviando la fecha  que solicita el cliente en el siguiente formato: 5/5/2025 10:00\n     - Si no es válida, explica amablemente (“Parece que esa fecha/hora no es posible, ¿podrías indicarme otra?”) y vuelve a preguntar.\n   - Si es válida, comprueba disponibilidad con \"comprobar_disponibilidad_ClinicIA\" enviando la fecha  que solicita el cliente en el siguiente formato: 5/5/2025 10:00.\n     - Si hay hueco: “Perfecto, tengo disponibilidad ese día a las {hora}. ¿Te va bien?”\n     - Si no: “No hay disponibilidad a esa hora. ¿Quieres ver otras opciones para ese día o prefieres otra fecha?”\n\n### Intención: RESOLVER DUDAS\n\nResponde siempre de manera concreta y precisa, amable y profesional. Si no sabes una respuesta, sugiere que contacte con el centro.\n\n# Output Format\n\n- Siempre responde en español, tono humano y profesional.\n- Incluye emoticonos solo donde mejore la cercanía.\n- No utilices explicaciones técnicas, ni menciones internas de sistema, herramientas ni prompts.\n- Si ocurre un error inesperado con la herramienta, responde:  \n  \"Ha habido un problema procesando tu solicitud. Intenta de nuevo más tarde o contacta al centro (+34 653 03 55 25).\"\n- NO inventes información. Si no sabes algo, díselo claramente y sugiere llamar al centro.\n\n## Intención: CONSULTAR SERVICIOS: \nEjecuta la herramienta \"Servicios\" para proporcionar cualquier tipo de información sobre los servicios que se ofrecen\n\n# Examples\n\n## Ejemplo de cita directa:\nPerfecto, Marta. ¿Para qué día y hora te gustaría reservar tu cita?\n\n# Notas\n\nEstás en una conversación con un humano, y tus respuestas son las que se le van a mostrar al usuario, así que sé empático, claro y paciente. Da respuestas claras y sientete libre de modificar el formato con tal de sonar natural como lo haría cualquier persona.\n\nSi el usuario da datos vagos (ejemplo: “Reserva para mañana”), pide aclaración amablemente y con tono informal.\n\nSiempre confirma los datos antes de registrar la reserva para evitar errores (ejemplo: “Entendí, quieres reservar para el viernes 10 de mayo a las 20h para una depilación láser, ¿correcto?”).\n\nUsa frases sencillas y cotidianas como “¿Tienes alguna otra pregunta?”.\n\nSi el usuario menciona algo fuera de contexto (ejemplo: “Quiero un corte de pelo”), responde amablemente redirigiendo a las reservas de citas (ejemplo: “Que bueno! aquí podemos hacerte una depilación láser, te animas?”).\n\n# Important Context\n\n- La fecha actual es: {{ $('Fecha Formateada').item.json.formattedDate }}\n- TODAS las fechas por defecto son de 2025 salvo que el usuario indique lo contrario.\n- Nunca inventes información; si no la tienes, díselo amablemente.\n\n# Recuerda\n\nUtiliza SIEMPRE las herramientas para validar y ejecutar acciones clave. Consulta y razona paso a paso antes de cada llamada de herramienta, y explica de forma directa al cliente el resultado o el próximo paso."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        -7680,
+        -1664
+      ],
+      "id": "73579913-737f-4034-b23b-4c361a8cce54",
+      "name": "AGENTE CLIENTE SIN CITA1"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=El cliente ha dicho lo siguiente:{{ $('Edit Fields25').first().json.message_content }}\nInformación extra: {{ $json['Cliente existente con cita pendiente'] }}\nHoy es: {{ $('Fecha Formateada').item.json.formattedDate }}",
+        "options": {
+          "systemMessage": "=Por supuesto. Aquí tienes el prompt completo, modificado y listo para que lo copies y pegues en tu agente de n8n.\n\nPrompt Completo y Modificado para Agente de n8n\nRol y Contexto\nEres MarIA, la asistente virtual experta en atención al cliente para Clinic.IA, un centro de estética en Santa Perpetua de Mogoda. Tu personalidad es amable, eficiente y muy clara. Tu misión es ayudar a los clientes con sus citas y dudas sobre los servicios, asegurando una conversación fluida y natural.\n\nInformación Clave que ya tienes:\n\nNombre del Cliente: Ya lo conoces. NO lo preguntes. (Valor:{{ $('Edit Fields24').item.json.Nombre }} )\n\nTeléfono del Cliente: Ya lo conoces. NO lo preguntes. (Valor: {{ $('Edit Fields24').item.json['Teléfono'] }} )\n\nFecha Actual: {{ $('Fecha Formateada').item.json.formattedDate }}\n\nAño por Defecto: Asume que todas las fechas son de 2025, a menos que se especifique lo contrario.\n\nRegla de Oro: Evitar la Repetición y Reconocer Nuevas Intenciones\nEsta es la instrucción más importante. Tu principal defecto a corregir es la repetición innecesaria cuando un cliente ya tiene una cita.\n\nNUNCA hagas esto:\n\nTú: (Confirmas una cita) Hola, Joan 😊 Tienes tu cita confirmada para el 31 de julio a las 10:00.\n\nCliente: Quiero reservar hora.\n\nTú (Respuesta incorrecta ❌): Hola, Joan 😊 Veo que ya tienes una cita agendada para el 31 de julio... ¿Quieres reservar otra hora o cambiar la que ya tienes?\n\nSIEMPRE haz esto:\n\nTú: (Confirmas una cita) Hola, Joan 😊 Tienes tu cita confirmada para el 31 de julio a las 10:00.\n\nCliente: Quiero reservar hora.\n\nTú (Respuesta correcta ✅): ¡Claro que sí, Joan! Estupendo. Dime, ¿para qué servicio te gustaría reservar esta nueva cita y cuándo te vendría bien?\n\nSi un cliente con una cita existente expresa su deseo de \"reservar\", \"pedir cita\" o similar, asume por defecto que quiere una CITA NUEVA, no modificar la existente. Procede directamente a preguntarle por el servicio y la fecha para esta nueva reserva.\n\nTono y Estilo\nCercanía: Usa un lenguaje natural y amigable. Incorpora frases como “¡Listo!”, “¡Perfecto!” y emojis (😃, ✨, 👍) para sonar más humana.\n\nClaridad: Sé directa y concisa. Evita rodeos.\n\nSin Tecnicismos: Nunca uses jerga interna como “registrar en el sistema”, “crear usuario” o “procesar solicitud”.\n\nIdioma: Responde siempre en español.\n\nFlujo de Acciones por Intención\nTu objetivo es identificar la intención del cliente y actuar en consecuencia de forma inmediata.\n\nIntención Principal 1: CREAR NUEVA CITA\nSi el cliente dice \"quiero reservar\", \"necesito una cita\", \"agendar hora\", etc.\n\nInicio Directo: Inicia el proceso de reserva de inmediato, incluso si ya tiene otra cita.\n\nEjemplo: ¡Genial! Empecemos. ¿Qué servicio te interesa y para qué día y hora lo quieres?\n\nPedir Detalles: Pregunta por el servicio y la fecha/hora.\n\nComprobar Disponibilidad (Herramienta: comprobar_disponibilidad_ClinicIA)\n\nVerifica si hay hueco en la fecha y hora solicitadas.\n\nSi hay disponibilidad: Confirma los detalles con el cliente antes de agendar.\n\nEjemplo: ¡Perfecto! Tengo libre el viernes 10 a las 18:00 para tu Facial Reafirmante. ¿Te lo reservo?\n\nSi NO hay disponibilidad: Ofrece la alternativa más cercana.\n\nEjemplo: Vaya, esa hora ya está ocupada. 🤔 ¿Te iría bien a las 18:30?\n\nConfirmación Final (Herramienta: crear_cita_ClinicIA)\n\nUna vez el cliente dé el \"sí\", ejecuta la herramienta para crear la cita.\n\nComunica el éxito. ¡Listo, Joan! Tu nueva cita para [Servicio] el [Fecha] a las [Hora] ha sido confirmada. ¡Qué ganas de verte! ✨\n\nIntención Principal 2: MODIFICAR CITA EXISTENTE\nSi el cliente dice explícitamente \"quiero cambiar mi cita\", \"modificar la hora\", \"mover mi reserva\".\n\nReconocimiento: Confirma que has entendido que quiere cambiar la cita que ya tiene.\n\nSolicitud de Nueva Fecha: Pregunta directamente por la nueva fecha y hora que desea.\n\nEjemplo: ¡Claro! Te ayudo a cambiar tu cita. ¿Qué nuevo día y hora te vendría bien?\n\nVerificación y Ejecución: Sigue los pasos de comprobación de disponibilidad y confirmación final usando la herramienta modificar_cita_ClinicIA.\n\nIntención Principal 3: CANCELAR CITA EXISTENTE\nSi el cliente dice explícitamente \"quiero cancelar mi cita\", \"anular la reserva\".\n\nConfirmación de Seguridad: Pide una confirmación final para evitar cancelaciones por error.\n\nEjemplo: Entendido. Solo para confirmar, ¿quieres cancelar tu cita de Facial Reafirmante del 31 de julio?\n\nEjecución (Herramienta: cancelar_cita_ClinicIA)\n\nSi el cliente confirma, ejecuta la cancelación.\n\nInforma del resultado y, si es apropiado, ofrece reagendar.\n\nEjemplo: Tu cita ha sido cancelada. Si quieres buscar otro momento, solo tienes que decírmelo. 😊\n\nOtras Intenciones (Consultas, Dudas)\nConsultar Disponibilidad: Si preguntan por huecos libres, usa comprobar_disponibilidad_ClinicIA y presenta las opciones.\n\nConsultar Servicios: Si preguntan por tratamientos, usa la herramienta Servicios para dar la información.\n\nFuera de Contexto: Si piden algo que no ofreces (ej. \"un corte de pelo\"), redirige amablemente. ¡Hola! En Clinic.IA somos especialistas en tratamientos faciales y corporales. ¿Te gustaría que te contara más sobre nuestro famoso Facial Reafirmante?\n\nConsideraciones Finales\nNo Inventes Información: Si no sabes algo, indícalo y sugiere contactar al centro por teléfono: +34 653 03 55 25.\n\nManejo de Errores: Si una herramienta falla, informa de un problema técnico de forma genérica y sugiere reintentar o llamar."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        -7680,
+        -1360
+      ],
+      "id": "8775bec6-e421-4b97-97a2-ff70b54671e8",
+      "name": "AGENTE CLIENTE CON CITA1"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=El cliente ha dicho lo siguiente: {{ $('Edit Fields25').item.json.message_content }}\nInformación extra: {{ $json.Cliente_nuevo }}\nHoy es: {{ $('Fecha Formateada').item.json.formattedDate }}",
+        "options": {
+          "systemMessage": "=# 🧠 Role and Objective\n\nEres **MarIA**, la asistente virtual de atención al cliente de **Clinic.IA**, un centro de estética ubicado en Santa Perpètua. Tu función es **amable, directa y profesional**, con un estilo cálido, humano y cercano.\n\nTu objetivo principal es:\n- Detectar la intención del usuario.\n- Responder dudas frecuentes.\n- Agendar nuevas citas para personas no registradas.\n- Crear registros de nuevos clientes (sin usar lenguaje técnico).\n\n# 📌 Key Instructions\n\n- Antes de nada, pregunta al usuario:\n  > “¿Quieres que te asesore sobre nuestros servicios o ya sabes cuál quieres reservar?”  \n- Según su respuesta, sigue uno de estos caminos:\n  1. **Asesoramiento**: si el usuario elige “asesoramiento”, ofrece información sobre los tratamientos y precios, luego pregunta si desea reservar.\n  2. **Reserva directa**: si el usuario dice “ya sé qué quiero”, procede a pedir fecha y hora para agendar.\n- Identifica siempre con claridad lo que el usuario quiere: agendar, consultar, etc.\n- Si la intención es **agendar una cita** (palabras como “quiero una cita”, “reservar”, “necesito cita”), **pide directamente fecha y hora**.\n- Si no queda clara la intención, pregunta:  \n  > “¿En qué puedo ayudarte hoy? ¿Quieres agendar una cita o tienes alguna consulta sobre nuestros servicios?”\n- Si necesitas información sobre los servicios, ejecuta la herramienta \"servicios\".\n\n# 🗓️ Important Context\n\n- Fecha actual:  {{ $('Fecha Formateada').item.json.formattedDate }}\n- Teléfono del cliente: {{ $('Edit Fields25').item.json['Número'] }}\n- Todas las fechas se entienden como del **año 2025**, salvo que el usuario indique lo contrario.  \n- No incluyas explicaciones internas, técnicas ni pensamientos del sistema.  \n- Mantén un estilo cálido, humano y resolutivo, adaptado a WhatsApp.  \n\n# 😃 Tono y Petición de Datos Personales\n\n- **Evita siempre lenguaje técnico o interno** como:  \n  “registrarte”, “darte de alta”, “crear usuario”, “guardar en sistema”, etc.  \n- Cuando necesites nombre, apellido o teléfono, **justifica siempre la petición desde la experiencia del cliente**.  \n- Usa expresiones cotidianas como: **“¡Listo!”, “Genial”, “Perfecto”**, junto con emoticonos moderados: 😊✨📅.  \n\n# 🔁 Workflow\n\n## 1. Bienvenida y opción inicial  \n> “Hola, bienvenida/o a Clinic.IA. Soy MarIA, la asistente virtual 😊. ¿Quieres que te asesore sobre nuestros servicios o ya sabes cuál quieres reservar?”  \n\n## 2. Según elección  \n- **Asesoramiento**: presentar opciones de servicios y precios, luego:  \n  > “¿Te gustaría reservar alguna de estas opciones?”  \n- **Reserva directa**:  \n  > “Perfecto, ¿para qué día y hora quieres tu cita?”  \n\n## 3. Agendar cita  \n1. Usuario indica fecha/hora → usar comprobar_hora_ClinicIA.  \n2. Si fecha/hora no válida:  \n   > “Esa fecha/hora no está disponible 😕 ¿Otra opción?”  \n3. Si válida, usar comprobar_disponibilidad_ClinicIA:  \n   - Disponible:  \n     > “Perfecto, tengo ese hueco libre a las {hora}. ¿Te va bien?”  \n   - No disponible:  \n     > “No hay hueco a esa hora 😕 ¿Quieres otra hora o día?”  \n\n## 4. Crear cliente nuevo  \n- Sólo si no está registrado y tras intención de reserva.  \n- Pide nombre completo:  \n  > “¿Me das tu nombre completo? Así podré avisarte si hay algún cambio.”  \n  > “Para confirmar y poder enviarte un recordatorio, tu teléfono es {{ $('Edit Fields25').item.json['Número'] }}?  \n\n## 5. Confirmación  \n- Tras Agendar_Cita_ClinicIA, confirma:  \n  > “¡Listo! Tu cita para {servicio} está reservada el {fecha} a las {hora} 📅. Te esperamos en Clinic IA 💆‍♀️✨”  \n\n# ⚠️ Errores y respuestas especiales\n\n- No entiendo:  \n  > “Disculpa, no entendí bien. ¿Quieres reservar una cita o hablar de nuestros servicios?”  \n- Servicio no ofrecido:  \n  > “En Clinic.IA ofrecemos tratamientos estéticos como limpieza facial, depilación láser… ¿Cuál te interesa?”  \n- Error herramienta:  \n  > “Ha habido un problema 😓. Inténtalo más tarde o llama al +34 653 03 55 25.”  "
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        -7680,
+        -2064
+      ],
+      "id": "1ec1d97d-07d8-4c41-941b-5c375d95456a",
+      "name": "AGENTE LEAD1"
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appwtKASSidizHxdl",
+          "mode": "list",
+          "cachedResultName": "CLINIC.IA",
+          "cachedResultUrl": "https://airtable.com/appwtKASSidizHxdl"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblDNxhyGS0G8lEse",
+          "mode": "list",
+          "cachedResultName": "Clientes",
+          "cachedResultUrl": "https://airtable.com/appwtKASSidizHxdl/tblDNxhyGS0G8lEse"
+        },
+        "filterByFormula": "={Teléfono} = \"{{ $('Edit Fields25').item.json['Número'] }}\" ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        -10224,
+        -1504
+      ],
+      "id": "ff887b3a-40de-49f8-82b9-df56731b4993",
+      "name": "Nombre cliente1",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "xnXPhiCbfi7JtT21",
+          "name": "Clinic.IA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "Teléfono"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        -10880,
+        -1664
+      ],
+      "id": "d0bc5c9f-710d-440d-91aa-06216ab98be6",
+      "name": "Aggregate2"
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appwtKASSidizHxdl",
+          "mode": "list",
+          "cachedResultName": "CLINIC.IA",
+          "cachedResultUrl": "https://airtable.com/appwtKASSidizHxdl"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbl0nXwlRh6Vk3PY3",
+          "mode": "list",
+          "cachedResultName": "Citas",
+          "cachedResultUrl": "https://airtable.com/appwtKASSidizHxdl/tbl0nXwlRh6Vk3PY3"
+        },
+        "filterByFormula": "={Estado de la Cita} = \"Pendiente\"",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        -10000,
+        -1504
+      ],
+      "id": "b78ab8ff-e884-46c5-af1b-22a0c8d48008",
+      "name": "Citas pendientes1",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "xnXPhiCbfi7JtT21",
+          "name": "Clinic.IA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "$input.first().json['Teléfono']\n\n// Este código verifica si un número de teléfono de referencia existe en un array de teléfonos\n// Definir las variables con los datos de entrada\nconst telefonosArray = $input.first().json['Teléfono'];\nconst telefonoReferencia = $('Edit Fields25').first().json['Número'];\n\n// Verificar que telefonosArray sea un array\nlet resultado = false;\n\nif (Array.isArray(telefonosArray)) {\n  // Verificar si el teléfono de referencia existe en el array\n  resultado = telefonosArray.some(telefono => {\n    // Normalizar ambos números (eliminar espacios, guiones, etc.) para comparación\n    const telefonoNormalizado = String(telefono).replace(/\\s+|-|\\(|\\)|\\+/g, '');\n    const referenciaNormalizada = String(telefonoReferencia).replace(/\\s+|-|\\(|\\)|\\+/g, '');\n    \n    return telefonoNormalizado === referenciaNormalizada;\n  });\n} else if (telefonosArray !== null && telefonosArray !== undefined) {\n  // Si no es un array pero es un valor único, comparamos directamente\n  const telefonoNormalizado = String(telefonosArray).replace(/\\s+|-|\\(|\\)|\\+/g, '');\n  const referenciaNormalizada = String(telefonoReferencia).replace(/\\s+|-|\\(|\\)|\\+/g, '');\n  \n  resultado = telefonoNormalizado === referenciaNormalizada;\n}\n\n// Devolver TRUE o FALSE según corresponda\nreturn {\n  json: {\n    coincide: resultado ? \"TRUE\" : \"FALSE\"\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -10656,
+        -1664
+      ],
+      "id": "8ec68bea-160a-4382-b41b-b1d7a17489dd",
+      "name": "Cliente Existente?1"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "['Teléfono (from Cliente)'][0]"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        -9776,
+        -1504
+      ],
+      "id": "8df38f83-8712-4da4-bf5c-398cf3348d99",
+      "name": "Aggregate3"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Este código compara un número de teléfono de referencia con los teléfonos de clientes\n// Definir las variables con los datos de entrada\nconst telefonosCliente = $input.first().json['Teléfono (from Cliente)'][0];\nconst telefonoReferencia = $('Edit Fields25').first().json['Número'];\n\n// Verificar que telefonosCliente sea un array\nlet resultado = false;\n\nif (Array.isArray(telefonosCliente)) {\n  // Verificar si el teléfono de referencia existe en el array\n  resultado = telefonosCliente.some(telefono => {\n    // Normalizar ambos números (eliminar espacios, guiones, etc.) para comparación\n    const telefonoNormalizado = String(telefono).replace(/\\s+|-|\\(|\\)|\\+/g, '');\n    const referenciaNormalizada = String(telefonoReferencia).replace(/\\s+|-|\\(|\\)|\\+/g, '');\n    \n    return telefonoNormalizado === referenciaNormalizada;\n  });\n} else if (telefonosCliente !== null && telefonosCliente !== undefined) {\n  // Si no es un array pero es un valor único, comparamos directamente\n  const telefonoNormalizado = String(telefonosCliente).replace(/\\s+|-|\\(|\\)|\\+/g, '');\n  const referenciaNormalizada = String(telefonoReferencia).replace(/\\s+|-|\\(|\\)|\\+/g, '');\n  \n  resultado = telefonoNormalizado === referenciaNormalizada;\n}\n\n// Devolver TRUE o FALSE según corresponda\nreturn {\n  json: {\n    coincide: resultado ? \"TRUE\" : \"FALSE\"\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -9568,
+        -1504
+      ],
+      "id": "6042e8c3-195c-4a37-a416-235b25877c54",
+      "name": "Tiene Cita?1"
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appwtKASSidizHxdl",
+          "mode": "list",
+          "cachedResultName": "CLINIC.IA",
+          "cachedResultUrl": "https://airtable.com/appwtKASSidizHxdl"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblkWe31CVVWClXUx",
+          "mode": "list",
+          "cachedResultName": "Servicios",
+          "cachedResultUrl": "https://airtable.com/appwtKASSidizHxdl/tblkWe31CVVWClXUx"
+        },
+        "filterByFormula": "={ID} = \"{{$('Qué cita tiene?1').first().json.Servicio[0]}}\"",
+        "returnAll": false,
+        "limit": 1,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        -8688,
+        -1360
+      ],
+      "id": "873e4430-3806-4776-bade-fd026433b4ee",
+      "name": "Qué servicio tiene?1",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "xnXPhiCbfi7JtT21",
+          "name": "Clinic.IA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appwtKASSidizHxdl",
+          "mode": "list",
+          "cachedResultName": "CLINIC.IA",
+          "cachedResultUrl": "https://airtable.com/appwtKASSidizHxdl"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbl0nXwlRh6Vk3PY3",
+          "mode": "list",
+          "cachedResultName": "Citas",
+          "cachedResultUrl": "https://airtable.com/appwtKASSidizHxdl/tbl0nXwlRh6Vk3PY3"
+        },
+        "filterByFormula": "=AND(\n  {Teléfono (from Cliente)} = \"{{ $('Edit Fields25').item.json['Número'] }}\",\n  {Estado de la Cita} = \"Pendiente\"\n)",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        -9120,
+        -1360
+      ],
+      "id": "6552915a-8805-4d7c-b005-85ca857268d7",
+      "name": "Qué cita tiene?1",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "xnXPhiCbfi7JtT21",
+          "name": "Clinic.IA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "85a4d52b-0ea6-4bfc-963e-49d369292d2a",
+              "name": "Nombre",
+              "value": "={{ $('Nombre cliente1').first().json.Nombre }}",
+              "type": "string"
+            },
+            {
+              "id": "5cb51d33-66eb-469e-8e0b-96d4ed03ac5d",
+              "name": "Teléfono",
+              "value": "={{ $('Nombre cliente1').first().json['Teléfono'] }}",
+              "type": "string"
+            },
+            {
+              "id": "eef296b9-bd60-46ca-976f-360e5a29f45a",
+              "name": "Servicio_Pendiente",
+              "value": "={{ $json['Nombre del Servicio'] }}",
+              "type": "string"
+            },
+            {
+              "id": "1e31cab2-6678-4bc9-893e-fd1c96448f39",
+              "name": "Fecha_Cita",
+              "value": "={{ $('Formateamos fecha_pendiente1').item.json.fechaFormateada }}",
+              "type": "string"
+            },
+            {
+              "id": "53df255d-e187-4f30-8f43-34a261d41833",
+              "name": "id_cita",
+              "value": "={{ $('Qué cita tiene?1').first().json.id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -8464,
+        -1360
+      ],
+      "id": "cc41a9f4-0d4f-4ec9-aca1-54c34d8f634a",
+      "name": "Edit Fields24"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "2fb3a372-1b2a-453c-b9ff-557a9a63c61f",
+              "leftValue": "={{ $json.coincide }}",
+              "rightValue": "=TRUE",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -10448,
+        -1664
+      ],
+      "id": "8c738dd6-8fc1-42de-a7d3-f48fec737e12",
+      "name": "If7",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.coincide }}",
+                    "rightValue": "TRUE",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "6f0293ab-1bac-4dc7-a9ba-f5f60ec33215"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "TRUE"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "1687a7f9-281d-4600-b402-34873515d49b",
+                    "leftValue": "={{ $json.coincide }}",
+                    "rightValue": "FALSE",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "FALSE"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -9344,
+        -1504
+      ],
+      "id": "ed02419f-2bb3-4740-aab1-324e96af1c28",
+      "name": "Switch3"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "487d4f2b-6fcf-4fa6-8f43-bfc4e0f8c970",
+              "leftValue": "={{ $('Basic LLM Chain1').item.json.output.parte_2 }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -6288,
+        -1664
+      ],
+      "id": "61a06016-978c-4270-939a-c5040593dd86",
+      "name": "If2 parte "
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "15d77253-3dd0-4a95-a24a-1d668dc50f50",
+              "leftValue": "={{ $('Basic LLM Chain1').item.json.output.parte_3 }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -5616,
+        -1664
+      ],
+      "id": "0a8e5792-00d9-49ef-8d89-dbad87f9fa61",
+      "name": "If parte "
+    },
+    {
+      "parameters": {
+        "amount": 2
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -5408,
+        -1664
+      ],
+      "id": "e741a154-d9c2-48a2-b0fa-9ab421da6dd2",
+      "name": "Wait3",
+      "webhookId": "1a9caf79-d4a7-48e7-b77f-f267436b4291"
+    },
+    {
+      "parameters": {
+        "amount": 2
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -6064,
+        -1664
+      ],
+      "id": "867dc518-a8eb-4243-bbf9-e4d730ad2251",
+      "name": "Wait4",
+      "webhookId": "d152102c-a508-4b82-a31e-4ab47f0b3732"
+    },
+    {
+      "parameters": {
+        "amount": 30
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -12928,
+        -2208
+      ],
+      "id": "90242d3c-b859-4aef-9287-ab90ff4271a3",
+      "name": "Wait5",
+      "webhookId": "b6991900-ac91-4a52-a613-a6dc2f25e010"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b1f7110b-700c-4833-bfb9-3e6f6e6d89c4",
+              "name": "Número",
+              "value": "={{ $('Code').item.json.extractedPhone }}",
+              "type": "string"
+            },
+            {
+              "id": "099559f5-b30d-44df-a483-c0becb52a129",
+              "name": "message_content",
+              "value": "={{ $json.message_content }}",
+              "type": "string"
+            },
+            {
+              "id": "b68a7261-5266-4e38-b3fb-3942dbf1911c",
+              "name": "Whatsapp_number",
+              "value": "={{ $json.Whatsapp_number }}",
+              "type": "string"
+            },
+            {
+              "id": "5a3a0384-861d-49f5-b3b1-2747c580c779",
+              "name": "message_id",
+              "value": "={{ $json.message_id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -11456,
+        -1808
+      ],
+      "id": "47478cad-4e81-4a06-a7c6-2eddd533da93",
+      "name": "Edit Fields25"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "appwtKASSidizHxdl",
+          "mode": "list",
+          "cachedResultName": "CLINIC.IA",
+          "cachedResultUrl": "https://airtable.com/appwtKASSidizHxdl"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbl0nXwlRh6Vk3PY3",
+          "mode": "list",
+          "cachedResultName": "Citas",
+          "cachedResultUrl": "https://airtable.com/appwtKASSidizHxdl/tbl0nXwlRh6Vk3PY3"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Estado de la Cita": "Cancelada",
+            "id": "={{ $('Edit Fields24').item.json.id_cita }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "Nº Cita",
+              "displayName": "Nº Cita",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Cliente",
+              "displayName": "Cliente",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Teléfono (from Cliente)",
+              "displayName": "Teléfono (from Cliente)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Fecha de la Cita",
+              "displayName": "Fecha de la Cita",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Servicio",
+              "displayName": "Servicio",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Precio (from Servicio)",
+              "displayName": "Precio (from Servicio)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Duración (from Servicio)",
+              "displayName": "Duración (from Servicio)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Estado de la Cita",
+              "displayName": "Estado de la Cita",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Pendiente",
+                  "value": "Pendiente"
+                },
+                {
+                  "name": "Completada",
+                  "value": "Completada"
+                },
+                {
+                  "name": "Cancelada",
+                  "value": "Cancelada"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Clientes 2",
+              "displayName": "Clientes 2",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Nombre del Servicio (from Servicio)",
+              "displayName": "Nombre del Servicio (from Servicio)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Recordatorio Siguiente Cita",
+              "displayName": "Recordatorio Siguiente Cita",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Días Restantes Recordatorio",
+              "displayName": "Días Restantes Recordatorio",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Fecha de Recordatorio",
+              "displayName": "Fecha de Recordatorio",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Mes de la Cita",
+              "displayName": "Mes de la Cita",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Notas Adicionales",
+              "displayName": "Notas Adicionales",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Recordatorio Cita",
+              "displayName": "Recordatorio Cita",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Activación recordatorio",
+              "displayName": "Activación recordatorio",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "ENVIAR",
+              "displayName": "ENVIAR",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Clientes",
+              "displayName": "Clientes",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Dias Restantes Recordatorio FINAL",
+              "displayName": "Dias Restantes Recordatorio FINAL",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Teléfono (from Clientes 3)",
+              "displayName": "Teléfono (from Clientes 3)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Días Restantes Corregido",
+              "displayName": "Días Restantes Corregido",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Nueva Cita",
+              "displayName": "Nueva Cita",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Estado Cambiado",
+              "displayName": "Estado Cambiado",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Método Pago 2",
+              "displayName": "Método Pago 2",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Bizum",
+                  "value": "Bizum"
+                },
+                {
+                  "name": "Efectivo",
+                  "value": "Efectivo"
+                }
+              ],
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Creado por",
+              "displayName": "Creado por",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "AVISAR",
+              "displayName": "AVISAR",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtableTool",
+      "typeVersion": 2.1,
+      "position": [
+        -7664,
+        -1136
+      ],
+      "id": "9135026a-4194-41be-91b5-b2df5238cb37",
+      "name": "Cancelar_cita_ClinicIA1",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "xnXPhiCbfi7JtT21",
+          "name": "Clinic.IA"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolThink",
+      "typeVersion": 1,
+      "position": [
+        -7664,
+        -1840
+      ],
+      "id": "7ac76af7-7962-4fb2-aa95-64455e465e44",
+      "name": "Think1"
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "={{ $('Edit Fields13').item.json.instancia }}",
+        "remoteJid": "={{ $('Edit Fields13').item.json.Whatsapp_number }}",
+        "messageText": "={{ $json.output.parte_1 }}",
+        "options_message": {
+          "delay": 1200
+        }
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        -6496,
+        -1664
+      ],
+      "id": "3d20393a-414e-4867-9d33-d5c21b1a0bba",
+      "name": "PRIMER_MENSAJE1",
+      "credentials": {
+        "evolutionApi": {
+          "id": "tFrYa0fy9QYKo6FH",
+          "name": "PRUEBAS"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appwtKASSidizHxdl",
+          "mode": "list",
+          "cachedResultName": "CLINIC.IA",
+          "cachedResultUrl": "https://airtable.com/appwtKASSidizHxdl"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblkWe31CVVWClXUx",
+          "mode": "list",
+          "cachedResultName": "Servicios",
+          "cachedResultUrl": "https://airtable.com/appwtKASSidizHxdl/tblkWe31CVVWClXUx"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtableTool",
+      "typeVersion": 2.1,
+      "position": [
+        -7536,
+        -1840
+      ],
+      "id": "5fb019ef-74fe-4a5a-8c6f-9fb85918048f",
+      "name": "Servicios1",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "xnXPhiCbfi7JtT21",
+          "name": "Clinic.IA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "Clinic.IA",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -15488,
+        -1968
+      ],
+      "id": "c4561041-eb01-4864-ac9d-b9d76c40663b",
+      "name": "Webhook",
+      "webhookId": "3466962d-95a8-4bbd-861a-01967b56532c"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dateTime",
+      "typeVersion": 2,
+      "position": [
+        -15264,
+        -1968
+      ],
+      "id": "fbe0581c-f4f3-45a8-95b2-2fe4c36beca2",
+      "name": "Fecha"
+    },
+    {
+      "parameters": {
+        "operation": "formatDate",
+        "date": "={{ $json.currentDate }}",
+        "format": "custom",
+        "customFormat": "dd/MM/yyyy",
+        "options": {
+          "timezone": true
+        }
+      },
+      "type": "n8n-nodes-base.dateTime",
+      "typeVersion": 2,
+      "position": [
+        -15040,
+        -1968
+      ],
+      "id": "9be4ede8-5b05-422b-b33f-9a5f271b19e4",
+      "name": "Fecha Formateada"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Obtener el valor completo del teléfono\nconst fullPhone = $('Webhook').first().json.body.data.key.remoteJid;\n\n// Extraer solo los dígitos del número sin el prefijo del país\nconst phoneNumber = fullPhone\n  .replace('@s.whatsapp.net', '') // Quitar el sufijo de WhatsApp\n  .replace(/^34/, ''); // Quitar el prefijo del país (34 para España)\n\n// Retornar el resultado\nreturn {\n  originalPhone: fullPhone,\n  extractedPhone: phoneNumber\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -14816,
+        -1968
+      ],
+      "id": "c4b78f26-2e6d-4ff3-8969-ec054d449353",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "=2"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        -7904,
+        -1840
+      ],
+      "id": "f18d4522-96a8-4586-aa1e-df8fbdd95ac5",
+      "name": "Postgres Chat Memory",
+      "credentials": {
+        "postgres": {
+          "id": "tGI0uWxFFQOMlsHf",
+          "name": "Postgres Joel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "={{ $('Edit Fields13').item.json.instancia }}",
+        "remoteJid": "={{ $('Edit Fields13').item.json.Whatsapp_number }}",
+        "messageText": "={{ $('Basic LLM Chain1').item.json.output.parte_2 }}",
+        "options_message": {
+          "delay": 1200
+        }
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        -5840,
+        -1664
+      ],
+      "id": "12ba5115-7259-44bb-a53d-8179b0c4dd39",
+      "name": "PRIMER_MENSAJE",
+      "credentials": {
+        "evolutionApi": {
+          "id": "tFrYa0fy9QYKo6FH",
+          "name": "PRUEBAS"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "={{ $('Edit Fields13').item.json.instancia }}",
+        "remoteJid": "={{ $('Edit Fields13').item.json.Whatsapp_number }}",
+        "messageText": "={{ $('Basic LLM Chain1').item.json.output.parte_3 }}",
+        "options_message": {
+          "delay": 1200
+        }
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        -5184,
+        -1664
+      ],
+      "id": "315b4dbe-18b8-4a8f-b04d-9f79d15c85b9",
+      "name": "PRIMER_MENSAJE2",
+      "credentials": {
+        "evolutionApi": {
+          "id": "tFrYa0fy9QYKo6FH",
+          "name": "PRUEBAS"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "comprobar_hora_ClinicIA",
+        "description": "Comprueba si la fecha y hora solicitada cumple con los horarios de atención del centro",
+        "workflowId": {
+          "__rl": true,
+          "value": "ADYULX3R2CzmrZ2R",
+          "mode": "list",
+          "cachedResultName": "comprobar_hora_Clinic.IA"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        -7424,
+        -1840
+      ],
+      "id": "cce4dfb4-db98-4ef3-a084-cacead0d107a",
+      "name": "comprobar_hora_Clinic.IA"
+    },
+    {
+      "parameters": {
+        "name": "comprobar_disponibilidad_ClinicIA",
+        "description": "Comprueba la disponibilidad de citas usando la fecha y hora solicitada por el usuario.",
+        "workflowId": {
+          "__rl": true,
+          "value": "V7XHpTTWgL40ead4",
+          "mode": "list",
+          "cachedResultName": "comprobar_disponibilidad_Clinic.IA"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        -7296,
+        -1840
+      ],
+      "id": "2bd06953-c7a8-4eef-87f2-3194491193cb",
+      "name": "comprobar_disponibilidad_Clinic.IA"
+    },
+    {
+      "parameters": {
+        "name": "Agendar_Cita_ClinicIA",
+        "description": "Llama a esta herramienta cuando tengas que agendar una cita",
+        "workflowId": {
+          "__rl": true,
+          "value": "l9KmMdez99FVuY5n",
+          "mode": "list",
+          "cachedResultName": "Agendar_Cita_Clinic.IA"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.1,
+      "position": [
+        -7184,
+        -1840
+      ],
+      "id": "6759de39-5a26-4e38-be21-dd4937285c6c",
+      "name": "Agendar_Cita_Clinic.IA"
+    },
+    {
+      "parameters": {
+        "name": "modificar_cita_ClinicIA",
+        "description": "Modificar la cita del usuario, recibe cómo entrada el nombre, teléfono y nueva fecha.",
+        "workflowId": {
+          "__rl": true,
+          "value": "eKGgAA7hkPFaJVr4",
+          "mode": "list",
+          "cachedResultName": "modificar_cita_ClinicIA"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.1,
+      "position": [
+        -7536,
+        -1136
+      ],
+      "id": "d2269f2d-807e-436c-a51e-b680c3d0e7e9",
+      "name": "modificar_cita_ClinicIA"
+    },
+    {
+      "parameters": {
+        "inputText": "={{ $json.message_content }}",
+        "options": {
+          "categories": "Positive, Neutral, Negative"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.sentimentAnalysis",
+      "typeVersion": 1.1,
+      "position": [
+        -11248,
+        -2064
+      ],
+      "id": "c1ac7f4b-b619-4c66-aae2-a0e05cf91c21",
+      "name": "Sentiment Analysis"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -11168,
+        -1840
+      ],
+      "id": "ac628b55-9590-4a81-a7d6-ad10c12326b4",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "DCNgLG2517avXWdE",
+          "name": "Cuenta Joel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appwtKASSidizHxdl",
+          "mode": "list",
+          "cachedResultName": "CLINIC.IA",
+          "cachedResultUrl": "https://airtable.com/appwtKASSidizHxdl"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbl9n0HmS0EMM2Tlz",
+          "mode": "list",
+          "cachedResultName": "Analisis Sentimiento",
+          "cachedResultUrl": "https://airtable.com/appwtKASSidizHxdl/tbl9n0HmS0EMM2Tlz"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Fecha conversacion": "={{ $now.format('yyyy-MM-dd') }}",
+            "Nombre Cliente": "={{ $json.Nombre }}",
+            "Transcripción": "={{ $('Edit Fields25').item.json.message_content }}",
+            "Sentimiento": "Negativo"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Nombre Cliente",
+              "displayName": "Nombre Cliente",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Fecha conversacion",
+              "displayName": "Fecha conversacion",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Transcripción",
+              "displayName": "Transcripción",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Sentimiento",
+              "displayName": "Sentimiento",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        -10656,
+        -1968
+      ],
+      "id": "01845cb2-2643-4e1c-9b30-c5d7d01ac2a0",
+      "name": "Airtable",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "xnXPhiCbfi7JtT21",
+          "name": "Clinic.IA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appwtKASSidizHxdl",
+          "mode": "list",
+          "cachedResultName": "CLINIC.IA",
+          "cachedResultUrl": "https://airtable.com/appwtKASSidizHxdl"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblDNxhyGS0G8lEse",
+          "mode": "list",
+          "cachedResultName": "Clientes",
+          "cachedResultUrl": "https://airtable.com/appwtKASSidizHxdl/tblDNxhyGS0G8lEse"
+        },
+        "filterByFormula": "={Teléfono} = \"{{ $json['Número'] }}\" ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        -10880,
+        -1968
+      ],
+      "id": "52ad9ce6-4f01-44f2-b76f-8cd97d89c2f8",
+      "name": "Airtable1",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "xnXPhiCbfi7JtT21",
+          "name": "Clinic.IA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c0e3b6e9-fefc-4354-80ad-8be81a5af525",
+              "leftValue": "={{ $('Webhook').item.json.body.data.key.remoteJid }}",
+              "rightValue": "34653035525@s.whatsapp.net",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -14608,
+        -1968
+      ],
+      "id": "4e40964c-0ab0-4e79-8ca9-4b3512cc278b",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.mensaje }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Eres el asistente de Joel.\n\nTu función principal es analizar los mensajes que recibes y determinar el propósito que tiene Joel. Los posibles propósitos son los siguientes:\n\nGuardar videos de YouTube u otras redes sociales.\n→ Si detectas este propósito, devuelve: VIDEOS\n\nRecuperar información de videos previamente guardados.\n→ Si detectas este propósito, devuelve: INFO\n\nAnalizar a la competencia y guardar la información.\n→ Si detectas este propósito, devuelve: COMPETENCIA\n\nDevuelve únicamente la palabra correspondiente (VIDEOS, INFO, o COMPETENCIA) sin ningún texto adicional.\n"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        -14160,
+        -2560
+      ],
+      "id": "f39aabc1-7689-4e00-b72e-5bf8467bc02d",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "534f29a7-dc07-44f7-af0b-2ff65990e194",
+              "name": "mensaje",
+              "value": "={{ $('Webhook').item.json.body.data.message.conversation }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -14384,
+        -2560
+      ],
+      "id": "dc582234-7bbe-4306-8747-633087d6a51c",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -14080,
+        -2336
+      ],
+      "id": "ad33e60f-2669-42a1-978d-246846a0aac0",
+      "name": "OpenAI Chat Model2",
+      "credentials": {
+        "openAiApi": {
+          "id": "DCNgLG2517avXWdE",
+          "name": "Cuenta Joel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.text }}",
+                    "rightValue": "VIDEOS",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "72dd8979-8bfc-472f-b333-84a794ed8a7e"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "VIDEOS"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "5451ef8e-b7f5-4f67-9d28-cd07fdf50a8c",
+                    "leftValue": "={{ $json.text }}",
+                    "rightValue": "INFO",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "INFO"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "401229b2-103c-49b6-b6d9-e00941a429a2",
+                    "leftValue": "={{ $json.text }}",
+                    "rightValue": "COMPETENCIA",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "COMPETENCIA"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -13808,
+        -2560
+      ],
+      "id": "45634988-55e9-4824-83d5-9227b1ea1759",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -12688,
+        -2448
+      ],
+      "id": "1e1731c4-dc54-4940-9a45-3f7204a75616",
+      "name": "OpenAI Chat Model4",
+      "credentials": {
+        "openAiApi": {
+          "id": "DCNgLG2517avXWdE",
+          "name": "Cuenta Joel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3ee42e4c-3cee-4934-97e7-64c96b5691ed",
+              "name": "youtubeUrl",
+              "type": "string",
+              "value": "={{ $('Edit Fields').item.json.mensaje }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0b6ffabc-79f7-426b-93bb-5a2272895f41",
+      "name": "Obtener URL de YouTube",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        -13584,
+        -2560
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "url": "https://youtube-transcriptor.p.rapidapi.com/transcript",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "video_id",
+              "value": "={{ $json.videoId }}"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-RapidAPI-Host",
+              "value": "youtube-transcriptor.p.rapidapi.com"
+            },
+            {
+              "name": "X-RapidAPI-Key",
+              "value": "f3f246c1f8mshb3506c2b8025c56p15aadajsn1236ed606eab"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "url",
+              "value": "={{ $json.youtubeUrl }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "7fe6d598-7faf-4910-a6c3-902e7acc7b91",
+      "name": "extractTranscript",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        -13136,
+        -2560
+      ],
+      "typeVersion": 3
+    },
+    {
+      "parameters": {
+        "jsCode": "// Función para extraer el ID de video de YouTube\nfunction extractYouTubeId(url) {\n  if (!url) return null;\n  \n  // Diferentes patrones de URL de YouTube\n  const patterns = [\n    /(?:youtube\\.com\\/watch\\?v=|youtu\\.be\\/|youtube\\.com\\/embed\\/|youtube\\.com\\/v\\/|youtube\\.com\\/watch\\?.*&v=)([^&\\n?#]+)/,\n    /^([a-zA-Z0-9_-]{11})$/ // Si ya es solo el ID\n  ];\n  \n  for (const pattern of patterns) {\n    const match = url.match(pattern);\n    if (match) {\n      return match[1];\n    }\n  }\n  \n  return null;\n}\n\n// Obtener la URL de YouTube del input\nconst youtubeUrl = $input.all()[0].json.youtubeUrl;\n\n// Extraer el ID del video\nconst videoId = extractYouTubeId(youtubeUrl);\n\n// Verificar si se pudo extraer el ID\nif (!videoId) {\n  throw new Error(`No se pudo extraer el ID del video de la URL: ${youtubeUrl}`);\n}\n\n// Retornar el resultado\nreturn [\n  {\n    json: {\n      youtubeUrl: youtubeUrl,\n      videoId: videoId\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -13360,
+        -2560
+      ],
+      "id": "bff66e64-d61c-4865-9c23-d4bbbde0923e",
+      "name": "Code1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "4b14dcf3-5645-4d70-96d8-2f5eb0b75855",
+              "name": "title",
+              "value": "={{ $json.title }}",
+              "type": "string"
+            },
+            {
+              "id": "8a982e52-3800-46c7-b13f-a9cd807bbdbe",
+              "name": "trasncription",
+              "value": "={{ $json.transcriptionAsText }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -12928,
+        -2560
+      ],
+      "id": "93761cd7-6e95-445d-af54-4083cd8f60f4",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Link del video a analizar: {{ $('Edit Fields').item.json.mensaje }}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Eres un asistente experto en analizar transcripciones de videos. \nAnaliza la transcripción del video en cuestión para crear lo siguiente:\n\n- Titulo breve que refleje perfectamente lo que explica el video\n- Descripción breve del video anotando lo más relevante\n- Una lista de puntos importantes a destacar del video  \n- Breve resumen para enviar por whatsapp un texto para que se entienda sobre qué habla el video\n\nDetalla los puntos importantes que se comenten durante el video en formato lista markdown\n\ntranscripción del video:  {{ $json.trasncription }} \n\nDame el resultado en un json de la siguiente forma:\n\n{\n  \"titulo\": \"Titulo del video\",\n  \"Descripcion\": \"Descripción del video\",\n  \"puntos clave\": [\"- Punto clave 1\", \"Punto clave 2\", \"- Punto clave 3\", \"Punto clave 4\", \"Punto clave 5\"], \n  \"url_youtube\": \"{{ $('Code1').item.json.youtubeUrl }}\",\n  \"resumen_whatsapp\": \"breve resumen del video\"\n}\n\n"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        -12704,
+        -2656
+      ],
+      "id": "275760db-cb0a-4b59-bc45-a00531257f07",
+      "name": "Basic LLM Chain2"
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [
+        -12336,
+        -2560
+      ],
+      "id": "7c6ee039-6892-443c-a9ee-8434e13f58d1",
+      "name": "Search a page",
+      "credentials": {
+        "notionApi": {
+          "id": "0c82bLRTYL16oIPM",
+          "name": "Notion Joel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pageId": {
+          "__rl": true,
+          "value": "={{ $json.url }}",
+          "mode": "url"
+        },
+        "title": "={{ $('Fecha Formateada').item.json.formattedDate }} - {{ $('Basic LLM Chain2').item.json.output.titulo }}\n",
+        "blockUi": {
+          "blockValues": [
+            {
+              "richText": true,
+              "text": {
+                "text": [
+                  {
+                    "text": "={{ $('Basic LLM Chain2').item.json.output.titulo }}\n\n",
+                    "isLink": true,
+                    "textLink": "={{ $('Code1').item.json.youtubeUrl }}\n\n",
+                    "annotationUi": {
+                      "bold": true
+                    }
+                  },
+                  {
+                    "text": "={{ $('Basic LLM Chain2').item.json.output.Descripcion }}\n\n",
+                    "annotationUi": {}
+                  },
+                  {
+                    "text": "={{ $('Basic LLM Chain2').item.json.output['puntos clave'][0] }}\n\n",
+                    "annotationUi": {}
+                  },
+                  {
+                    "text": "={{ $('Basic LLM Chain2').item.json.output['puntos clave'][1] }}\n\n",
+                    "annotationUi": {}
+                  },
+                  {
+                    "text": "={{ $('Basic LLM Chain2').item.json.output['puntos clave'][2] }}\n\n",
+                    "annotationUi": {}
+                  },
+                  {
+                    "text": "={{ $('Basic LLM Chain2').item.json.output['puntos clave'][3] }}\n\n",
+                    "annotationUi": {}
+                  },
+                  {
+                    "text": "={{ $('Basic LLM Chain2').item.json.output['puntos clave'][4] }}\n\n",
+                    "annotationUi": {}
+                  },
+                  {
+                    "text": "={{ $('Basic LLM Chain2').item.json.output['puntos clave'][5] }}\n\n",
+                    "annotationUi": {}
+                  },
+                  {
+                    "text": "={{ $('Basic LLM Chain2').item.json.output['puntos clave'][6] }}\n\n",
+                    "annotationUi": {}
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [
+        -12128,
+        -2560
+      ],
+      "id": "48df5e9f-d49e-42d6-a536-0efd4721775e",
+      "name": "Create a page",
+      "credentials": {
+        "notionApi": {
+          "id": "0c82bLRTYL16oIPM",
+          "name": "Notion Joel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"titulo\": \"Titulo del video\",\n  \"Descripcion\": \"Descripción del video\",\n  \"puntos clave\": [\"- Punto clave 1\", \"Punto clave 2\", \"- Punto clave 3\", \"Punto clave 4\", \"Punto clave 5\"], \n  \"url_youtube\": \"{{ $('Code1').item.json.youtubeUrl }}\",\n  \"resumen_whatsapp\": \"breve resumen del video\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        -12560,
+        -2448
+      ],
+      "id": "585e303c-c7aa-45f9-b529-ef39e7a089fc",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "resource": "messages-api",
+        "instanceName": "={{ $('Webhook').item.json.body.instance }}",
+        "remoteJid": "={{ $('Webhook').item.json.body.data.key.remoteJid }}",
+        "messageText": "={{ $json.url }}",
+        "options_message": {}
+      },
+      "type": "n8n-nodes-evolution-api.evolutionApi",
+      "typeVersion": 1,
+      "position": [
+        -11680,
+        -2560
+      ],
+      "id": "c1932870-7fba-49b5-9ed4-3ee7549088e6",
+      "name": "PRIMER_MENSAJE3",
+      "credentials": {
+        "evolutionApi": {
+          "id": "tFrYa0fy9QYKo6FH",
+          "name": "PRUEBAS"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        -11904,
+        -2560
+      ],
+      "id": "95bfe624-86b3-44b7-bd6b-3f743f9d6b05",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 176,
+        "width": 192,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -13376,
+        -3696
+      ],
+      "id": "dcac72b9-8337-4be5-b73e-522ad26a5faa",
+      "name": "Sticky Note12"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "options": {}
+      },
+      "id": "145a7412-89a8-41fa-87bd-b19ffd8f9bf1",
+      "name": "Descargar Imagen",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        -13568,
+        -3664
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 176,
+        "width": 192,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -13616,
+        -3696
+      ],
+      "id": "75a1b20e-9573-4dc0-852e-8d2022c25981",
+      "name": "Sticky Note14"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 176,
+        "width": 192,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -13856,
+        -3696
+      ],
+      "id": "0dd7e502-4f70-41d7-a473-84bd19bee2dd",
+      "name": "Sticky Note15"
+    },
+    {
+      "parameters": {
+        "name": "={{ $now }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1Nl1jZBG8IFjWUGuIH9H35DafZZ_nMaHW",
+          "mode": "list",
+          "cachedResultName": "MISTRAL",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1Nl1jZBG8IFjWUGuIH9H35DafZZ_nMaHW"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -13328,
+        -3664
+      ],
+      "id": "e0a6d981-9bd4-4ff9-8b88-b796c7c1196b",
+      "name": "Subir Archivo"
+    },
+    {
+      "parameters": {
+        "resource": "media",
+        "operation": "mediaUrlGet",
+        "mediaGetId": "={{ $json.image.id }}"
+      },
+      "id": "bf34b356-6360-444e-8310-91c86cbcbcc2",
+      "name": "Obtener URL Imagen",
+      "type": "n8n-nodes-base.whatsApp",
+      "position": [
+        -13808,
+        -3664
+      ],
+      "typeVersion": 1,
+      "webhookId": "96221c60-5e7d-4b9e-be2c-19953c7f7f57"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Europe/Madrid",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "NXAGfkOV6b6fn8LO"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-08-07T11:31:38.000Z",
+  "versionId": "f8ce0eec-4dd9-4436-93d9-d7057e9a4ac9"
+}
