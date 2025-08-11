@@ -1,0 +1,36 @@
+{
+  "active": true,
+  "connections": {},
+  "createdAt": "2025-07-19T09:18:58.766Z",
+  "id": "aQibJRlsy6B2HsxU",
+  "isArchived": false,
+  "meta": null,
+  "name": "info_llamadas",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "info_llamadas",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "a58b3970-a89d-4a03-b604-dca909ba9021",
+      "name": "Webhook",
+      "webhookId": "78c186a7-8a81-4f34-bc19-d6c5c0026251"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-07-19T09:19:00.000Z",
+  "versionId": "069fbb63-1820-4657-b206-b9d842583634"
+}
