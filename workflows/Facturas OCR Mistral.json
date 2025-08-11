@@ -1,0 +1,1087 @@
+{
+  "active": false,
+  "connections": {
+    "Descargar Archivo": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar Archivo": {
+      "main": [
+        [
+          {
+            "node": "Descargar Archivo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Buscar Archivo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extraer Imagen": {
+      "main": [
+        [
+          {
+            "node": "Extractor de Información",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Extraer Texto",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Extraer Imagen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Drive Trigger": {
+      "main": [
+        [
+          {
+            "node": "Descargar Archivo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extraer Texto": {
+      "main": [
+        [
+          {
+            "node": "Extractor de Información",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extractor de Información": {
+      "main": [
+        [
+          {
+            "node": "Sheets #1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filtrardor": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Descargar Imagen": {
+      "main": [
+        [
+          {
+            "node": "Subir Archivo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Obtener URL Imagen",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Agente IA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sheets #2": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente IA",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat GPT #1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Extractor de Información",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat GPT #2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Agente IA",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtener URL Imagen": {
+      "main": [
+        [
+          {
+            "node": "Descargar Imagen",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agente IA": {
+      "main": [
+        [
+          {
+            "node": "Enviar Mensaje",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Trigger": {
+      "main": [
+        [
+          {
+            "node": "Filtrardor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-03T10:56:50.629Z",
+  "id": "VWpUvhppivLW1ZxL",
+  "isArchived": false,
+  "meta": null,
+  "name": "Facturas OCR Mistral",
+  "nodes": [
+    {
+      "parameters": {
+        "documentType": "image_url",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mistralAi",
+      "typeVersion": 1,
+      "position": [
+        -368,
+        336
+      ],
+      "id": "7789b4e1-5737-483c-baf1-56f03835ea2e",
+      "name": "Extraer Imagen",
+      "credentials": {
+        "mistralCloudApi": {
+          "id": "6K5mcDAMIuHPVcKO",
+          "name": "Joel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -832,
+        224
+      ],
+      "id": "9b5fff65-1b2b-4baf-99fa-0244b587ba45",
+      "name": "Descargar Archivo",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "tBOmezIuyakBr2dl",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "fileFolder",
+        "queryString": "=",
+        "returnAll": true,
+        "filter": {
+          "folderId": {
+            "__rl": true,
+            "value": "1Pikucw4niEkjaZOOxJ_BM3imYyLEsWbB",
+            "mode": "list",
+            "cachedResultName": "PRUEBAS MC STORE",
+            "cachedResultUrl": "https://drive.google.com/drive/folders/1Pikucw4niEkjaZOOxJ_BM3imYyLEsWbB"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -992,
+        224
+      ],
+      "id": "89eb20fa-a4fa-475c-8870-d8faced71126",
+      "name": "Buscar Archivo",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "tBOmezIuyakBr2dl",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1216,
+        336
+      ],
+      "id": "78ef697d-48e1-46d5-bcaa-4261af227b08",
+      "name": "Manual Trigger"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 176,
+        "width": 192
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1264,
+        304
+      ],
+      "id": "a05c1301-30ce-4345-8ebf-fb22181a31e0",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 176,
+        "width": 320,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1024,
+        192
+      ],
+      "id": "8b99ea03-2c8f-452d-b51f-9088bf9016a2",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 176,
+        "width": 192,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -416,
+        304
+      ],
+      "id": "741ae342-8875-42be-a136-d4fdcd582ea0",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 176,
+        "width": 384,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -576,
+        1024
+      ],
+      "id": "0b1b2893-b48f-4eba-8b18-6739e6006518",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "width": 256,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -448,
+        864
+      ],
+      "id": "9d34061c-7a46-4788-908e-1095c6a32139",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 176,
+        "width": 192,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -416,
+        80
+      ],
+      "id": "5c8936ca-47f7-419c-855b-f40c70dc6917",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mistralAi",
+      "typeVersion": 1,
+      "position": [
+        -368,
+        112
+      ],
+      "id": "4b832162-b489-48fe-be72-389dc00bc897",
+      "name": "Extraer Texto",
+      "credentials": {
+        "mistralCloudApi": {
+          "id": "6K5mcDAMIuHPVcKO",
+          "name": "Joel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "2f85fd56-6a43-472e-b88f-57ec981709b2",
+              "leftValue": "={{ $json.mimeType }}",
+              "rightValue": "pdf",
+              "operator": {
+                "type": "string",
+                "operation": "endsWith"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -608,
+        224
+      ],
+      "id": "b1fb23d9-48d0-4d2a-a615-b056ce0960d0",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 176,
+        "width": 192
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1264,
+        80
+      ],
+      "id": "40cc39d4-a1ac-4afb-b112-a4826e5035bd",
+      "name": "Sticky Note7"
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "triggerOn": "specificFolder",
+        "folderToWatch": {
+          "__rl": true,
+          "value": "1Pikucw4niEkjaZOOxJ_BM3imYyLEsWbB",
+          "mode": "list",
+          "cachedResultName": "PRUEBAS MC STORE",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1Pikucw4niEkjaZOOxJ_BM3imYyLEsWbB"
+        },
+        "event": "fileCreated",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDriveTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1216,
+        112
+      ],
+      "id": "9fd81a7b-ce21-4755-b9f1-74ada3e7d6ff",
+      "name": "Drive Trigger",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "tBOmezIuyakBr2dl",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 176,
+        "width": 192,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -656,
+        192
+      ],
+      "id": "4f48476d-df1b-45e9-8c66-0dc835d1fd2f",
+      "name": "Sticky Note8"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 208,
+        "width": 368,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -176,
+        176
+      ],
+      "id": "b4120387-ff7c-48d4-967f-6b69afd5c25d",
+      "name": "Sticky Note9"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 176,
+        "width": 192,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "e93e74d1-e64a-4758-97fa-e56f1802f91d",
+      "name": "Sticky Note10"
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.pages[0].markdown }}",
+        "attributes": {
+          "attributes": [
+            {
+              "name": "Nombre o Razón Social del Proveedor",
+              "description": "=Nombre completo o razón social de la entidad que emite la factura, utilizado para identificar al proveedor."
+            },
+            {
+              "name": "NIF/CIF del Proveedor",
+              "type": "number",
+              "description": "=Identificador fiscal único del proveedor, necesario para validar la factura y cumplir con obligaciones tributarias."
+            },
+            {
+              "name": "Número de Factura",
+              "type": "number",
+              "description": "Código o número secuencial asignado a la factura, fundamental para su identificación única y evitar duplicados."
+            },
+            {
+              "name": "Fecha de Emisión",
+              "type": "date",
+              "description": "=Fecha en que se genera la factura, clave para la contabilización y el cálculo de plazos de pago."
+            },
+            {
+              "name": "Fecha de Vencimiento",
+              "type": "date",
+              "description": "=Fecha límite acordada para el pago de la factura, esencial para la gestión de tesorería y la generación de alertas."
+            },
+            {
+              "name": "Importe Total a Pagar",
+              "type": "number",
+              "description": "=Suma total a abonar por la factura, incluyendo base imponible e impuestos aplicables."
+            }
+          ]
+        },
+        "options": {
+          "systemPromptTemplate": "You are an expert extraction algorithm.\nOnly extract relevant information from the text.\nIf you do not know the value of an attribute asked to extract, you may omit the attribute's value."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+      "typeVersion": 1.2,
+      "position": [
+        -112,
+        224
+      ],
+      "id": "83d602bb-87be-4fc1-8959-439939d91b1c",
+      "name": "Extractor de Información"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 176,
+        "width": 208,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        240,
+        192
+      ],
+      "id": "6101ee95-b874-4196-ab30-118468e8af36",
+      "name": "Sticky Note11"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 176,
+        "width": 192
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1312,
+        816
+      ],
+      "id": "337e481b-cb79-4313-afde-02763a4cfa70",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 176,
+        "width": 192,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -96,
+        608
+      ],
+      "id": "2bf2f3e6-4d43-481a-b540-f06934f96f81",
+      "name": "Sticky Note12"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "options": {}
+      },
+      "id": "96aab13b-d8ab-44f8-96f8-8c59d4bf81fb",
+      "name": "Descargar Imagen",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        -288,
+        640
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "messages",
+        "options": {}
+      },
+      "id": "e291af64-d508-47af-a9d7-dd8e486ba13e",
+      "name": "Filtrardor",
+      "type": "n8n-nodes-base.splitOut",
+      "position": [
+        -1024,
+        848
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 176,
+        "width": 368,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1072,
+        816
+      ],
+      "id": "e3a32260-6585-454b-bc2a-997fa7e999aa",
+      "name": "Sticky Note13"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 176,
+        "width": 192,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -336,
+        608
+      ],
+      "id": "4bd71c78-3596-48a0-a1f0-ab5fb92da5ab",
+      "name": "Sticky Note14"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "3428f9ae-9d54-44a3-948c-895d97036b8f",
+                    "leftValue": "={{ $json.type }}",
+                    "rightValue": "image",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Imagen"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "2dda82c7-467e-4695-8ce3-3e52eff08604",
+                    "leftValue": "={{ $json.type }}",
+                    "rightValue": "text",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Texto"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "1e2103e5-4352-479f-8fc9-62d41712e132",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "position": [
+        -864,
+        848
+      ],
+      "typeVersion": 3.2
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 176,
+        "width": 192,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -576,
+        608
+      ],
+      "id": "fc059e04-8a10-40de-9f88-e11b27478a56",
+      "name": "Sticky Note15"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "166ggokTFRAkvYGnpqXMgnB82vlgENAnpvUr5OHyxxsw",
+          "mode": "list",
+          "cachedResultName": "Facturas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/166ggokTFRAkvYGnpqXMgnB82vlgENAnpvUr5OHyxxsw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Facturas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/166ggokTFRAkvYGnpqXMgnB82vlgENAnpvUr5OHyxxsw/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        -304,
+        896
+      ],
+      "id": "8dc3796e-7d1b-4a62-bb30-ef046c0f71ea",
+      "name": "Sheets #2"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "166ggokTFRAkvYGnpqXMgnB82vlgENAnpvUr5OHyxxsw",
+          "mode": "list",
+          "cachedResultName": "Facturas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/166ggokTFRAkvYGnpqXMgnB82vlgENAnpvUr5OHyxxsw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Facturas",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/166ggokTFRAkvYGnpqXMgnB82vlgENAnpvUr5OHyxxsw/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Nombre o Razón Social del Proveedor": "={{ $json.output['Nombre o Razón Social del Proveedor'] }}",
+            "NIF/CIF del Proveedor": "={{ $json.output['NIF/CIF del Proveedor'] }}",
+            "Fecha de Emisión": "={{ $json.output['Fecha de Emisión'] }}",
+            "Número de Factura": "={{ $json.output['Número de Factura'] }}",
+            "Fecha de Vencimiento": "={{ $json.output['Fecha de Vencimiento'] }}",
+            "Fecha de Subida": "={{ $now.format('yyyy-MM-dd/HH:mm') }}",
+            "Importe Total a Pagar": "={{ $json.output['Importe Total a Pagar'] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Nombre o Razón Social del Proveedor",
+              "displayName": "Nombre o Razón Social del Proveedor",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "NIF/CIF del Proveedor",
+              "displayName": "NIF/CIF del Proveedor",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Número de Factura",
+              "displayName": "Número de Factura",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Fecha de Emisión",
+              "displayName": "Fecha de Emisión",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Fecha de Vencimiento",
+              "displayName": "Fecha de Vencimiento",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Importe Total a Pagar",
+              "displayName": "Importe Total a Pagar",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Fecha de Subida",
+              "displayName": "Fecha de Subida",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        288,
+        224
+      ],
+      "id": "4e4a8e72-776f-47c8-b807-670f1b9c17c7",
+      "name": "Sheets #1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4.1",
+          "mode": "list",
+          "cachedResultName": "gpt-4.1"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        48,
+        48
+      ],
+      "id": "4cd8a0ad-7df9-44d1-9b77-bb5914bc3ea6",
+      "name": "Chat GPT #1",
+      "credentials": {
+        "openAiApi": {
+          "id": "DCNgLG2517avXWdE",
+          "name": "Cuenta Joel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4.1",
+          "mode": "list",
+          "cachedResultName": "gpt-4.1"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -416,
+        896
+      ],
+      "id": "36331ba3-6ce4-4f5f-8b5c-c106e1ff9c7f",
+      "name": "Chat GPT #2"
+    },
+    {
+      "parameters": {
+        "resource": "media",
+        "operation": "mediaUrlGet",
+        "mediaGetId": "={{ $json.image.id }}"
+      },
+      "id": "dd4c5d5c-b6cb-4375-b399-1c8e23d6012c",
+      "name": "Obtener URL Imagen",
+      "type": "n8n-nodes-base.whatsApp",
+      "position": [
+        -528,
+        640
+      ],
+      "typeVersion": 1,
+      "webhookId": "96221c60-5e7d-4b9e-be2c-19953c7f7f57"
+    },
+    {
+      "parameters": {
+        "name": "={{ $now }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1Nl1jZBG8IFjWUGuIH9H35DafZZ_nMaHW",
+          "mode": "list",
+          "cachedResultName": "MISTRAL",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1Nl1jZBG8IFjWUGuIH9H35DafZZ_nMaHW"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -48,
+        640
+      ],
+      "id": "f61b7a1e-d713-4b2d-bf40-8cb498cd9d9a",
+      "name": "Subir Archivo"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.text.body }}",
+        "options": {
+          "systemMessage": "=# Contexto\n\nRecibirás una petición del usuario y tienes que utilizar la herramienta “facturas” para buscar información y responder a sus preguntas\n\n# Tarea\n\nUtilizar la herramienta “facturas” para buscar información y responder a sus preguntas\n\n# Herramientas\n\n## facturas\n\n**Utiliza esta herramienta para buscar información sobre los gastos y costes del usuario**"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.1,
+      "position": [
+        -512,
+        1056
+      ],
+      "id": "9c34900a-7b01-4772-b6f8-fc03dc8a39a5",
+      "name": "Agente IA"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 176,
+        "width": 192
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -144,
+        1024
+      ],
+      "id": "6c7ea570-5446-41b7-951c-def4d88df6c0",
+      "name": "Sticky Note16"
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "616116878254396",
+        "recipientPhoneNumber": "={{ $('Filtrardor').item.json.from }}",
+        "textBody": "={{ $json.output }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        -96,
+        1056
+      ],
+      "id": "7a799eff-cb67-46dc-8b09-abddc10cacb7",
+      "name": "Enviar Mensaje",
+      "webhookId": "8a881d11-9235-49cb-8d78-0cdaa50119f6"
+    },
+    {
+      "parameters": {
+        "updates": [
+          "messages"
+        ],
+        "options": {}
+      },
+      "type": "n8n-nodes-base.whatsAppTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1264,
+        848
+      ],
+      "id": "6e7bcc2f-c164-47d5-94e6-9f1e6ddb87ec",
+      "name": "WhatsApp Trigger",
+      "webhookId": "11acfb9c-bca0-4651-ad88-7dff6cb685c0"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-08-03T11:02:07.000Z",
+  "versionId": "c6683f75-3dff-4a5a-bda1-5f1c2b407a65"
+}
