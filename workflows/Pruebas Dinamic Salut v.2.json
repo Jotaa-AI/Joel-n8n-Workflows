@@ -1,0 +1,1337 @@
+{
+  "active": false,
+  "connections": {
+    "Guardamos mensajes": {
+      "main": [
+        [
+          {
+            "node": "Esperamos 30s",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Esperamos 30s": {
+      "main": [
+        [
+          {
+            "node": "Redis1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Redis1": {
+      "main": [
+        [
+          {
+            "node": "If9",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields6",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI2": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Descargar Audio1": {
+      "main": [
+        [
+          {
+            "node": "OpenAI2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields4": {
+      "main": [
+        [
+          {
+            "node": "Descargar Audio1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields6": {
+      "main": [
+        [
+          {
+            "node": "Guardamos mensajes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields5": {
+      "main": [
+        [
+          {
+            "node": "Guardamos mensajes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HighLevel1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If9": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields37",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields37",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Redis8": {
+      "main": [
+        [
+          {
+            "node": "Fecha1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields37": {
+      "main": [
+        [
+          {
+            "node": "Redis8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fecha1": {
+      "main": [
+        [
+          {
+            "node": "Fecha Formateada1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AGENTE CLIENTE SIN CITA": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Chat Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "AGENTE CLIENTE SIN CITA",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AGENTE CLIENTE SIN CITA",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fecha Formateada1": {
+      "main": [
+        [
+          {
+            "node": "AGENTE CLIENTE SIN CITA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Auto-fixing Output Parser1": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Auto-fixing Output Parser1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser1": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Auto-fixing Output Parser1",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain1": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HighLevel1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields7": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Send SMS via GHL",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Send SMS via GHL": {
+      "main": [
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Send SMS via GHL1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send SMS via GHL1": {
+      "main": [
+        [
+          {
+            "node": "If4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait2": {
+      "main": [
+        [
+          {
+            "node": "Send SMS via GHL2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If4": {
+      "main": [
+        [
+          {
+            "node": "Wait2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Think": {
+      "ai_tool": [
+        [
+          {
+            "node": "AGENTE CLIENTE SIN CITA",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validar_Calendario2": {
+      "ai_tool": [
+        [
+          {
+            "node": "AGENTE CLIENTE SIN CITA",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agendar_Calendario": {
+      "ai_tool": [
+        [
+          {
+            "node": "AGENTE CLIENTE SIN CITA",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-06-08T09:54:30.164Z",
+  "id": "nP5BJRZGlrl56GGB",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Pruebas Dinamic Salut v.2",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "push",
+        "list": "={{ $('Edit Fields7').item.json.phonetosend }}",
+        "messageData": "={{ $json.mensaje_usuario }}"
+      },
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        2240,
+        1580
+      ],
+      "id": "e325dbaa-0f05-45a1-bb75-1fa9a14476d6",
+      "name": "Guardamos mensajes",
+      "credentials": {
+        "redis": {
+          "id": "5yTuvizcwYu5k42W",
+          "name": "Redis Joel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 1
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2460,
+        1580
+      ],
+      "id": "760cf410-1c7a-4de9-86b0-a7a3525e3395",
+      "name": "Esperamos 30s",
+      "webhookId": "904050f9-9507-4158-9f7d-25681b399ae1"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "propertyName": "mensajes",
+        "key": "={{ $('Edit Fields7').item.json.phonetosend }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        2680,
+        1580
+      ],
+      "id": "8b7744c6-d8aa-42fc-8007-76f98a7698b2",
+      "name": "Redis1",
+      "credentials": {
+        "redis": {
+          "id": "5yTuvizcwYu5k42W",
+          "name": "Redis Joel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "0f719650-0c88-4ffd-94c0-80965dd71ddb",
+              "leftValue": "={{ $('Webhook').item.json.body.mensaje }}",
+              "rightValue": "=> Voice Note <",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1140,
+        1580
+      ],
+      "id": "4581664f-4da3-46de-b15e-b2a292595cf7",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2aa9e8ab-edbe-4338-8a0e-f6be66761a71",
+              "name": "audio_url",
+              "value": "={{ $('Webhook').item.json.body.archivos }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1360,
+        1680
+      ],
+      "id": "be83ebaa-c3d4-4866-afba-268f46a2f75b",
+      "name": "Edit Fields4"
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "operation": "transcribe",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        1800,
+        1680
+      ],
+      "id": "1ab89621-43a9-494c-ad91-c3bb710b5444",
+      "name": "OpenAI2",
+      "credentials": {
+        "openAiApi": {
+          "id": "DCNgLG2517avXWdE",
+          "name": "Cuenta Joel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.audio_url }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1580,
+        1680
+      ],
+      "id": "9f0c16e4-9d25-4620-a6e5-2d07aca4c9a0",
+      "name": "Descargar Audio1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "018a06fd-07ef-4976-b5c7-f4e86f92992a",
+              "name": "mensaje_usuario",
+              "value": "={{ $json.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2020,
+        1680
+      ],
+      "id": "43ea421a-5a8a-41bf-8b37-1ee7241ec372",
+      "name": "Edit Fields5"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "113700d1-b527-4504-98f5-799190542e34",
+              "name": "mensaje_usuario",
+              "value": "={{ $('Webhook').item.json.body.mensaje }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2020,
+        1480
+      ],
+      "id": "d7c38b33-99f4-455d-8daf-c5bd830d99b9",
+      "name": "Edit Fields6"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "dinamic_salut_v2",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        480,
+        1580
+      ],
+      "id": "ad01a9ca-e97a-4819-b502-94068932f4c0",
+      "name": "Webhook",
+      "webhookId": "841fa5d1-3b10-45c2-b230-904998f6d1bc"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "54b6a403-1743-4ccd-b39c-5dcc6ab9bd52",
+              "leftValue": "={{ $json.mensajes.last() }}",
+              "rightValue": "={{ $json.mensajes[4] }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2900,
+        1580
+      ],
+      "id": "afdae7e5-5261-4eee-802a-e22c0445ad5c",
+      "name": "If9",
+      "notesInFlow": false
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "key": "={{ $('Edit Fields7').item.json.phonetosend }}"
+      },
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        3340,
+        1580
+      ],
+      "id": "048a5dc1-9a90-4b07-91f2-f20e85c90003",
+      "name": "Redis8",
+      "credentials": {
+        "redis": {
+          "id": "5yTuvizcwYu5k42W",
+          "name": "Redis Joel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7d0df451-32c6-4a99-bcf0-344a9e97b494",
+              "name": "respuesta",
+              "value": "={{$json[\"mensajes\"].slice().reverse()}}",
+              "type": "string"
+            },
+            {
+              "id": "fe3fd3a5-1968-44c2-a6c2-f8f8a622fd5d",
+              "name": "telefono",
+              "value": "=",
+              "type": "string"
+            },
+            {
+              "id": "5171b881-0745-4a5b-816c-50da3730fb74",
+              "name": "contact_id",
+              "value": "={{ $('Webhook').first().json.body.id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3120,
+        1580
+      ],
+      "id": "0ab3fe68-4e4b-4a5c-8fad-e9c9cb1ac929",
+      "name": "Edit Fields37"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dateTime",
+      "typeVersion": 2,
+      "position": [
+        3560,
+        1580
+      ],
+      "id": "d5d8f1d0-1285-41a4-b910-d9b8d9383df3",
+      "name": "Fecha1"
+    },
+    {
+      "parameters": {
+        "operation": "formatDate",
+        "date": "={{ $json.currentDate }}",
+        "format": "custom",
+        "customFormat": "dd/MM/yyyy",
+        "options": {
+          "timezone": true
+        }
+      },
+      "type": "n8n-nodes-base.dateTime",
+      "typeVersion": 2,
+      "position": [
+        3780,
+        1580
+      ],
+      "id": "d4e8d678-fdd8-43d9-baf1-6488bf5fc8ab",
+      "name": "Fecha Formateada1"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=El cliente ha dicho lo siguiente: {{ $('Edit Fields37').item.json.respuesta }}\nEste es el ID del usuario (Úsalo cuando lo necesites en las tools):{{ $('Edit Fields37').item.json.telefono }}\nHoy es: {{ $json.formattedDate }}",
+        "options": {
+          "systemMessage": "=# 🧠 Role and Objective\n\nEres la asistente virtual de atención al cliente de **Dinàmic Salut**, un centro de medicina correctiva. Tu función es **amable, directa y profesional**, con un estilo cálido, humano y cercano. El idioma en el que debes hablar por defecto es Catalán o Castellano, detecta el idioma de entrada y ese será el idioma en el que deberás contestar. \n\nTu objetivo principal es:\n- Detectar la intención del usuario.\n- Responder dudas frecuentes.\n- Agendar nuevas citas para personas no registradas.\n- Crear registros de nuevos clientes (sin usar lenguaje técnico).\n- Modificar fecha de citas\n- Cancelar citas\n\n# 📌 Key Instructions\n\n- Antes de nada, pregunta al usuario:\n  > “¿Quieres que te asesore sobre nuestros servicios o ya sabes cuál quieres reservar?”  \n- Según su respuesta, sigue uno de estos caminos:\n  1. **Asesoramiento**: si el usuario elige “asesoramiento”, ofrece información sobre los tratamientos y precios, luego pregunta si desea reservar.\n  2. **Reserva directa**: si el usuario dice “ya sé qué quiero”, procede a pedir fecha y hora para agendar.\n- Identifica siempre con claridad lo que el usuario quiere: agendar, consultar, etc.\n- Si la intención es **agendar una cita** (palabras como “quiero una cita”, “reservar”, “necesito cita”), **pide directamente fecha y hora**.\n- Si no queda clara la intención, pregunta:  \n  > “¿En qué puedo ayudarte hoy? ¿Quieres agendar una cita o tienes alguna consulta sobre nuestros servicios?”\n- Si necsitas información sobre los servicios, ejecuta la herramienta \"servicios\".\n\n# 🗓️ Important Context\n\n- Fecha actual:  {{ $json.formattedDate }}\n- Todas las fechas se entienden como del **año 2025**, salvo que el usuario indique lo contrario.  \n- No incluyas explicaciones internas, técnicas ni pensamientos del sistema.  \n- Mantén un estilo cálido, humano y resolutivo, adaptado a WhatsApp.\n- Info sobre servicios ,precios y bonos que se realizan:\n  - Sesión de fisioterapia: 60€\n  - Fisioteràpia para jubilados/federados (es necesario presentar acreditación): 45€\n  - Bono de 3 sesiones: 125€\n  - Bono de 5 sesiones: 200€\n  - Bono de 10 sesiones de fisioterapia: 370€\n\n\n# 😃 Tono y Petición de Datos Personales\n\n- **Evita siempre lenguaje técnico o interno** como:  \n  “registrarte”, “darte de alta”, “crear usuario”, “guardar en sistema”, etc.  \n- Cuando necesites nombre, apellido o teléfono, **justifica siempre la petición desde la experiencia del cliente**.  \n- Usa expresiones cotidianas como: **“¡Listo!”, “Genial”, “Perfecto”**, junto con emoticonos moderados: 😊✨📅.  \n\n# 🔁 Workflow\n\n## 1. Bienvenida y opción inicial  \n> “Hola, bienvenida/o a Dinàmic Salut. ¿Quieres que te asesore sobre nuestros servicios o ya sabes cuál quieres reservar?”  \n\n## 2. Según elección  \n- **Asesoramiento**: presentar opciones de servicios y precios, luego:  \n  > “¿Te gustaría reservar alguna de estas opciones?”  \n- **Reserva directa**:  \n  > “Perfecto, ¿para qué día y hora quieres tu cita?”  \n\n## 3. Comprobar disponibilidad  \n- Cuando el usuario indique una fecha/hora y servicio llama a la herramienta \"Validar_Calendario\" con el siguiente JSON:\n\n{\n  \"fecha_solicitada\": \"25-06-2025\",\n  \"servicio_solicitado\": \"fisioterapia\"\n}\n\n- Si fecha/hora no válida, presentale las 3 horas más cercanas en formato lista diciendole previamente:  \n   > “Esa fecha/hora no está disponible 😕 te digo las que tengo disponibles más próximas:”  \n\n   - Disponible:  \n     > “Perfecto, tengo ese hueco libre a las {hora}. ¿Te va bien?”  \n   - No disponible:  \n     > “No hay hueco a esa hora 😕 ¿Quieres otra hora o día?”  \n\n## 4. Agendar Calendario\n- Cuando el usuario confirme la fecha y servicio llama a la herramienta \"Agendar_Calendario\" con el nombre del cliente, la fecha en formato ISO y el nombre del servicio.\n- Ejecuta la herramienta Think para corroborar que la información que se envía es la correcta\n- Ejecuta la herramienta AgendarCalendario con este JSON\n- Asegurate que la fecha del JSON esté en formato ISO.\n\n### Ejemplo de flujo de confirmación:\nCliente: Me viene bien el miercoles a las 12h\nAgente: Perfecto. Para completar la reserva, me confirmas tu nombre completo y servicio?\n(Una vez el cliente responde:)\n- Enviar a Agendar_Calendario la siguiente información:\n  - Nombre_Cliente: Nombre del cliente\n  - Startime_agendamiento: Fecha y hora confirmada en formato ISO\n  - Contact_id: {{ $('Edit Fields37').item.json.contact_id }}\n\n- Tras crear la cita, confirma:  \n  > “¡Listo! Tu cita para {servicio} está reservada el {fecha} a las {hora} 📅. Te esperamos en Dinàmic Salut\".  \n\n\n# ⚠️ Errores y respuestas especiales\n\n- No entiendo:  \n  > “Disculpa, no entendí bien. ¿Quieres reservar una cita o hablar de nuestros servicios?”  \n- Servicio no ofrecido:  \n  > “En Clinic.IA ofrecemos tratamientos estéticos como limpieza facial, depilación láser… ¿Cuál te interesa?”  \n- Error herramienta:  \n  > “Ha habido un problema 😓. Inténtalo más tarde o llama al +34 653 03 55 25.”  "
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        4152,
+        1580
+      ],
+      "id": "60814e0e-5dd6-465f-af60-ff706be28dad",
+      "name": "AGENTE CLIENTE SIN CITA"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Edit Fields7').item.json.phonetosend }}",
+        "tableName": "n8n_chat_ds",
+        "contextWindowLength": 20
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        4120,
+        1800
+      ],
+      "id": "4eb722cd-85ed-4ced-9349-847100508858",
+      "name": "Postgres Chat Memory1",
+      "credentials": {
+        "postgres": {
+          "id": "tGI0uWxFFQOMlsHf",
+          "name": "Postgres Joel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "gpt-4.1",
+        "options": {
+          "temperature": 0.7
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.1,
+      "position": [
+        4000,
+        1800
+      ],
+      "id": "2a8a643a-d490-47c1-b134-3e68430aa847",
+      "name": "OpenAI3",
+      "credentials": {
+        "openAiApi": {
+          "id": "DCNgLG2517avXWdE",
+          "name": "Cuenta Joel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://services.leadconnectorhq.com/conversations/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "highLevelOAuth2Api",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json"
+            },
+            {
+              "name": "Version",
+              "value": "2021-04-15"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "type",
+              "value": "SMS"
+            },
+            {
+              "name": "contactId",
+              "value": "={{ $('Edit Fields37').item.json.contact_id }}"
+            },
+            {
+              "name": "message",
+              "value": "={{ $json.output.parte_1 }}"
+            },
+            {
+              "name": "toNumber",
+              "value": "={{ $('Edit Fields7').item.json.phonetosend }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "de0b42f9-fd00-4277-8181-7a4396a470e8",
+      "name": "Send SMS via GHL",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        5396,
+        1580
+      ],
+      "retryOnFail": true,
+      "typeVersion": 4.2,
+      "credentials": {
+        "highLevelOAuth2Api": {
+          "id": "FwnvqTtE3xuwrBjp",
+          "name": "HighLevel DinàmicSalut"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Respuesta a formatear: {{ $json.output }}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=#Tarea\nTu tarea es procesar la siguiente respuesta del agente: \n{{ $json.output }}. \n\nDebes dividirla en 1, 2 o 3 partes analizando bien previamente en cuantas partes es necesario enviar para simular una conversación natural, limpiar signos iniciales no deseados y eliminar frases genéricas que rompen la humanización.\nLa salida debe ser un JSON con tres partes, listo para enviarse con pausas en n8n.\n\n##Tarea 1: Dividir la respuesta en hasta 3 partes SOLO SI ES NECESARIO\n- Analiza la respuesta y divídela en hasta tres partes, cada una con sentido completo.\n- No cortes frases a menos que haya un punto o una pausa natural (como una coma seguida de una nueva idea).\n- Quita el punto final de cada parte para que la conversación sea más fluida y menos formal.\n- Si la respuesta es demasiado corta para tres partes (menos de 2 oraciones), deja las partes vacías (ejemplo: parte2 y parte3 como \"\")\n- Si la respuesta tiene más de tres oraciones, prioriza las primeras tres y combina ideas secundarias en la tercera parte.\n- Asegúrate de que cada parte sea breve (máximo 15 palabras) para que sea digerible en un chat.\n\n##Tarea 2: Limpiar signos y frases no deseadas\n→ Elimina los signos iniciales de exclamación (\"¡\") e interrogación (\"¿\") en cada parte, pero manten los de cierre (\"!\", \"?\") para naturalidad.\n- Quita frases genéricas o robóticas como:\n  - “¿Cómo más te puedo ayudar?”\n  - “¿Tienes alguna otra pregunta?”\n  - “Por favor, reserva ahora”\n  - “Estoy aquí para asistirte”\n  - Cualquier variante similar que suene automatizada.\n- Si la respuesta contiene jerga técnica (ejemplo: \"procesando\", \"solicitud\"), reemplazala por un término simple (ejemplo: \"arreglando\", \"pedido\").\n- Asegurate de que las partes mantengan el tono cálido y no introduzcan formalidades.\n\n##Tarea 3: Formato de salida\n- Devuelve las partes en un JSON con las claves \"parte1\", \"parte2\", \"parte3\".\n- Si una parte está vacía, déjala como cadena vacía (“”).\n- Ejemplo de formato:\n{\n  \"parte1\": \"Texto de la primera parte\",\n  \"parte2\": \"Texto de la segunda parte\",\n  \"parte3\": \"Texto de la tercera parte\"\n}"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        4696,
+        1580
+      ],
+      "id": "727a1287-a157-4e73-9998-6830a799da35",
+      "name": "Basic LLM Chain1",
+      "retryOnFail": true,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "options": {
+          "prompt": "Instructions:\n--------------\nTu respuesta debe ser exclusivamente un objeto JSON válido que incluya únicamente las claves:\n- \"parte_1\"\n- \"parte_2\"\n- \"parte_3\"\n\nCada clave debe tener como valor una cadena de texto (string). No incluyas texto adicional, backticks, ni formato Markdown. No uses comillas simples. Tampoco incluyas explicaciones antes o después del objeto JSON. Asegúrate de colocar dos puntos (:) después de cada clave y encerrar los valores entre comillas dobles. Cualquier salida que no sea JSON válido o que contenga texto adicional no cumplirá las restricciones.\n\n--------------\nCompletion:\n--------------\n{completion}\n--------------\n\nAbove, the Completion did not satisfy the constraints given in the Instructions.\nError:\n--------------\n{error}\n--------------\n\nPlease try again. Please only respond with an answer that satisfies the constraints laid out in the Instructions:"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserAutofixing",
+      "typeVersion": 1,
+      "position": [
+        4800,
+        1802.5
+      ],
+      "id": "8a562e8b-d831-480d-98f2-54fbefff5c91",
+      "name": "Auto-fixing Output Parser1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {
+          "temperature": 0
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        4828,
+        2000
+      ],
+      "id": "575f1c64-5691-490e-8a63-d7169251979e",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "DCNgLG2517avXWdE",
+          "name": "Cuenta Joel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\"parte_1\": \"contenido de la primera parte de la respuesta\",\n\t\"parte_2\": \"contenido de la segunda parte de la respuesta\",\n\t\"parte_3\": \"contenido de la tercera parte de la respuesta\"\t\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        4948,
+        2000
+      ],
+      "id": "f38d6da7-105c-44c2-b8d0-73aa5a7168c0",
+      "name": "Structured Output Parser1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "chatgpt-4o-latest",
+          "mode": "list",
+          "cachedResultName": "chatgpt-4o-latest"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        4680,
+        1800
+      ],
+      "id": "9390947a-f85b-4a51-ab56-172629afdacd",
+      "name": "OpenAI Chat Model3",
+      "credentials": {
+        "openAiApi": {
+          "id": "DCNgLG2517avXWdE",
+          "name": "Cuenta Joel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "contactId": "={{ $json.body.id }}",
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-base.highLevel",
+      "typeVersion": 2,
+      "position": [
+        700,
+        1580
+      ],
+      "id": "9b65c330-bb0a-4478-a8cf-53710a00da37",
+      "name": "HighLevel1",
+      "credentials": {
+        "highLevelOAuth2Api": {
+          "id": "FwnvqTtE3xuwrBjp",
+          "name": "HighLevel DinàmicSalut"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "bfa562a6-6a3a-400e-a036-0d8f552858b6",
+              "name": "phonetosend",
+              "value": "={{ $json.phone }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        920,
+        1580
+      ],
+      "id": "65cb16d2-b322-42ce-8444-5ab1325dbe50",
+      "name": "Edit Fields7"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "2dad8e90-8b9c-4a91-a841-59ed5a64f598",
+              "leftValue": "={{ $json.output.parte_1 }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        5176,
+        1580
+      ],
+      "id": "562ffd23-0f5c-4ffd-9e77-a2ce6ca49c9f",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "23f59605-d620-475a-b6c5-7ad78b3994c2",
+              "leftValue": "={{ $('Basic LLM Chain1').item.json.output.parte_2 }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        5616,
+        1580
+      ],
+      "id": "2584f547-ee83-42b9-9dca-98fb51d05de9",
+      "name": "If3"
+    },
+    {
+      "parameters": {
+        "amount": 2
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        5836,
+        1580
+      ],
+      "id": "0535f062-8de2-47d9-9309-2deb05cea2ac",
+      "name": "Wait1",
+      "webhookId": "65b7d7d8-68a3-46bb-814b-74d89eaa8d27"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://services.leadconnectorhq.com/conversations/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "highLevelOAuth2Api",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json"
+            },
+            {
+              "name": "Version",
+              "value": "2021-04-15"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "type",
+              "value": "SMS"
+            },
+            {
+              "name": "contactId",
+              "value": "={{ $('Edit Fields37').item.json.contact_id }}"
+            },
+            {
+              "name": "message",
+              "value": "={{ $('Basic LLM Chain1').item.json.output.parte_2 }}"
+            },
+            {
+              "name": "toNumber",
+              "value": "={{ $('Edit Fields7').item.json.phonetosend }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "89e2de36-5221-4996-b4a2-9cc46c15e151",
+      "name": "Send SMS via GHL1",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        6056,
+        1580
+      ],
+      "retryOnFail": true,
+      "typeVersion": 4.2,
+      "credentials": {
+        "highLevelOAuth2Api": {
+          "id": "FwnvqTtE3xuwrBjp",
+          "name": "HighLevel DinàmicSalut"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "a90d1833-1530-452b-a35e-74e6af7f0dcb",
+              "leftValue": "={{ $('Basic LLM Chain1').item.json.output.parte_3 }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        6276,
+        1580
+      ],
+      "id": "a3272cad-59c2-4b8f-a0bd-09ce3e6b9b9d",
+      "name": "If4"
+    },
+    {
+      "parameters": {
+        "amount": 2
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        6496,
+        1580
+      ],
+      "id": "8f5469c5-24d7-4988-bd15-5ba77e1ad2b0",
+      "name": "Wait2",
+      "webhookId": "65b7d7d8-68a3-46bb-814b-74d89eaa8d27"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://services.leadconnectorhq.com/conversations/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "highLevelOAuth2Api",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json"
+            },
+            {
+              "name": "Version",
+              "value": "2021-04-15"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "type",
+              "value": "SMS"
+            },
+            {
+              "name": "contactId",
+              "value": "={{ $('Edit Fields37').item.json.contact_id }}"
+            },
+            {
+              "name": "message",
+              "value": "={{ $('Basic LLM Chain1').item.json.output.parte_3 }}"
+            },
+            {
+              "name": "toNumber",
+              "value": "={{ $('Edit Fields7').item.json.phonetosend }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "f61c20e6-effb-444a-a611-c80d381f893f",
+      "name": "Send SMS via GHL2",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        6716,
+        1580
+      ],
+      "retryOnFail": true,
+      "typeVersion": 4.2,
+      "credentials": {
+        "highLevelOAuth2Api": {
+          "id": "FwnvqTtE3xuwrBjp",
+          "name": "HighLevel DinàmicSalut"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "description": "Use the tool to think about something. It will not obtain new information or change the database, but just append the thought to the log. Use it when complex reasoning or some cache memory is needed.\n\nRevisa que siempre se envíe la información a la herramienta \"Validar_Calendario\" con el siguiente formato de fecha: 09-06-2025 10:00 fisioterapia\n\nRevisa y asegurate que la información que se envia a la herramienta \"Agendar_Calendario\" en una lista:\nNombre_Cliente: Nombre del cliente\nStartime_agendamiento: Fecha y hora confirmada en formato ISO\nContact_id: NO ES UN TELEFONO"
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolThink",
+      "typeVersion": 1,
+      "position": [
+        4240,
+        1800
+      ],
+      "id": "f6475648-8634-4b54-9acc-a315426145b9",
+      "name": "Think"
+    },
+    {
+      "parameters": {
+        "description": "Llama a esta herramienta para comprobar si el dia y hora que solicita el cliente está disponible",
+        "workflowId": {
+          "__rl": true,
+          "value": "aDrV6SgO42AYNQLx",
+          "mode": "list",
+          "cachedResultName": "Validar_Calendario"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.2,
+      "position": [
+        4320,
+        1980
+      ],
+      "id": "f4bc900c-69e0-4b2b-86de-15030083dd3d",
+      "name": "Validar_Calendario2"
+    },
+    {
+      "parameters": {
+        "description": "Llama a esta herramienta cuando se vaya a agendar una cita en el calendario",
+        "workflowId": {
+          "__rl": true,
+          "value": "tqwVhMvCBriEfY7T",
+          "mode": "list",
+          "cachedResultName": "Agendar_Calendario"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.2,
+      "position": [
+        4480,
+        1900
+      ],
+      "id": "d57e62ac-22ae-4bfe-8b35-436fd07888f3",
+      "name": "Agendar_Calendario"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "NXAGfkOV6b6fn8LO"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-08-03T11:13:34.000Z",
+  "versionId": "ab852065-ce7b-435c-903c-c5896ee1fc22"
+}
