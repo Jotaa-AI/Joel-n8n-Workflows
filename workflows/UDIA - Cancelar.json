@@ -1,0 +1,204 @@
+{
+  "active": false,
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Delete an event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete an event": {
+      "main": [
+        [
+          {
+            "node": "Delete rows or columns from sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete rows or columns from sheet": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-07-10T20:56:55.045Z",
+  "id": "oDwtN7n1R91cPgnH",
+  "isArchived": false,
+  "meta": null,
+  "name": "UDIA - Cancelar",
+  "nodes": [
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "numero"
+            },
+            {}
+          ]
+        }
+      },
+      "id": "b03a6067-9809-414c-8e60-0be751d2d59d",
+      "typeVersion": 1.1,
+      "name": "When Executed by Another Workflow",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1sn92CnKu-dzSAYnTjCjXS13VHAWjL3IpZ3HfMx9i0PA",
+          "mode": "list",
+          "cachedResultName": "AGENDAS UDIA",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1sn92CnKu-dzSAYnTjCjXS13VHAWjL3IpZ3HfMx9i0PA/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1sn92CnKu-dzSAYnTjCjXS13VHAWjL3IpZ3HfMx9i0PA/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "numero",
+              "lookupValue": "=1234"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        220,
+        0
+      ],
+      "id": "7115522c-eeb0-4d02-ad75-3c734000de6a",
+      "name": "Get row(s) in sheet",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "calendar": {
+          "__rl": true,
+          "value": "nacholeo005@gmail.com",
+          "mode": "list",
+          "cachedResultName": "nacholeo005@gmail.com"
+        },
+        "eventId": "={{ $json[\"id calendar \"] }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        440,
+        0
+      ],
+      "id": "535ae815-fec1-4c1e-b8f4-036558a15f89",
+      "name": "Delete an event",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "9c0159d7-8bb7-44e0-884c-566c738773ff",
+              "name": "hecho",
+              "value": "hecho",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        900,
+        0
+      ],
+      "id": "2311924a-25ee-43dd-990a-62464657a064",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "documentId": {
+          "__rl": true,
+          "value": "1sn92CnKu-dzSAYnTjCjXS13VHAWjL3IpZ3HfMx9i0PA",
+          "mode": "list",
+          "cachedResultName": "AGENDAS UDIA",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1sn92CnKu-dzSAYnTjCjXS13VHAWjL3IpZ3HfMx9i0PA/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1sn92CnKu-dzSAYnTjCjXS13VHAWjL3IpZ3HfMx9i0PA/edit#gid=0"
+        },
+        "startIndex": "={{ $('Get row(s) in sheet').item.json.row_number }}"
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        660,
+        0
+      ],
+      "id": "17ef1cc5-2d94-402b-bcf3-5a8c086b5b98",
+      "name": "Delete rows or columns from sheet",
+      "alwaysOutputData": true
+    }
+  ],
+  "pinData": {
+    "When Executed by Another Workflow": [
+      {
+        "json": {
+          "numero": null
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-07-10T20:57:52.000Z",
+  "versionId": "58baf22d-8cfb-4693-9e2f-4210808e8db7"
+}
