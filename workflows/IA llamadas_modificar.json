@@ -1,0 +1,581 @@
+{
+  "active": true,
+  "connections": {
+    "Buscar_clientes_modificar": {
+      "main": [
+        [
+          {
+            "node": "modificar_fecha",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "modificar_fecha": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Buscar_clientes_modificar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-07-20T11:03:07.189Z",
+  "id": "7RWgCULhESTb7VGw",
+  "isArchived": false,
+  "meta": null,
+  "name": "IA llamadas_modificar",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "modificar",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -192,
+        -112
+      ],
+      "id": "0796e7e6-2382-49e0-ac33-84c28072f523",
+      "name": "Webhook",
+      "webhookId": "59459eeb-9f46-476b-a12d-1a0e9168acf3"
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appwtKASSidizHxdl",
+          "mode": "list",
+          "cachedResultName": "CLINIC.IA",
+          "cachedResultUrl": "https://airtable.com/appwtKASSidizHxdl"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbl0nXwlRh6Vk3PY3",
+          "mode": "list",
+          "cachedResultName": "Citas",
+          "cachedResultUrl": "https://airtable.com/appwtKASSidizHxdl/tbl0nXwlRh6Vk3PY3"
+        },
+        "filterByFormula": "=AND({Teléfono (from Cliente)} = \"653035525\", {Estado de la Cita} = \"Pendiente\")",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        480,
+        -112
+      ],
+      "id": "d85e41f6-90a0-42f2-9099-3f4068776c7f",
+      "name": "Buscar_clientes_modificar",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "xnXPhiCbfi7JtT21",
+          "name": "Clinic.IA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "appwtKASSidizHxdl",
+          "mode": "list",
+          "cachedResultName": "CLINIC.IA",
+          "cachedResultUrl": "https://airtable.com/appwtKASSidizHxdl"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbl0nXwlRh6Vk3PY3",
+          "mode": "list",
+          "cachedResultName": "Citas",
+          "cachedResultUrl": "https://airtable.com/appwtKASSidizHxdl/tbl0nXwlRh6Vk3PY3"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $json.id }}",
+            "Fecha de la Cita": "={{ $('Edit Fields').item.json.nueva_fecha_cita }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "Nº Cita",
+              "displayName": "Nº Cita",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Cliente",
+              "displayName": "Cliente",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Teléfono (from Cliente)",
+              "displayName": "Teléfono (from Cliente)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Fecha de la Cita",
+              "displayName": "Fecha de la Cita",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Servicio",
+              "displayName": "Servicio",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Precio (from Servicio)",
+              "displayName": "Precio (from Servicio)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Duración (from Servicio)",
+              "displayName": "Duración (from Servicio)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Estado de la Cita",
+              "displayName": "Estado de la Cita",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Pendiente",
+                  "value": "Pendiente"
+                },
+                {
+                  "name": "Completada",
+                  "value": "Completada"
+                },
+                {
+                  "name": "Cancelada",
+                  "value": "Cancelada"
+                }
+              ],
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Recordatorio Cita",
+              "displayName": "Recordatorio Cita",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Nombre (from Cliente)",
+              "displayName": "Nombre (from Cliente)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Teléfono (from Cliente) 2",
+              "displayName": "Teléfono (from Cliente) 2",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Clientes 2",
+              "displayName": "Clientes 2",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Nombre del Servicio (from Servicio)",
+              "displayName": "Nombre del Servicio (from Servicio)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Recordatorio Siguiente Cita",
+              "displayName": "Recordatorio Siguiente Cita",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Días Restantes Recordatorio",
+              "displayName": "Días Restantes Recordatorio",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Fecha de Recordatorio",
+              "displayName": "Fecha de Recordatorio",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Mes de la Cita",
+              "displayName": "Mes de la Cita",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Notas Adicionales",
+              "displayName": "Notas Adicionales",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Activación recordatorio",
+              "displayName": "Activación recordatorio",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "ENVIAR",
+              "displayName": "ENVIAR",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Clientes",
+              "displayName": "Clientes",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Dias Restantes Recordatorio FINAL",
+              "displayName": "Dias Restantes Recordatorio FINAL",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Teléfono (from Clientes 3)",
+              "displayName": "Teléfono (from Clientes 3)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Nueva Cita",
+              "displayName": "Nueva Cita",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Estado Cambiado",
+              "displayName": "Estado Cambiado",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Método Pago 2",
+              "displayName": "Método Pago 2",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Bizum",
+                  "value": "Bizum"
+                },
+                {
+                  "name": "Efectivo",
+                  "value": "Efectivo"
+                }
+              ],
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Creado por",
+              "displayName": "Creado por",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "AVISAR",
+              "displayName": "AVISAR",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        704,
+        -112
+      ],
+      "id": "555512b1-df8d-46e4-982a-e22fe1095bf7",
+      "name": "modificar_fecha",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "xnXPhiCbfi7JtT21",
+          "name": "Clinic.IA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "FECHA DE LA CITA MODIFICADA",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        928,
+        -112
+      ],
+      "id": "b68d5fe1-a297-4bdf-a239-b3d64b9fe09e",
+      "name": "Respond to Webhook1"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Obtener la fecha original en formato ISO\nconst fechaOriginalISO = $input.first().json.body.args.nueva_fecha_cita;\n\n// Convertirla a un objeto Date\nconst fechaOriginal = new Date(fechaOriginalISO);\n\n// Restar 2 horas (2h = 2 * 60 * 60 * 1000 milisegundos)\nconst fechaModificada = new Date(fechaOriginal.getTime() - 2 * 60 * 60 * 1000);\n\n// Convertir de nuevo al formato ISO\nconst nuevaFechaISO = fechaModificada.toISOString();\n\n// Retornar la nueva fecha\nreturn [{ nueva_fecha_cita: nuevaFechaISO }];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        32,
+        -112
+      ],
+      "id": "65e57adf-2f55-40ba-8913-e7b967742b26",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "00bb7a16-ce68-4659-aa02-f0641e750797",
+              "name": "body.args.nombre",
+              "value": "={{ $('Webhook').item.json.body.args.nombre }}",
+              "type": "string"
+            },
+            {
+              "id": "2ba89c32-a38e-4d81-8e76-496677100bf7",
+              "name": "body.args.telefono_usuario",
+              "value": "={{ $('Webhook').item.json.body.args.telefono_usuario }}",
+              "type": "string"
+            },
+            {
+              "id": "3c8b2037-dc47-48e6-a0b6-54aa382088b7",
+              "name": "nueva_fecha_cita",
+              "value": "={{ $json.nueva_fecha_cita }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        256,
+        -112
+      ],
+      "id": "d81d4933-b264-4e4c-b8f9-0f38122570b0",
+      "name": "Edit Fields"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-07-20T11:25:08.000Z",
+  "versionId": "796bb1aa-4092-49f9-9c85-240b13fffb50"
+}
