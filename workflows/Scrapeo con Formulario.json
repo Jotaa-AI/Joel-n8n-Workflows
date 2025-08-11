@@ -1,0 +1,996 @@
+{
+  "active": true,
+  "connections": {
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "Remove Duplicates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Remove Duplicates": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Remove Duplicates1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Remove Duplicates1": {
+      "main": [
+        [
+          {
+            "node": "Create a record",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Split Out1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive": {
+      "main": [
+        [
+          {
+            "node": "Gmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Google Drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets1": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a record": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2025-07-07T16:25:55.219Z",
+  "id": "RR4iuz5sozY9xT9k",
+  "isArchived": false,
+  "meta": null,
+  "name": "Scrapeo con Formulario",
+  "nodes": [
+    {
+      "parameters": {
+        "jsCode": "const allItems = $input.all();\n\nconst results = [];\n\nfor (const item of allItems) {\n  const data = item.json.data;\n  const regex = /https?:\\/\\/[^\\/]+/g;\n  const urls = data.match(regex) || [];\n\n  for (const url of urls) {\n    results.push({ json: { pagina_web: url } });\n  }\n}\n\nreturn results;"
+      },
+      "id": "9c1be354-21eb-4ac5-ba6e-5002bdc7100d",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -528,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "7ecfbe72-c09a-482e-8f81-43d9e7bb2917",
+              "leftValue": "={{ $json.pagina_web }}",
+              "rightValue": "(google|gstatic|ggpht|schema|example|wa)",
+              "operator": {
+                "type": "string",
+                "operation": "notRegex"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "7c2a22e7-8b36-462f-9660-cb742ae7d28b",
+      "name": "Filter",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -304,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "compare": "selectedFields",
+        "fieldsToCompare": "pagina_web",
+        "options": {}
+      },
+      "id": "ce5e6b62-c0bf-4c3d-9c11-3966e5672d6a",
+      "name": "Remove Duplicates",
+      "type": "n8n-nodes-base.removeDuplicates",
+      "typeVersion": 2,
+      "position": [
+        -80,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $('Loop Over Items').item.json.pagina_web }}",
+        "options": {}
+      },
+      "id": "772cfb0e-5b97-452a-beb2-0d991f8894bc",
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        368,
+        0
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "a278906d-2143-46a7-8c9d-9bfd24a68aa6",
+      "name": "Loop Over Items",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        128,
+        144
+      ],
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = $json.data;\n\n// Expresión regular para capturar emails válidos (excluyendo extensiones de imagen)\nconst emailRegex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.(?!png|jpg|gif|jpeg|webp)[a-zA-Z]{2,}/g;\n\n// Extraer los emails\nlet emails = data.match(emailRegex) || [];\n\n// Lista de dominios y patrones que queremos excluir\nconst exclusionPatterns = [\n  /@sentry(\\.|\\-next\\.)?wixpress\\.com$/,\n  /@sentry\\.io$/,\n  /@sentry\\.dev\\.apps\\.qdqmedia\\.com$/,\n  /^.*@.*\\.(png|jpg|jpeg|webp)$/i\n];\n\n// Filtrar los emails que coincidan con alguno de los patrones de exclusión\nemails = emails.filter(email => !exclusionPatterns.some(pattern => pattern.test(email)));\n\nconsole.log(emails);\n\nreturn { json: { emails: emails } };\n"
+      },
+      "id": "f74aaf43-5ba1-4193-9079-406947b1febc",
+      "name": "Code1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        592,
+        272
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "3962e3d9-221e-44e8-94fa-f5a7326ae948",
+      "name": "Loop Over Items1",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        368,
+        208
+      ],
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "url": "=https://www.google.com/maps/search/{{ $json.output.busqueda }}",
+        "options": {}
+      },
+      "id": "6adc8fc2-e67a-489d-85c2-99c76fd06fb9",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -736,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "emails"
+            }
+          ]
+        },
+        "options": {
+          "mergeLists": true
+        }
+      },
+      "id": "4557618d-e96d-42ac-bac7-edbce3f00cd0",
+      "name": "Aggregate",
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        592,
+        64
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "emails",
+        "options": {}
+      },
+      "id": "156376a5-002e-4057-bce0-d2fa6a1a4a9a",
+      "name": "Split Out",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        800,
+        64
+      ],
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "compare": "selectedFields",
+        "fieldsToCompare": "emails",
+        "options": {}
+      },
+      "id": "19bb6e9f-3a79-4f2f-b442-8035cd5897d5",
+      "name": "Remove Duplicates1",
+      "type": "n8n-nodes-base.removeDuplicates",
+      "typeVersion": 2,
+      "position": [
+        1024,
+        64
+      ],
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "formTitle": "Scrapeador GRATIS",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "¿En que tipo de negocio estás interesado? Elige 1 solo",
+              "placeholder": "Dentista, abogado, pizzeria, restaurante..."
+            },
+            {
+              "fieldLabel": "¿En que ubicación? Elige 1",
+              "placeholder": "Barcelona, Madrid..."
+            },
+            {
+              "fieldLabel": "Correo electronico",
+              "fieldType": "email"
+            }
+          ]
+        },
+        "options": {
+          "buttonLabel": "Scrapear!!!",
+          "ignoreBots": true
+        }
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        -1568,
+        112
+      ],
+      "id": "e719da51-db74-4a31-94ca-1ed26f698001",
+      "name": "On form submission",
+      "webhookId": "4fdde290-52f4-4923-b373-9593ead41291"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Dame una lista de 10 terminos de busqueda para la palabra clave \"{{ $json['¿En que tipo de negocio estás interesado? Elige 1 solo'] }}\" para 10 subareas o barrios de {{ $json['¿En que ubicación? Elige 1'] }}. La salida debe de seguir la siguiente estructura JSON:\n\n{\n\"busqueda\": \"tipo+de+negocio+barrio+ciudad\"\n}\n\nEjemplo:\n\n{\n\"busqueda\": \"restaurante+italiano+las+rozas+madrid\"\n}\n\nImportante: Siempre tiene que haber un simbolo de más (+) entra cada palabra. Responde solo con el JSON",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "Actua como un experto en generación de texto estructurado."
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.6,
+      "position": [
+        -1344,
+        112
+      ],
+      "id": "9e99ed62-fe15-4395-9401-1b279417c89c",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"title\": \"Lista de búsquedas geolocalizadas\",\n  \"type\": \"array\",\n  \"items\": {\n    \"type\": \"object\",\n    \"properties\": {\n      \"output\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"busqueda\": {\n            \"type\": \"string\",\n            \"description\": \"Términos de búsqueda codificados con '+' para Google Maps\",\n            \"example\": \"chueca+madrid+restaurante+hindu\"\n          }\n        },\n        \"required\": [\"busqueda\"],\n        \"additionalProperties\": false\n      }\n    },\n    \"required\": [\"output\"],\n    \"additionalProperties\": false\n  }\n}\n"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        -1104,
+        320
+      ],
+      "id": "650240a3-1d98-4fe3-a80b-1c5c1a001d46",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4.1",
+          "mode": "list",
+          "cachedResultName": "gpt-4.1"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -1328,
+        320
+      ],
+      "id": "c62a7844-3da0-4fb2-87a8-5810f1064f37",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "DCNgLG2517avXWdE",
+          "name": "Cuenta Joel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "output",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        -960,
+        112
+      ],
+      "id": "d923d913-eb3a-460e-8e3c-981687846fab",
+      "name": "Split Out1"
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "1hVyuPsJe4qh80zQSYet1DPTTa-opNVvnXKEJFJxrcoM",
+          "mode": "list",
+          "cachedResultName": "Emails scrapping",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1hVyuPsJe4qh80zQSYet1DPTTa-opNVvnXKEJFJxrcoM/edit?usp=drivesdk"
+        },
+        "options": {
+          "googleFileConversion": {
+            "conversion": {}
+          },
+          "fileName": "=Scraping -  {{ $('On form submission').first().json['¿En que tipo de negocio estás interesado? Elige 1 solo'] }}, {{ $('On form submission').first().json['¿En que ubicación? Elige 1'] }}"
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1664,
+        448
+      ],
+      "id": "f0157e96-1f42-4f95-b09a-3d489e8d83fe",
+      "name": "Google Drive",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('On form submission').first().json.Email }}",
+        "subject": "=Scraping emails {{ $('On form submission').first().json['¿En que tipo de negocio estás interesado? Elige 1 solo'] }} - {{ $('On form submission').first().json['¿En que ubicación? Elige 1'] }}",
+        "message": "=Hola! Adjunto encontraras el listado de emails.\n\nUn saludo,",
+        "options": {
+          "attachmentsUi": {
+            "attachmentsBinary": [
+              {}
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1888,
+        448
+      ],
+      "id": "c2d81231-6684-469e-b605-9a0f613e8ad1",
+      "name": "Gmail",
+      "webhookId": "58979d8b-f625-49ab-9883-dc37e1800e6d",
+      "disabled": true
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        1440,
+        448
+      ],
+      "id": "0cf62141-ad99-48bb-922b-05027685090a",
+      "name": "Limit",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1hVyuPsJe4qh80zQSYet1DPTTa-opNVvnXKEJFJxrcoM",
+          "mode": "list",
+          "cachedResultName": "Emails scrapping",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1hVyuPsJe4qh80zQSYet1DPTTa-opNVvnXKEJFJxrcoM/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1hVyuPsJe4qh80zQSYet1DPTTa-opNVvnXKEJFJxrcoM/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Emails": "={{ $json.emails }}"
+          },
+          "matchingColumns": [
+            "Emails"
+          ],
+          "schema": [
+            {
+              "id": "Emails",
+              "displayName": "Emails",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1232,
+        448
+      ],
+      "id": "cdcb0a9c-18d0-4551-ac22-1782d907dbeb",
+      "name": "Google Sheets1",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "documentId": {
+          "__rl": true,
+          "value": "1hVyuPsJe4qh80zQSYet1DPTTa-opNVvnXKEJFJxrcoM",
+          "mode": "list",
+          "cachedResultName": "Emails scrapping",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1hVyuPsJe4qh80zQSYet1DPTTa-opNVvnXKEJFJxrcoM/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1hVyuPsJe4qh80zQSYet1DPTTa-opNVvnXKEJFJxrcoM/edit#gid=0"
+        },
+        "numberToDelete": 1000
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2112,
+        448
+      ],
+      "id": "4af7e342-f449-4f7c-b9c1-34dd2aa40282",
+      "name": "Google Sheets",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "## Formulario + termino de busqueda",
+        "height": 440,
+        "width": 820
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1616,
+        0
+      ],
+      "id": "8ad477a9-aecc-4f1f-80a3-a50161cb523e",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Extraer Website Google Maps + Limpieza",
+        "height": 300,
+        "width": 820,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -768,
+        64
+      ],
+      "id": "373647f4-a71f-478f-b07b-c4955001c885",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## Extraer Info de Website + Limpieza (Obtener emails)",
+        "height": 540,
+        "width": 1040,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        128,
+        -64
+      ],
+      "id": "9683474d-1324-4c9c-93e3-ff620d09780d",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## Subir datos y enviar info",
+        "height": 340,
+        "width": 1040,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        352
+      ],
+      "id": "c95f236c-9c34-4d2f-81ed-1430b1d21d4b",
+      "name": "Sticky Note3",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appALZGaTluNzH4t1",
+          "mode": "list",
+          "cachedResultName": "Agencia",
+          "cachedResultUrl": "https://airtable.com/appALZGaTluNzH4t1"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblEVokns3M7I7pL5",
+          "mode": "list",
+          "cachedResultName": "Contactos",
+          "cachedResultUrl": "https://airtable.com/appALZGaTluNzH4t1/tblEVokns3M7I7pL5"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Ubicación": "Barcelona",
+            "Email": "={{ $json.emails }}",
+            "Tipo de Negocio": "=[ \"{{ $('On form submission').first().json['¿En que tipo de negocio estás interesado? Elige 1 solo'] }}\" ]"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Nombre Empresa",
+              "displayName": "Nombre Empresa",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Tipo de Negocio",
+              "displayName": "Tipo de Negocio",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "options": [
+                {
+                  "name": "Clinica",
+                  "value": "Clinica"
+                },
+                {
+                  "name": "Otros",
+                  "value": "Otros"
+                },
+                {
+                  "name": "Gestor Dental",
+                  "value": "Gestor Dental"
+                },
+                {
+                  "name": "Estética",
+                  "value": "Estética"
+                },
+                {
+                  "name": "veterinario",
+                  "value": "veterinario"
+                },
+                {
+                  "name": "Fisioterapia",
+                  "value": "Fisioterapia"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Ubicación",
+              "displayName": "Ubicación",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Barcelona",
+                  "value": "Barcelona"
+                },
+                {
+                  "name": "Cerdanyola",
+                  "value": "Cerdanyola"
+                },
+                {
+                  "name": "Sabadell",
+                  "value": "Sabadell"
+                },
+                {
+                  "name": "Manresa",
+                  "value": "Manresa"
+                },
+                {
+                  "name": "Sant Feliu",
+                  "value": "Sant Feliu"
+                },
+                {
+                  "name": "Sant Cugat",
+                  "value": "Sant Cugat"
+                },
+                {
+                  "name": "Terrassa",
+                  "value": "Terrassa"
+                },
+                {
+                  "name": "Reus",
+                  "value": "Reus"
+                },
+                {
+                  "name": "Viladecans",
+                  "value": "Viladecans"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Asignado",
+              "displayName": "Asignado",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Nombre Contacto",
+              "displayName": "Nombre Contacto",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Teléfono",
+              "displayName": "Teléfono",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Instagram",
+              "displayName": "Instagram",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Observaciones",
+              "displayName": "Observaciones",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Archivos",
+              "displayName": "Archivos",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Seguimiento Leads",
+              "displayName": "Seguimiento Leads",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        1280,
+        64
+      ],
+      "id": "6c7abb3f-73ab-428b-ae57-d6d2ca6f2b34",
+      "name": "Create a record",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "p9fDg1mpFSLR6cqL",
+          "name": "fluia"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-08-11T08:49:48.000Z",
+  "versionId": "193fee50-9e98-4824-87b2-f16b8e322c4a"
+}
