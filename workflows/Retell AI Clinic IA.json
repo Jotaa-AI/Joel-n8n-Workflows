@@ -1,0 +1,35 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2025-07-10T16:50:17.086Z",
+  "id": "fZok7Ty5bVxUx5vS",
+  "isArchived": false,
+  "meta": null,
+  "name": "Retell AI Clinic IA",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "Clinic.IA_llamadas",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "f3df3629-6236-41a9-b02f-4fc2490f8631",
+      "name": "Webhook",
+      "webhookId": "5b0f9b84-03de-47b8-93ea-4e9cdb24fb44"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-07-10T16:50:37.000Z",
+  "versionId": "38fbb924-c18a-4a77-9f31-dfddf14365b8"
+}
