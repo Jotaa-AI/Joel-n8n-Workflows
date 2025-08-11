@@ -1,0 +1,1188 @@
+{
+  "active": false,
+  "connections": {
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Look Up GHL Contact by ID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTML": {
+      "main": [
+        [
+          {
+            "node": "Simple Vector Store",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get sitemap",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTML1": {
+      "main": [
+        [
+          {
+            "node": "Simple Vector Store2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Remove Duplicates1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "Edit Links",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Send SMS via GHL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Links": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Edit Links1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get sitemap": {
+      "main": [
+        [
+          {
+            "node": "Get XML file",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get XML file": {
+      "main": [
+        [
+          {
+            "node": "Split out links",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split out links": {
+      "main": [
+        [
+          {
+            "node": "Edit Links1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Set Website URL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Website URL1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Simple Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          },
+          {
+            "node": "Simple Vector Store2",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Redis Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI1": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Simple Vector Store1",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Remove Duplicates1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Simple Vector Store",
+            "type": "ai_document",
+            "index": 0
+          },
+          {
+            "node": "Simple Vector Store2",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Vector Store1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Vector Store2": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Look Up GHL Contact by ID": {
+      "main": [
+        [
+          {
+            "node": "Set Website URL1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook from GHL - SMS Reply Trigger": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-06-08T13:13:32.880Z",
+  "id": "l0K76WO7MqdorIHk",
+  "isArchived": false,
+  "meta": null,
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "dataPropertyName": "body",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "raw_text",
+              "cssSelector": "body"
+            },
+            {
+              "key": "links",
+              "cssSelector": "a",
+              "returnValue": "attribute",
+              "attribute": "href",
+              "returnArray": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "94fc0c60-2bfd-41f2-8e8a-aa0fae1dc547",
+      "name": "HTML",
+      "type": "n8n-nodes-base.html",
+      "position": [
+        -1460,
+        680
+      ],
+      "typeVersion": 1.2
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "memoryKey": "vector_db",
+        "clearStore": true
+      },
+      "id": "82dfcca7-bac2-42a6-ae4b-6b57fc1147f0",
+      "name": "Simple Vector Store",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory",
+      "position": [
+        20,
+        80
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "ec342c6a-170d-44e9-8ec6-d4db52388cf5",
+      "name": "Embeddings OpenAI",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "position": [
+        60,
+        300
+      ],
+      "typeVersion": 1.2
+    },
+    {
+      "parameters": {
+        "jsonMode": "expressionData",
+        "jsonData": "={{ $json.raw_text }}",
+        "options": {}
+      },
+      "id": "1c29838c-1f66-45a0-93a1-214025f38d6c",
+      "name": "Default Data Loader",
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "position": [
+        180,
+        300
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "chunkSize": 300,
+        "options": {}
+      },
+      "id": "3618d316-472c-46c0-91d9-6ae89f58bdf7",
+      "name": "Recursive Character Text Splitter",
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "position": [
+        220,
+        420
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('Webhook from GHL - SMS Reply Trigger').item.body.body }}",
+        "options": {
+          "systemMessage": "=You are a helpful chatbot for {{ $json.website_url }}. Your goal is to assist website visitors by answering their questions based on the information available on the website.\n\nKnowledgebase: \n\nAlways run the 'website_knowledgebase' tool when the user inquires anything about the company."
+        }
+      },
+      "id": "0d234f19-9230-48bc-88fa-c1cb033afd3a",
+      "name": "AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "position": [
+        -1420,
+        1920
+      ],
+      "typeVersion": 1.8
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o",
+          "cachedResultName": "gpt-4o"
+        },
+        "options": {}
+      },
+      "id": "f27eaed4-d8d2-4a28-9809-7abff3430043",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "position": [
+        -1480,
+        2140
+      ],
+      "typeVersion": 1.2
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolName": "vector_db",
+        "toolDescription": "Call this tool to get information about the company and it’s products.",
+        "memoryKey": "english_center_nl"
+      },
+      "id": "81ee868f-cb24-4fba-bdd8-ee0e3ccaf371",
+      "name": "Simple Vector Store1",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory",
+      "position": [
+        -1240,
+        2140
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "1ec1be7b-94b0-4827-9093-b6f6f5aaea84",
+      "name": "Embeddings OpenAI1",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "position": [
+        -1120,
+        2300
+      ],
+      "typeVersion": 1.2
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "links",
+        "options": {
+          "destinationFieldName": "link"
+        }
+      },
+      "id": "ab38d2e7-c5e8-4d3e-86f6-c2d0af607a78",
+      "name": "Split Out",
+      "type": "n8n-nodes-base.splitOut",
+      "position": [
+        -920,
+        1220
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 2,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "combinator": "or",
+          "conditions": [
+            {
+              "id": "af7bf238-6414-4479-a322-4f0283efa628",
+              "operator": {
+                "type": "string",
+                "operation": "startsWith"
+              },
+              "leftValue": "={{ $json.link }}",
+              "rightValue": "/"
+            },
+            {
+              "id": "34cae489-cb26-4162-b487-ce915f83367f",
+              "operator": {
+                "type": "string",
+                "operation": "startsWith"
+              },
+              "leftValue": "={{ $json.link }}",
+              "rightValue": "={{ $('Set Website URL').item.json.website_url }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b3148d80-2006-4043-8d9f-35373985b18b",
+      "name": "Filter",
+      "type": "n8n-nodes-base.filter",
+      "position": [
+        -740,
+        1220
+      ],
+      "typeVersion": 2.2
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "raw_text",
+              "cssSelector": "body"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "709d7633-cb22-4b78-ba2b-44163fc20273",
+      "name": "HTML1",
+      "type": "n8n-nodes-base.html",
+      "position": [
+        1020,
+        1280
+      ],
+      "typeVersion": 1.2
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $item(\"0\").$node[\"Webhook from GHL - SMS Reply Trigger\"].json[\"body\"][\"contactId\"] }}",
+        "contextWindowLength": 2
+      },
+      "id": "8f84c741-f1f5-486e-b2f4-2a4b57e2eed8",
+      "name": "Redis Chat Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryRedisChat",
+      "position": [
+        -1360,
+        2140
+      ],
+      "typeVersion": 1.4
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "daysInterval": 4,
+              "triggerAtHour": "={{ 12 }}"
+            }
+          ]
+        }
+      },
+      "id": "2fcb9863-8d14-4cb7-a868-840aaf7ddded",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "position": [
+        -2540,
+        680
+      ],
+      "typeVersion": 1.2
+    },
+    {
+      "parameters": {},
+      "id": "4378bc37-06a0-496d-8c75-cc84f64f4b12",
+      "name": "BrightData",
+      "type": "n8n-nodes-brightdata.brightData",
+      "position": [
+        -1660,
+        680
+      ],
+      "typeVersion": 1,
+      "credentials": {}
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "74c8c4d8-5676-4de7-bd75-954d518eab67",
+              "name": "website_url",
+              "type": "string",
+              "value": "https://yourwebsite.com"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "5c5fb01b-a461-4b7d-851f-bf7d495fa22f",
+      "name": "Set Website URL",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        -2100,
+        680
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {},
+      "id": "e04c6821-e6e0-45dc-ae00-68aea6b595c0",
+      "name": "BrightData1",
+      "type": "n8n-nodes-brightdata.brightData",
+      "position": [
+        840,
+        1280
+      ],
+      "typeVersion": 1,
+      "credentials": {}
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://services.leadconnectorhq.com/conversations/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "highLevelOAuth2Api",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json"
+            },
+            {
+              "name": "Version",
+              "value": "2021-04-15"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "type",
+              "value": "SMS"
+            },
+            {
+              "name": "contactId",
+              "value": "={{ $('Webhook from GHL - SMS Reply Trigger').item.json.body.contactId }}"
+            },
+            {
+              "name": "message",
+              "value": "={{ $json.output }}"
+            },
+            {
+              "name": "toNumber",
+              "value": "={{ $('Look Up GHL Contact by ID').item.json.phone }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "4547fa52-93dc-47d8-82ef-ff8d685825ab",
+      "name": "Send SMS via GHL",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        -980,
+        1920
+      ],
+      "retryOnFail": true,
+      "typeVersion": 4.2,
+      "credentials": {
+        "highLevelOAuth2Api": {
+          "id": "FwnvqTtE3xuwrBjp",
+          "name": "HighLevel DinàmicSalut"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "multipleMethods": true,
+        "httpMethod": [
+          "POST"
+        ],
+        "path": "54259c33-52c0-4a19-97fe-3414a153f4d6",
+        "options": {}
+      },
+      "id": "be0b0b32-2be7-420c-a42d-9fea6c45af36",
+      "name": "Webhook from GHL - SMS Reply Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "position": [
+        -2300,
+        1940
+      ],
+      "webhookId": "54259c33-52c0-4a19-97fe-3414a153f4d6",
+      "typeVersion": 2
+    },
+    {
+      "parameters": {},
+      "id": "300f98f3-a0a6-4a03-a6bf-34ab0e9fec0f",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "position": [
+        1520,
+        1500
+      ],
+      "webhookId": "1d1ea2c2-c407-4ab9-be52-5987c7426def",
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "memoryKey": "vector_db",
+        "clearStore": true
+      },
+      "id": "5eaf4fcb-68bb-456e-bf32-5e11c3da10a0",
+      "name": "Simple Vector Store2",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory",
+      "position": [
+        1200,
+        1280
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "74c8c4d8-5676-4de7-bd75-954d518eab67",
+              "name": "website_url",
+              "type": "string",
+              "value": "https://yourwebsite.com"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "1ef5416c-308f-47a0-9e5e-c360598a40f0",
+      "name": "Set Website URL1",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        -1620,
+        1920
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "contactId": "={{ $json.body.contactId }}",
+        "requestOptions": {}
+      },
+      "id": "d75c81b3-09f3-4856-a384-7f2132a2f00e",
+      "name": "Look Up GHL Contact by ID",
+      "type": "n8n-nodes-base.highLevel",
+      "position": [
+        -1900,
+        1920
+      ],
+      "typeVersion": 2,
+      "credentials": {
+        "highLevelOAuth2Api": {
+          "id": "FwnvqTtE3xuwrBjp",
+          "name": "HighLevel DinàmicSalut"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.brightdata.com/request",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "zone",
+              "value": "web_unlocker1"
+            },
+            {
+              "name": "url",
+              "value": "={{ $json.website_url }}"
+            },
+            {
+              "name": "format",
+              "value": "json"
+            },
+            {
+              "name": "method",
+              "value": "api"
+            },
+            {
+              "name": "product",
+              "value": "unlocker"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "7d12b997-c17e-457b-a4ad-02b1ec61c7c9",
+      "name": "Direct API access via HTTP",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        -1660,
+        880
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.brightdata.com/request",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "zone",
+              "value": "web_unlocker1"
+            },
+            {
+              "name": "url",
+              "value": "={{ $json.website_url }}"
+            },
+            {
+              "name": "format",
+              "value": "json"
+            },
+            {
+              "name": "method",
+              "value": "api"
+            },
+            {
+              "name": "product",
+              "value": "unlocker"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ce8d9506-6bde-4a17-95ee-fc0ad8517fc5",
+      "name": "Direct API access via HTTP1",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        840,
+        1480
+      ],
+      "typeVersion": 4.2
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 2,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "09156710-3e82-42ed-a7a2-045711f92017",
+              "operator": {
+                "name": "filter.operator.equals",
+                "type": "string",
+                "operation": "equals"
+              },
+              "leftValue": "={{ $json.body.type }}",
+              "rightValue": "InboundMessage"
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "61b4da93-6f9c-477a-88b5-dd32f3d2bbb3",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        -2120,
+        1940
+      ],
+      "typeVersion": 2.2
+    },
+    {
+      "parameters": {
+        "content": "## Webhook from GoHighlevel \n\nSet the webhook events from your GoHighLevel Marketplace app, copy the webhook the node, then paste it in app's setting in the GHL app. To learn more about setting up GHL Marketplace app, please refer to this Loom video: https://www.loom.com/share/f32384758de74a4dbb647e0b7962c4ea",
+        "height": 400,
+        "width": 640,
+        "color": 5
+      },
+      "id": "14027908-215d-4bba-bb33-63c63c579eca",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -2360,
+        1760
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## Scrape the home page\n\nIf you are using N8N cloud version, you may replace Bright Data node with the HTTP request node and rewire it.",
+        "height": 540,
+        "width": 500
+      },
+      "id": "6d279563-6814-41ab-84de-fdccffb2c1fa",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1760,
+        540
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "5d862b36-77a5-4598-b740-6bf9248c609d",
+      "name": "Get XML file",
+      "type": "n8n-nodes-base.xml",
+      "position": [
+        -760,
+        800
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "urlset.url",
+        "options": {}
+      },
+      "id": "5ddef775-091c-43d0-ad19-a5f701fb3c6f",
+      "name": "Split out links",
+      "type": "n8n-nodes-base.splitOut",
+      "position": [
+        -620,
+        800
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## Set the website URL",
+        "height": 540,
+        "width": 380
+      },
+      "id": "0a252614-8a9d-4a20-9c0f-6588db201e49",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -2220,
+        540
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## Store into a vector database\n\nWarning: This will only save into N8N's memory and it will not be a good in production use. Please consider moving the a dedicated vector database such as Pinecone, Supabase, etc.",
+        "height": 660,
+        "width": 600
+      },
+      "id": "d26f81d4-30ee-4acf-bfa2-2cc2c78f95a0",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -80,
+        -60
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## Get the website's sitemap\n\nSitemap may not work on all of the website. The alternative is to scrape all the links in a website as shown below. If the sitemap is not working, it will go empty as an error output.",
+        "height": 320,
+        "width": 760
+      },
+      "id": "0d6df164-84d2-4382-8bbe-ff37feee52b4",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1000,
+        680
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## Extract Links from the homepage\n\nIf the sitemap above is not working, please loop this step for the sub pages\n\n",
+        "height": 400,
+        "width": 600
+      },
+      "id": "f5741947-2a12-4005-87df-8fc14ffff1c6",
+      "name": "Sticky Note5",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1000,
+        1060
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {},
+      "id": "297208b3-b11f-4cad-9a47-2cf1dcc183e6",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "position": [
+        20,
+        1020
+      ],
+      "typeVersion": 3.1
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "4e0cecb8-7635-48be-95bf-db6bbaf22cc8",
+      "name": "Remove Duplicates1",
+      "type": "n8n-nodes-base.removeDuplicates",
+      "position": [
+        220,
+        1020
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "a8978b21-91f5-4c62-8bde-0e4e18f3184e",
+      "name": "Loop Over Items",
+      "type": "n8n-nodes-base.splitInBatches",
+      "position": [
+        640,
+        1260
+      ],
+      "typeVersion": 3
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "43dbcf0b-b873-48c9-8996-4ad300353318",
+              "name": "link",
+              "type": "string",
+              "value": "={{ $json.link.startsWith(\"/\") ? $('Set Website URL').item.json.website_url + $json.link : $json.link }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "2d084b87-e205-4694-9c8c-b0e181d038bc",
+      "name": "Edit Links",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        -580,
+        1220
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "70864ce3-16eb-48b9-90bf-3168df643ae3",
+              "name": "link",
+              "type": "string",
+              "value": "={{ $json.loc }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d7b1b6dc-4f00-4d11-8f5a-65340572c583",
+      "name": "Edit Links1",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        -440,
+        800
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "content": "## Merge the links from the sitemap and the extracted links from the webpage\nIf the sitemap is not working, remove the merge node or set the node's input into 1.\n",
+        "height": 340,
+        "width": 580
+      },
+      "id": "8e1326f1-2332-4f4c-9787-7cbccaa0a6b9",
+      "name": "Sticky Note6",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -80,
+        880
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## Scrape each links by batch",
+        "height": 620,
+        "width": 1200
+      },
+      "id": "e9e9fbd6-214a-42c7-ac0d-f488f33f685c",
+      "name": "Sticky Note7",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        540,
+        1140
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## AI Agent then send the output via SMS in GHL",
+        "height": 700,
+        "width": 900,
+        "color": 5
+      },
+      "id": "cc4b4ee3-f7fd-48d4-aa09-52d2ca404502",
+      "name": "Sticky Note8",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1680,
+        1760
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "url": "={{ $('Set Website URL').item.json.website_url }}/post-sitemap.xml",
+        "options": {}
+      },
+      "id": "95dd0b81-dae3-4c9c-99be-df3b8de7d7a0",
+      "name": "Get sitemap",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        -940,
+        860
+      ],
+      "typeVersion": 4.2,
+      "onError": "continueErrorOutput"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-06-08T13:13:32.880Z",
+  "versionId": "13da0c72-af7c-483c-ab0b-5b50f456c6e3"
+}
