@@ -1,0 +1,221 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook Entrada": {
+      "main": [
+        [
+          {
+            "node": "Procesar Entrada",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Procesar Entrada": {
+      "main": [
+        [
+          {
+            "node": "Formatear Respuesta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-03T16:52:27.366Z",
+  "id": "CJZgxvun525VkiM1",
+  "isArchived": false,
+  "meta": null,
+  "name": "Agente Gestión Citas Médicas Igaleno",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "agente-citas",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "id": "webhook-entrada",
+      "name": "Webhook Entrada",
+      "type": "n8n-nodes-base.webhook",
+      "position": [
+        400,
+        0
+      ],
+      "typeVersion": 2.1,
+      "webhookId": "c1bc5827-bbf6-4cdd-877b-837e41b98c0e"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// Procesar entrada y preparar contexto para AI Agent\nconst input = $json.body || $json;\n\n// Extraer datos\nconst userMessage = input.mensaje || input.message || '';\nconst userData = input.datos || input.data || {};\nconst action = input.accion || input.action || '';\n\n// Crear prompt estructurado\nconst prompt = `Soy un asistente especializado en gestión de citas médicas con la API de Igaleno.\n\nMensaje del usuario: \"${userMessage}\"\nDatos proporcionados: ${JSON.stringify(userData)}\nAcción sugerida: ${action || 'detectar automáticamente'}\n\nPuedo ayudarte con:\n1. Consultar disponibilidad de citas\n2. Agendar nuevas citas\n3. Modificar citas existentes\n4. Cancelar citas\n5. Verificar información de pacientes\n\nUsaré las herramientas disponibles para completar tu solicitud.`;\n\nreturn {\n  json: {\n    text: prompt,\n    userData: userData,\n    originalMessage: userMessage,\n    requestId: $execution.id,\n    timestamp: new Date().toISOString()\n  }\n};"
+      },
+      "id": "procesar-entrada",
+      "name": "Procesar Entrada",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        400,
+        208
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// Formatear respuesta final del agente\nconst agentResponse = $json;\n\n// Crear respuesta estructurada\nconst response = {\n  success: true,\n  message: agentResponse.text || 'Agente de citas médicas desplegado exitosamente',\n  timestamp: new Date().toISOString(),\n  requestId: $execution.id,\n  status: 'ready',\n  availableActions: [\n    'consultar_disponibilidad',\n    'agendar_cita',\n    'modificar_cita', \n    'cancelar_cita',\n    'consultar_paciente'\n  ]\n};\n\n// Incluir datos del usuario si están disponibles\nif (agentResponse.userData) {\n  response.userData = agentResponse.userData;\n}\n\nif (agentResponse.originalMessage) {\n  response.originalMessage = agentResponse.originalMessage;\n}\n\nreturn { json: response };"
+      },
+      "id": "formatear-respuesta",
+      "name": "Formatear Respuesta",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        400,
+        400
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "content": "## 🏥 Agente de Gestión de Citas Médicas - Igaleno API\n\n### Configuración Inicial Requerida:\n\n**1. Variables de Entorno:**\n- `IGALENO_BASE_URL`: https://api.igaleno.com/tenant/{tenant}/api/ext/chipcard/hco/1\n- `IGALENO_JWT_TOKEN`: Token JWT firmado con clave privada RSA\n- `COMPANY_ID`: ID de la empresa/compañía\n- `TENANT_ID`: Código de tenant\n\n**2. Autenticación:**\n- Todas las peticiones requieren token JWT en header Authorization\n- Clave pública-privada RSA 2048 bits\n- HTTPS obligatorio para todas las conexiones\n\n**3. Formatos de Datos:**\n- Fechas: yyyy-MM-dd\n- Horas: HH:mm\n- Métodos HTTP: GET, POST, DELETE según endpoint",
+        "height": 588,
+        "width": 480,
+        "color": 3
+      },
+      "id": "config-note",
+      "name": "Configuración",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -336,
+        -192
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "url": "={{ $vars.IGALENO_BASE_URL }}/disponibilidad",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "compania",
+              "value": "={{ $vars.COMPANY_ID }}"
+            },
+            {
+              "name": "fechaInicio",
+              "value": "={{ $json.fecha || '2024-12-16' }}"
+            },
+            {
+              "name": "fechaFin",
+              "value": "={{ $json.fecha || '2024-12-16' }}"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{ $vars.IGALENO_JWT_TOKEN }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "consultar-disponibilidad",
+      "name": "Consultar Disponibilidad",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        704,
+        208
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $vars.IGALENO_BASE_URL }}/citas",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{ $vars.IGALENO_JWT_TOKEN }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "id": "crear-cita",
+      "name": "Crear Cita",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        704,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $vars.IGALENO_BASE_URL }}/centros",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{ $vars.IGALENO_JWT_TOKEN }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "consultar-centros",
+      "name": "Consultar Centros",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        704,
+        608
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## 📋 Instrucciones de Uso\n\n### URL del Webhook:\n`https://personal-n8n.brtnrr.easypanel.host/webhook/agente-citas`\n\n### Ejemplo de Petición POST:\n```json\n{\n  \"mensaje\": \"Quiero agendar una cita con el cardiólogo\",\n  \"datos\": {\n    \"nombre\": \"Juan Pérez\",\n    \"telefono\": \"+34612345678\",\n    \"email\": \"juan@email.com\",\n    \"fecha\": \"2024-12-20\",\n    \"especialidad\": \"cardiologia\"\n  }\n}\n```\n\n### Configurar Variables:\n1. Ve a Settings > Variables\n2. Añade las variables requeridas:\n   - IGALENO_BASE_URL\n   - IGALENO_JWT_TOKEN\n   - COMPANY_ID\n\n### Próximos Pasos:\n1. Activar el workflow\n2. Configurar variables de entorno\n3. Conectar modelo de IA (opcional)\n4. Probar con peticiones",
+        "height": 752,
+        "width": 638,
+        "color": 6
+      },
+      "id": "instrucciones-uso",
+      "name": "Instrucciones de Uso",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        960,
+        -144
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "saveManualExecutions": true,
+    "saveExecutionProgress": true
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-08-05T09:36:21.000Z",
+  "versionId": "06b8f930-f7f5-4f2a-b576-175d041bf798"
+}
