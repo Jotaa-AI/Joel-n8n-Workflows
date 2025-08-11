@@ -1,0 +1,1019 @@
+{
+  "active": true,
+  "connections": {
+    "Trigger cada minuto": {
+      "main": [
+        [
+          {
+            "node": "Buscar pedidos NO actualizados",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar pedidos NO actualizados": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar datos del cliente": {
+      "main": [
+        [
+          {
+            "node": "Buscar_material",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Crear documento en Google Docs": {
+      "main": [
+        [
+          {
+            "node": "Mover a carpeta de albaranes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mover a carpeta de albaranes": {
+      "main": [
+        [
+          {
+            "node": "Download file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar albarán por Gmail": {
+      "main": [
+        []
+      ]
+    },
+    "Crear_duplicado": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar_material": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Crear_duplicado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Crear documento en Google Docs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download file": {
+      "main": [
+        [
+          {
+            "node": "Actualizar pedido como procesado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Actualizar pedido como procesado": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Buscar pedidos NO actualizados",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Buscar datos del cliente",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-03T10:25:28.904Z",
+  "id": "DNfUqgN10WpjmxWR",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Automatización Albaranes - Airtable Mejorado",
+  "nodes": [
+    {
+      "parameters": {
+        "triggerTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        }
+      },
+      "id": "trigger-cron-123",
+      "name": "Trigger cada minuto",
+      "type": "n8n-nodes-base.cron",
+      "position": [
+        592,
+        472
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "app1YHusrevWB1mhd",
+          "mode": "list",
+          "cachedResultName": "MC Store Management",
+          "cachedResultUrl": "https://airtable.com/app1YHusrevWB1mhd"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbldjfoFncKY1j3Qy",
+          "mode": "list",
+          "cachedResultName": "Pedidos de Clientes",
+          "cachedResultUrl": "https://airtable.com/app1YHusrevWB1mhd/tbldjfoFncKY1j3Qy"
+        },
+        "filterByFormula": "{Actualizado} = \"NO Actualizado\"",
+        "options": {}
+      },
+      "id": "buscar-pedidos-no-actualizados",
+      "name": "Buscar pedidos NO actualizados",
+      "type": "n8n-nodes-base.airtable",
+      "position": [
+        816,
+        472
+      ],
+      "typeVersion": 2,
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "fYikZL9kIA4GSbSE",
+          "name": "MC Store - n8n"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "app1YHusrevWB1mhd",
+          "mode": "list",
+          "cachedResultName": "MC Store Management",
+          "cachedResultUrl": "https://airtable.com/app1YHusrevWB1mhd"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbl5yVwXsFe64GjCD",
+          "mode": "list",
+          "cachedResultName": "Clientes",
+          "cachedResultUrl": "https://airtable.com/app1YHusrevWB1mhd/tbl5yVwXsFe64GjCD"
+        },
+        "filterByFormula": "={Telefono} = \"{{ $json['Telefono (from Clientes)'][0] }}\"",
+        "options": {}
+      },
+      "id": "buscar-datos-cliente",
+      "name": "Buscar datos del cliente",
+      "type": "n8n-nodes-base.airtable",
+      "position": [
+        1264,
+        400
+      ],
+      "typeVersion": 2,
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "fYikZL9kIA4GSbSE",
+          "name": "MC Store - n8n"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentURL": "={{ $('Crear_duplicado').item.json.id }}",
+        "actionsUi": {
+          "actionFields": [
+            {
+              "action": "replaceAll",
+              "text": "{{num_albaran}}",
+              "replaceText": "={{ $json.num_albaran }}",
+              "matchCase": true
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{fecha}}",
+              "replaceText": "={{ $json.fecha }}",
+              "matchCase": true
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{cliente}}",
+              "replaceText": "={{ $json.empresa }}",
+              "matchCase": true
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{direccion}}",
+              "replaceText": "={{ $json.direccion }}",
+              "matchCase": true
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{poblacion}}",
+              "replaceText": "={{ $json.Poblacion }}",
+              "matchCase": true
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{provincia}}",
+              "replaceText": "={{ $json.Provincia }}",
+              "matchCase": true
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{NIF}}",
+              "replaceText": "={{ $json.CIF }}",
+              "matchCase": true
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{producto}}",
+              "replaceText": "={{ $json.nombre_material }}",
+              "matchCase": true
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{ctd}}",
+              "replaceText": "={{ $json.Cantidad }}",
+              "matchCase": true
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{L}}",
+              "replaceText": "={{ $json['Largo (mm)'] }}",
+              "matchCase": true
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{A}}",
+              "replaceText": "={{ $json['Ancho (mm)'] }}",
+              "matchCase": true
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{E}}",
+              "replaceText": "={{ $json['Espesor (mm)'] }}",
+              "matchCase": true
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{TM}}",
+              "replaceText": "={{ $json['m²'] }}",
+              "matchCase": true
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{P}}",
+              "replaceText": "={{ $json['Precio m²'] }}",
+              "matchCase": true
+            },
+            {
+              "action": "replaceAll",
+              "text": "{{T}}",
+              "replaceText": "={{ $json.Total }}",
+              "matchCase": true
+            }
+          ]
+        }
+      },
+      "id": "crear-google-docs",
+      "name": "Crear documento en Google Docs",
+      "type": "n8n-nodes-base.googleDocs",
+      "position": [
+        2384,
+        400
+      ],
+      "typeVersion": 2,
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "jdL6gIsT7wmlfMOw",
+          "name": "Google Docs Joel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "move",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.documentId }}",
+          "mode": "id"
+        },
+        "driveId": {
+          "__rl": true,
+          "value": "My Drive",
+          "mode": "list",
+          "cachedResultName": "My Drive",
+          "cachedResultUrl": "https://drive.google.com/drive/my-drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1L2-1XdcwUGAsw350BoDL9IpTlsrI06GG",
+          "mode": "list",
+          "cachedResultName": "PRUEBAS FLUIA",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1L2-1XdcwUGAsw350BoDL9IpTlsrI06GG"
+        }
+      },
+      "id": "mover-a-carpeta",
+      "name": "Mover a carpeta de albaranes",
+      "type": "n8n-nodes-base.googleDrive",
+      "position": [
+        2608,
+        400
+      ],
+      "typeVersion": 3,
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "tBOmezIuyakBr2dl",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "=jimenolmo91@gmail.com",
+        "subject": "={{ $json.name }}",
+        "message": "=Estimada empresa {{ $('Buscar datos del cliente').item.json.Empresa }},<br><br>Adjuntamos el <strong>albarán de entrega</strong> correspondiente a su pedido.<br><br><strong>Detalles del albarán:</strong><br>• Número de albarán: <strong>{{ $('Buscar pedidos NO actualizados').item.json.ID }}</strong><br>• ID del pedido: <strong>{{ $('Buscar pedidos NO actualizados').item.json.ID }}</strong><br>• Material: <strong></strong><br>• Fecha de generación: <strong>{{ $('Buscar pedidos NO actualizados').item.json['Fecha de Entrega'] }}</strong><br><br>Puede acceder al documento completo en el siguiente enlace:<br><a href=https://docs.google.com/document/d/{{ $json.documentId }} style=background-color:#4CAF50;color:white;padding:10px 20px;text-decoration:none;border-radius:5px;>Ver Albarán Completo</a><br><br>Este documento certifica la entrega de los materiales especificados en su pedido.<br><br>Si tiene alguna consulta sobre este albarán, no dude en contactarnos.<br><br>Gracias por su confianza en nuestros servicios.<br><br><strong>MC Store Management</strong><br>Equipo de Gestión",
+        "options": {
+          "appendAttribution": false,
+          "attachmentsUi": {
+            "attachmentsBinary": [
+              {}
+            ]
+          }
+        }
+      },
+      "id": "enviar-gmail",
+      "name": "Enviar albarán por Gmail",
+      "type": "n8n-nodes-base.gmail",
+      "position": [
+        592,
+        176
+      ],
+      "typeVersion": 2,
+      "webhookId": "75b24f6a-a424-4fa3-9857-d9f8ba602bf6",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "DqjqwrJcrjNZM2jb",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "app1YHusrevWB1mhd",
+          "mode": "list",
+          "cachedResultName": "MC Store Management",
+          "cachedResultUrl": "https://airtable.com/app1YHusrevWB1mhd"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbldjfoFncKY1j3Qy",
+          "mode": "list",
+          "cachedResultName": "Pedidos de Clientes",
+          "cachedResultUrl": "https://airtable.com/app1YHusrevWB1mhd/tbldjfoFncKY1j3Qy"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Actualizado": "Actualizado ",
+            "id": "={{ $('Limit').item.json.id }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "Actualizado",
+              "displayName": "Actualizado",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "NO Actualizado",
+                  "value": "NO Actualizado"
+                },
+                {
+                  "name": "Actualizado ",
+                  "value": "Actualizado "
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Clientes",
+              "displayName": "Clientes",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Fecha del Pedido",
+              "displayName": "Fecha del Pedido",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Material",
+              "displayName": "Material",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Albarán",
+              "displayName": "Albarán",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Estado Pedidos",
+              "displayName": "Estado Pedidos",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Pendiente",
+                  "value": "Pendiente"
+                },
+                {
+                  "name": "Pagado",
+                  "value": "Pagado"
+                },
+                {
+                  "name": "Entregado",
+                  "value": "Entregado"
+                },
+                {
+                  "name": "Cancelado",
+                  "value": "Cancelado"
+                }
+              ],
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Factura",
+              "displayName": "Factura",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Detalles del Pedido",
+              "displayName": "Detalles del Pedido",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Fecha de Entrega",
+              "displayName": "Fecha de Entrega",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Fotos",
+              "displayName": "Fotos",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Dias para la Entrega",
+              "displayName": "Dias para la Entrega",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Client Email",
+              "displayName": "Client Email",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Invoice Status",
+              "displayName": "Invoice Status",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Total Order Amount",
+              "displayName": "Total Order Amount",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Order Summary",
+              "displayName": "Order Summary",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Delivery Risk Assessment",
+              "displayName": "Delivery Risk Assessment",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Cantidad",
+              "displayName": "Cantidad",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Empresa (from Clientes)",
+              "displayName": "Empresa (from Clientes)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Email (from Clientes)",
+              "displayName": "Email (from Clientes)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Telefono (from Clientes)",
+              "displayName": "Telefono (from Clientes)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Clientes 2",
+              "displayName": "Clientes 2",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "actualizar-airtable",
+      "name": "Actualizar pedido como procesado",
+      "type": "n8n-nodes-base.airtable",
+      "position": [
+        3056,
+        400
+      ],
+      "typeVersion": 2,
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "fYikZL9kIA4GSbSE",
+          "name": "MC Store - n8n"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "copy",
+        "fileId": {
+          "__rl": true,
+          "value": "1UeDi4Wbwixq-ggshAWuKPAxspBdZAoBjIT7YvqjX5Xw",
+          "mode": "list",
+          "cachedResultName": "Albarán MCStore PLANTILLA",
+          "cachedResultUrl": "https://docs.google.com/document/d/1UeDi4Wbwixq-ggshAWuKPAxspBdZAoBjIT7YvqjX5Xw/edit?usp=drivesdk"
+        },
+        "name": "=Albarán MC Store - {{ $('Buscar datos del cliente').item.json.Empresa }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1936,
+        400
+      ],
+      "id": "3160d448-b021-4373-93dd-fb138345cdc7",
+      "name": "Crear_duplicado",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "tBOmezIuyakBr2dl",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "app1YHusrevWB1mhd",
+          "mode": "list",
+          "cachedResultName": "MC Store Management",
+          "cachedResultUrl": "https://airtable.com/app1YHusrevWB1mhd"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblP0oX3x3BcBiIQN",
+          "mode": "list",
+          "cachedResultName": "Materiales",
+          "cachedResultUrl": "https://airtable.com/app1YHusrevWB1mhd/tblP0oX3x3BcBiIQN"
+        },
+        "filterByFormula": "=RECORD_ID() = '{{ $('Limit').item.json.Material[0] }}'",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        1488,
+        400
+      ],
+      "id": "65bb4c5a-5b4c-4084-9d70-61bcf4eecd33",
+      "name": "Buscar_material",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "fYikZL9kIA4GSbSE",
+          "name": "MC Store - n8n"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Obtener dirección completa desde el nodo anterior\nconst direccionCompleta = $(\"Buscar datos del cliente\").first().json[\"Dirección\"];\n\n// Ejemplo esperado: \"C/ Industria, 24 08232 El Masnou, Barcelona\"\n\n// Paso 1: Separar por comas\nconst partes = direccionCompleta.split(\",\");\n\n// Direccion base (C/ Industria, 24)\nconst direccion = partes[0].trim();\n\n// Paso 2: La segunda parte contiene el CP + población\n// Quitamos el código postal (5 dígitos al inicio)\nconst cpYPoblacion = partes[1].trim();\nconst poblacion = cpYPoblacion.replace(/^\\d{5}\\s*/, \"\");\n\n// Paso 3: Provincia (última parte)\nconst provincia = partes[2]?.trim() || \"\";\n\n// Retornar datos formateados\nreturn [\n  {\n    json: {\n      Direccion: direccion,\n      Poblacion: poblacion,\n      Provincia: provincia\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1712,
+        400
+      ],
+      "id": "a3e16e3d-3af2-4955-8773-2b82ac6225aa",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "13552488-ecf4-446b-8be6-96d98d1d9eb3",
+              "name": "num_albaran",
+              "value": "025-0000975",
+              "type": "string"
+            },
+            {
+              "id": "041804b7-69c0-4e0a-b84a-b8b7e0f8b375",
+              "name": "fecha",
+              "value": "={{ $('Limit').item.json['Fecha de Entrega'] }}",
+              "type": "string"
+            },
+            {
+              "id": "69b25b3b-99fc-4e18-8df2-0be76af6ca96",
+              "name": "empresa",
+              "value": "={{ $('Limit').item.json['Empresa (from Clientes)'][0] }}",
+              "type": "string"
+            },
+            {
+              "id": "aa851017-f53c-4689-9930-1aae0f1edf89",
+              "name": "direccion",
+              "value": "={{ $('Code').item.json.Direccion }}",
+              "type": "string"
+            },
+            {
+              "id": "0a7d7979-e9c3-4500-b10f-7432cbd52979",
+              "name": "Poblacion",
+              "value": "={{ $('Code').item.json.Poblacion }}",
+              "type": "string"
+            },
+            {
+              "id": "bebef4e2-f0d3-4b38-b5b9-6bfecdacef68",
+              "name": "Provincia",
+              "value": "={{ $('Code').item.json.Provincia }}",
+              "type": "string"
+            },
+            {
+              "id": "12b494bf-10a0-41f4-9c44-9749a635faa8",
+              "name": "CIF",
+              "value": "={{ $('Buscar datos del cliente').item.json.CIF }}",
+              "type": "string"
+            },
+            {
+              "id": "3d23ce86-ee4a-468d-a3cd-a8ed0bd4b65f",
+              "name": "nombre_material",
+              "value": "={{ $('Buscar_material').item.json['Nombre del Material'] }}",
+              "type": "string"
+            },
+            {
+              "id": "691b0cf9-de12-4976-96fe-2d38905b527e",
+              "name": "Cantidad",
+              "value": "={{ $('Limit').item.json.Cantidad }}",
+              "type": "string"
+            },
+            {
+              "id": "15214a7d-4fcc-4fe9-92bb-aa7b986396af",
+              "name": "Largo (mm)",
+              "value": "={{ $('Buscar_material').item.json['Largo (mm)'] }}",
+              "type": "string"
+            },
+            {
+              "id": "2beda298-bec7-4937-a11a-997fe7d55e63",
+              "name": "Ancho (mm)",
+              "value": "={{ $('Buscar_material').item.json['Ancho (mm)'] }}",
+              "type": "string"
+            },
+            {
+              "id": "71814a73-0a56-4ee1-8732-3adcaaf7eb6a",
+              "name": "Espesor (mm)",
+              "value": "={{ $('Buscar_material').item.json['Espesor (mm)'] }}",
+              "type": "string"
+            },
+            {
+              "id": "fa9640a7-7df7-4696-815d-fad53f94a4d6",
+              "name": "m²",
+              "value": "={{ $('Buscar_material').item.json['m²'] }}",
+              "type": "string"
+            },
+            {
+              "id": "cc1f723a-50ac-45d7-b73f-fc91164eca4d",
+              "name": "Precio m²",
+              "value": "={{ $('Buscar_material').item.json['Precio m²'] }}",
+              "type": "string"
+            },
+            {
+              "id": "4809a404-f98f-432d-92bb-46ec2266624e",
+              "name": "Total",
+              "value": "={{ $('Buscar_material').item.json.Total }}",
+              "type": "string"
+            },
+            {
+              "id": "1669eea7-68c5-4e5e-bd54-e84c395f318d",
+              "name": "observaciones",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2160,
+        400
+      ],
+      "id": "275fefe9-b087-433c-b3e3-a35d81ec6c00",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "options": {
+          "googleFileConversion": {
+            "conversion": {
+              "docsToFormat": "application/pdf"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        2832,
+        400
+      ],
+      "id": "c10e21da-715e-40da-9239-404b4ec8aa18",
+      "name": "Download file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "tBOmezIuyakBr2dl",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        3280,
+        472
+      ],
+      "id": "cee1b160-5c60-455e-9d2f-a821c2cd158e",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        1040,
+        400
+      ],
+      "id": "61b5fa72-2da4-4fb5-8707-ddfb87d3a368",
+      "name": "Limit"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Europe/Madrid",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "saveManualExecutions": true
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-08-03T19:27:11.000Z",
+  "versionId": "2018ba96-bc56-40af-931a-3ecc98f32fab"
+}
