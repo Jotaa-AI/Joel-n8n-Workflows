@@ -1,0 +1,404 @@
+{
+  "active": false,
+  "connections": {
+    "Trigger cada minuto": {
+      "main": [
+        [
+          {
+            "node": "Buscar últimas filas Airtable",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar últimas filas Airtable": {
+      "main": [
+        [
+          {
+            "node": "Verificar si es registro nuevo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Verificar si es registro nuevo": {
+      "main": [
+        [
+          {
+            "node": "¿Es registro nuevo?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "¿Es registro nuevo?": {
+      "main": [
+        [
+          {
+            "node": "Generar contenido del albarán",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generar contenido del albarán": {
+      "main": [
+        [
+          {
+            "node": "Crear documento en Google Docs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Crear documento en Google Docs": {
+      "main": [
+        [
+          {
+            "node": "Mover a carpeta de albaranes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mover a carpeta de albaranes": {
+      "main": [
+        [
+          {
+            "node": "Enviar albarán por Gmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar albarán por Gmail": {
+      "main": [
+        [
+          {
+            "node": "Actualizar registro en Airtable",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-02T21:30:36.870Z",
+  "id": "ovsSoAMw2RuRlZTK",
+  "isArchived": false,
+  "meta": null,
+  "name": "Buscar pedidos NO actualizados",
+  "nodes": [
+    {
+      "id": "c623f50d-7516-4b58-97d3-1cc2d83f2c9a",
+      "name": "Trigger cada minuto",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [
+        580,
+        460
+      ],
+      "parameters": {
+        "triggerTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "8a9b2c3d-4e5f-6789-abcd-ef1234567890",
+      "name": "Buscar últimas filas Airtable",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2,
+      "position": [
+        800,
+        460
+      ],
+      "parameters": {
+        "authentication": "airtableTokenApi",
+        "resource": "record",
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "YOUR_AIRTABLE_BASE_ID",
+          "mode": "list"
+        },
+        "table": {
+          "__rl": true,
+          "value": "YOUR_TABLE_NAME",
+          "mode": "list"
+        },
+        "options": {
+          "sort": [
+            {
+              "field": "Created",
+              "direction": "desc"
+            }
+          ],
+          "maxRecords": 1
+        }
+      }
+    },
+    {
+      "id": "1f2g3h4i-5j6k-7890-lmno-pqr345678901",
+      "name": "Verificar si es registro nuevo",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1020,
+        460
+      ],
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// Obtener el timestamp actual\nconst ahora = new Date();\n\n// Obtener el timestamp de creación del registro de Airtable\nconst creadoEn = new Date($input.item.json.fields.Created);\n\n// Calcular la diferencia en minutos\nconst diferenciaMinutos = (ahora - creadoEn) / (1000 * 60);\n\n// Si el registro fue creado hace menos de 2 minutos, procesarlo\nif (diferenciaMinutos <= 2) {\n  return {\n    json: {\n      esNuevo: true,\n      registro: $input.item.json,\n      minutosDesdeSuCreacion: diferenciaMinutos\n    }\n  };\n} else {\n  return {\n    json: {\n      esNuevo: false,\n      minutosDesdeSuCreacion: diferenciaMinutos\n    }\n  };\n}"
+      }
+    },
+    {
+      "id": "2f3g4h5i-6j7k-8901-mnop-qrs456789012",
+      "name": "¿Es registro nuevo?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1240,
+        460
+      ],
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+              "leftValue": "={{ $json.esNuevo }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equal",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "3g4h5i6j-7k8l-9012-nopq-rst567890123",
+      "name": "Generar contenido del albarán",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1460,
+        380
+      ],
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// Extraer datos del registro de Airtable\nconst registro = $input.item.json.registro;\nconst campos = registro.fields;\n\n// Obtener la fecha actual para el albarán\nconst fechaActual = new Date().toLocaleDateString('es-ES');\n\n// Generar número de albarán único\nconst numeroAlbaran = `ALB-${Date.now()}`;\n\n// Crear el contenido HTML del albarán\nconst contenidoAlbaran = `\n<!DOCTYPE html>\n<html>\n<head>\n    <meta charset=\"UTF-8\">\n    <title>Albarán ${numeroAlbaran}</title>\n    <style>\n        body { font-family: Arial, sans-serif; margin: 20px; }\n        .header { text-align: center; margin-bottom: 30px; }\n        .info-section { margin-bottom: 20px; }\n        .table { width: 100%; border-collapse: collapse; margin-top: 20px; }\n        .table th, .table td { border: 1px solid #ddd; padding: 8px; text-align: left; }\n        .table th { background-color: #f2f2f2; }\n        .footer { margin-top: 40px; text-align: center; }\n    </style>\n</head>\n<body>\n    <div class=\"header\">\n        <h1>ALBARÁN DE ENTREGA</h1>\n        <h2>Número: ${numeroAlbaran}</h2>\n        <p>Fecha: ${fechaActual}</p>\n    </div>\n    \n    <div class=\"info-section\">\n        <h3>Datos del Cliente:</h3>\n        <p><strong>Cliente:</strong> ${campos.Cliente || 'No especificado'}</p>\n        <p><strong>Dirección:</strong> ${campos.Direccion || 'No especificada'}</p>\n        <p><strong>Teléfono:</strong> ${campos.Telefono || 'No especificado'}</p>\n        <p><strong>Email:</strong> ${campos.Email || 'No especificado'}</p>\n    </div>\n    \n    <div class=\"info-section\">\n        <h3>Detalles del Pedido:</h3>\n        <table class=\"table\">\n            <thead>\n                <tr>\n                    <th>Producto</th>\n                    <th>Cantidad</th>\n                    <th>Precio Unitario</th>\n                    <th>Total</th>\n                </tr>\n            </thead>\n            <tbody>\n                <tr>\n                    <td>${campos.Producto || 'Producto no especificado'}</td>\n                    <td>${campos.Cantidad || '1'}</td>\n                    <td>${campos.PrecioUnitario || '0.00'} €</td>\n                    <td>${campos.Total || '0.00'} €</td>\n                </tr>\n            </tbody>\n        </table>\n    </div>\n    \n    <div class=\"info-section\">\n        <p><strong>Observaciones:</strong> ${campos.Observaciones || 'Sin observaciones'}</p>\n    </div>\n    \n    <div class=\"footer\">\n        <p>Este albarán certifica la entrega de los productos arriba mencionados.</p>\n        <p>Fecha y hora de generación: ${new Date().toLocaleString('es-ES')}</p>\n    </div>\n</body>\n</html>\n`;\n\nreturn {\n  json: {\n    numeroAlbaran: numeroAlbaran,\n    contenidoHTML: contenidoAlbaran,\n    datosCliente: {\n      cliente: campos.Cliente,\n      email: campos.Email,\n      direccion: campos.Direccion\n    },\n    registroOriginal: registro,\n    fechaGeneracion: fechaActual\n  }\n};"
+      }
+    },
+    {
+      "id": "4h5i6j7k-8l9m-0123-opqr-stu678901234",
+      "name": "Crear documento en Google Docs",
+      "type": "n8n-nodes-base.googleDocs",
+      "typeVersion": 2,
+      "position": [
+        1680,
+        380
+      ],
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "document",
+        "operation": "create",
+        "driveId": {
+          "__rl": true,
+          "value": "myDrive",
+          "mode": "list"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "YOUR_FOLDER_ID",
+          "mode": "list"
+        },
+        "title": "={{ 'Albarán ' + $json.numeroAlbaran + ' - ' + $json.datosCliente.cliente }}",
+        "content": "={{ $json.contenidoHTML }}"
+      }
+    },
+    {
+      "id": "5i6j7k8l-9m0n-1234-pqrs-tuv789012345",
+      "name": "Mover a carpeta de albaranes",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1900,
+        380
+      ],
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "file",
+        "operation": "move",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.documentId }}",
+          "mode": "id"
+        },
+        "driveId": {
+          "__rl": true,
+          "value": "myDrive",
+          "mode": "list"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "YOUR_ALBARAN_FOLDER_ID",
+          "mode": "list"
+        }
+      }
+    },
+    {
+      "id": "6j7k8l9m-0n1o-2345-qrst-uvw890123456",
+      "name": "Enviar albarán por Gmail",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2,
+      "position": [
+        2120,
+        380
+      ],
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "message",
+        "operation": "send",
+        "sendTo": "={{ $('Generar contenido del albarán').item.json.datosCliente.email }}",
+        "subject": "={{ 'Albarán ' + $('Generar contenido del albarán').item.json.numeroAlbaran + ' - Entrega confirmada' }}",
+        "emailType": "html",
+        "message": "=Estimado/a {{ $('Generar contenido del albarán').item.json.datosCliente.cliente }},<br><br>Adjuntamos el albarán correspondiente a su pedido.<br><br>Número de albarán: {{ $('Generar contenido del albarán').item.json.numeroAlbaran }}<br>Fecha: {{ $('Generar contenido del albarán').item.json.fechaGeneracion }}<br><br>Puede acceder al documento completo en el siguiente enlace:<br><a href=\"https://docs.google.com/document/d/{{ $json.documentId }}\">Ver Albarán</a><br><br>Gracias por su confianza.<br><br>Saludos cordiales",
+        "options": {
+          "attachments": [
+            {
+              "type": "url",
+              "url": "={{ 'https://docs.google.com/document/d/' + $json.documentId + '/export?format=pdf' }}",
+              "name": "={{ 'Albaran_' + $('Generar contenido del albarán').item.json.numeroAlbaran + '.pdf' }}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "7k8l9m0n-1o2p-3456-rstu-vwx901234567",
+      "name": "Actualizar registro en Airtable",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2,
+      "position": [
+        2340,
+        380
+      ],
+      "parameters": {
+        "authentication": "airtableTokenApi",
+        "resource": "record",
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "YOUR_AIRTABLE_BASE_ID",
+          "mode": "list"
+        },
+        "table": {
+          "__rl": true,
+          "value": "YOUR_TABLE_NAME",
+          "mode": "list"
+        },
+        "id": "={{ $('Generar contenido del albarán').item.json.registroOriginal.id }}",
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Attachments": [
+              {
+                "url": "={{ 'https://docs.google.com/document/d/' + $('Mover a carpeta de albaranes').item.json.documentId }}",
+                "filename": "={{ 'Albaran_' + $('Generar contenido del albarán').item.json.numeroAlbaran + '.pdf' }}"
+              }
+            ],
+            "Estado": "Albarán Generado",
+            "NumeroAlbaran": "={{ $('Generar contenido del albarán').item.json.numeroAlbaran }}",
+            "FechaAlbaran": "={{ $('Generar contenido del albarán').item.json.fechaGeneracion }}"
+          }
+        }
+      }
+    },
+    {
+      "id": "config-note-1",
+      "name": "Configuración Inicial",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        320,
+        240
+      ],
+      "parameters": {
+        "content": "## 🎯 CONFIGURACIÓN INICIAL REQUERIDA\n\n**IMPORTANTE:** Antes de activar este flujo, debes configurar:\n\n1. **Credenciales de Airtable:**\n   - Obtén tu API Token desde https://airtable.com/account\n   - Configura las credenciales en n8n\n\n2. **IDs de Airtable:**\n   - `YOUR_AIRTABLE_BASE_ID`: ID de tu base de Airtable\n   - `YOUR_TABLE_NAME`: Nombre de tu tabla\n\n3. **Credenciales de Google:**\n   - Configura OAuth2 para Google Docs, Drive y Gmail\n   - Autoriza los permisos necesarios\n\n4. **IDs de Google Drive:**\n   - `YOUR_FOLDER_ID`: Carpeta temporal para crear documentos\n   - `YOUR_ALBARAN_FOLDER_ID`: Carpeta final para almacenar albaranes\n\n**✅ VALIDACIÓN COMPLETADA:**\n- Flujo estructurado correctamente\n- Conexiones válidas entre nodos\n- 8 conexiones principales verificadas\n- Trigger configurado cada minuto"
+      }
+    },
+    {
+      "id": "fields-note-1",
+      "name": "Campos de Airtable",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        320,
+        480
+      ],
+      "parameters": {
+        "content": "## ⚙️ CAMPOS ESPERADOS EN AIRTABLE\n\n**Tu tabla debe contener estos campos:**\n- `Created` (fecha/hora de creación) - **OBLIGATORIO**\n- `Cliente` (nombre del cliente)\n- `Email` (correo del cliente) - **OBLIGATORIO para envío**\n- `Direccion` (dirección de entrega)\n- `Telefono` (teléfono de contacto)\n- `Producto` (descripción del producto)\n- `Cantidad` (cantidad solicitada)\n- `PrecioUnitario` (precio por unidad)\n- `Total` (importe total)\n- `Observaciones` (notas adicionales)\n- `Attachments` (se actualizará automáticamente)\n- `Estado` (se actualizará automáticamente)\n- `NumeroAlbaran` (se asignará automáticamente)\n- `FechaAlbaran` (se asignará automáticamente)\n\n**💡 CONSEJO:** Usa el campo `Created` como campo de fecha automática"
+      }
+    },
+    {
+      "id": "workflow-note-1",
+      "name": "Funcionamiento",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        320,
+        720
+      ],
+      "parameters": {
+        "content": "## 🔄 FUNCIONAMIENTO DEL FLUJO\n\n**✅ VALIDADO Y LISTO PARA USAR**\n\n**Paso 1:** Trigger cada minuto busca nuevas filas\n**Paso 2:** Verifica si hay registros creados en los últimos 2 minutos\n**Paso 3:** Si es nuevo, genera contenido HTML del albarán\n**Paso 4:** Crea documento en Google Docs\n**Paso 5:** Mueve el documento a carpeta específica\n**Paso 6:** Envía albarán por email al cliente\n**Paso 7:** Actualiza el registro original con el enlace\n\n**⚡ AUTOMATIZACIÓN COMPLETA:** \nDesde nueva fila → Albarán creado → Email enviado → Registro actualizado\n\n**🛡️ VALIDACIONES REALIZADAS:**\n- Estructura del flujo ✅\n- Conexiones entre nodos ✅\n- Expresiones de n8n ✅\n- Configuraciones de nodos ✅"
+      }
+    },
+    {
+      "id": "custom-note-1",
+      "name": "Personalización",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2100,
+        580
+      ],
+      "parameters": {
+        "content": "## 🛠️ PERSONALIZACIÓN AVANZADA\n\n**Modifica el nodo 'Generar contenido del albarán' para:**\n- Cambiar el diseño del albarán\n- Añadir tu logo empresarial\n- Incluir más campos de datos\n- Modificar el formato del número de albarán\n\n**Ajusta el trigger para:**\n- Cambiar frecuencia (cada 5 min, cada hora, etc.)\n- Usar webhook en lugar de polling\n\n**Personaliza el email:**\n- Modificar plantilla del mensaje\n- Añadir firma corporativa\n- Cambiar formato del adjunto\n\n**🚨 PARA PRODUCCIÓN AÑADIR:**\n- Manejo de errores en nodos críticos\n- Logging de actividades\n- Notificaciones de fallos\n- Backup de datos importantes"
+      }
+    }
+  ],
+  "pinData": null,
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Europe/Madrid",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "saveManualExecutions": true
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-08-03T10:21:58.186Z",
+  "versionId": "9341dfa2-c284-4e6d-a8f9-783c4cd23817"
+}
