@@ -1,0 +1,79 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2025-07-25T13:56:38.152Z",
+  "id": "qigngTp26x1RFQiJ",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Outbound Agent",
+  "nodes": [
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.retellai.com/v2/create-phone-call",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer key_9389d08db50e3496f2ae7bb711bc"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "from_number",
+              "value": "+34936941095"
+            },
+            {
+              "name": "to_number",
+              "value": "653035525"
+            },
+            {
+              "name": "override_agent_id",
+              "value": "agent_a40fce7bae72d93dbbcc2de770"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        224,
+        704
+      ],
+      "id": "8582a082-46e2-4e58-9c1a-cc9f69c7aa85",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "LEAD_REUNION",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -16,
+        704
+      ],
+      "id": "35c8568a-a97d-4c97-ac65-a71fb94f34f6",
+      "name": "Webhook",
+      "webhookId": "a5d54b79-1f1b-4e3b-975c-72e79e041f1b"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-07-25T18:41:49.000Z",
+  "versionId": "0c0beb7d-a6d5-4d9d-b627-79b039d1f204"
+}
