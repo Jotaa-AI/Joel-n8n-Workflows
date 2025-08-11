@@ -1,0 +1,21 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2025-08-04T12:41:51.500Z",
+  "id": "ABBPtoNCa6ej8ITW",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Evaluador de LLamadas - SETTER",
+  "nodes": [],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-08-11T09:30:18.000Z",
+  "versionId": "2d4e3e27-6ad4-4fbb-9e98-08ab1b877f27"
+}
