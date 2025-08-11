@@ -1,0 +1,194 @@
+{
+  "active": false,
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Airtable",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Airtable": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-06-12T15:46:33.911Z",
+  "id": "V7XHpTTWgL40ead4",
+  "isArchived": false,
+  "meta": null,
+  "name": "comprobar_disponibilidad_Clinic.IA",
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "id": "c055762a-8fe7-4141-a639-df2372f30060",
+      "typeVersion": 1.1,
+      "name": "When Executed by Another Workflow",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        260,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Código para n8n - Nodo Code/Function\nconst inputDate = $input.first().json.query;\n\n// Función para convertir fecha DD/MM/YYYY HH:mm a ISO 8601\nfunction convertToISO8601(dateString) {\n  // Separar fecha y hora\n  const [datePart, timePart] = dateString.split(' ');\n  \n  // Separar día, mes y año\n  const [day, month, year] = datePart.split('/');\n  \n  // Crear objeto Date (mes - 1 porque JavaScript cuenta meses desde 0)\n  const date = new Date(year, month - 1, day);\n  \n  // Si hay hora, añadirla\n  if (timePart) {\n    const [hours, minutes] = timePart.split(':');\n    date.setHours(parseInt(hours), parseInt(minutes), 0, 0);\n  }\n  \n  // Convertir a ISO 8601\n  return date.toISOString();\n}\n\n// Convertir la fecha\nconst isoDate = convertToISO8601(inputDate);\n\n// Crear nueva fecha restando 2 horas\nconst dateWithOffset = new Date(isoDate);\ndateWithOffset.setHours(dateWithOffset.getHours() - 2);\nconst finalIsoDate = dateWithOffset.toISOString();\n\n// Retornar el resultado\nreturn {\n  originalDate: inputDate,\n  isoDate: finalIsoDate\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        340
+      ],
+      "id": "d70609de-9aa7-4a95-a6f7-59a09a357453",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appwtKASSidizHxdl",
+          "mode": "list",
+          "cachedResultName": "CLINIC.IA",
+          "cachedResultUrl": "https://airtable.com/appwtKASSidizHxdl"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbl0nXwlRh6Vk3PY3",
+          "mode": "list",
+          "cachedResultName": "Citas",
+          "cachedResultUrl": "https://airtable.com/appwtKASSidizHxdl/tbl0nXwlRh6Vk3PY3"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        700,
+        340
+      ],
+      "id": "b1515353-66f9-4c15-baff-97996ed58c72",
+      "name": "Airtable",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "xnXPhiCbfi7JtT21",
+          "name": "Clinic.IA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Código para n8n - Nodo Code/Function\nconst fechasComparar = $input.first().json.Fechas_comparar;\nconst fechaReferencia = $('Code').first().json.isoDate;\n\n// Función para comparar fechas\nfunction compararFechas(fechasArray, fechaRef) {\n  // Si fechasComparar no es un array, convertirlo a array\n  const fechas = Array.isArray(fechasArray) ? fechasArray : [fechasArray];\n  \n  // Convertir fecha de referencia a objeto Date para comparación\n  const fechaRefDate = new Date(fechaRef);\n  \n  // Comparar cada fecha en el array\n  for (const fecha of fechas) {\n    // Si la fecha está en formato DD/MM/YYYY HH:mm, convertirla a ISO\n    let fechaComparar;\n    \n    if (fecha.includes('/')) {\n      // Convertir formato DD/MM/YYYY HH:mm a ISO\n      const [datePart, timePart] = fecha.split(' ');\n      const [day, month, year] = datePart.split('/');\n      const fechaTemp = new Date(year, month - 1, day);\n      \n      if (timePart) {\n        const [hours, minutes] = timePart.split(':');\n        fechaTemp.setHours(parseInt(hours), parseInt(minutes), 0, 0);\n      }\n      \n      fechaComparar = fechaTemp;\n    } else {\n      // Asumir que ya está en formato ISO\n      fechaComparar = new Date(fecha);\n    }\n    \n    // Comparar fechas (mismo año, mes, día y hora)\n    if (fechaComparar.getTime() === fechaRefDate.getTime()) {\n      return \"OCUPADO\";\n    }\n  }\n  \n  return \"LIBRE\";\n}\n\n// Realizar la comparación\nconst resultado = compararFechas(fechasComparar, fechaReferencia);\n\n// Retornar el resultado\nreturn {\n  fechasComparar: fechasComparar,\n  fechaReferencia: fechaReferencia,\n  resultado: resultado\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1140,
+        340
+      ],
+      "id": "b87be5a3-cf60-49aa-9f39-0424bd3a990f",
+      "name": "Code1"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "Fecha de la Cita",
+              "renameField": true,
+              "outputFieldName": "Fechas_comparar"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        920,
+        340
+      ],
+      "id": "53627ed5-9951-403f-8811-e51c2de5d295",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d9b4340c-9786-4e42-99df-945143723540",
+              "name": "resultado",
+              "value": "={{ $json.resultado }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1360,
+        340
+      ],
+      "id": "2230b41b-dba3-460b-95dd-e294d5b417bb",
+      "name": "Edit Fields"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-06-12T15:58:48.000Z",
+  "versionId": "394f0b76-5465-4b60-869f-99c9d1976bee"
+}
