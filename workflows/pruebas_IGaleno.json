@@ -1,0 +1,230 @@
+{
+  "active": false,
+  "connections": {
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Variables",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Variables": {
+      "main": [
+        [
+          {
+            "node": "Obtener Centros",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Consultar Disponibilidad",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Crear Cita con Paciente",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtener Centros": {
+      "main": [
+        [
+          {
+            "node": "Obtener Especialidades",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtener Especialidades": {
+      "main": [
+        [
+          {
+            "node": "Obtener Profesionales",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-07-20T19:17:25.410Z",
+  "id": "l5z17g4bj7g75WoF",
+  "isArchived": false,
+  "meta": null,
+  "name": "pruebas_IGaleno",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "73fa9e98-c087-4824-aeb7-f29da559f346",
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        -288,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "tenant",
+              "value": "tu_tenant_id"
+            },
+            {
+              "name": "jwt_token",
+              "value": "tu_jwt_token_aqui"
+            },
+            {
+              "name": "compania_id",
+              "value": "tu_compania_id"
+            },
+            {
+              "name": "base_url",
+              "value": "https://api.igaleno.com/tenant/{{$node[\"Variables\"].json[\"tenant\"]}}/api/ext/chipcard/hco/1"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "6ebf866f-bbc4-41bc-8620-a5aa55ae5513",
+      "name": "Variables",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        -64,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{$node[\"Variables\"].json[\"base_url\"]}}/disponibilidad",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "c77272a3-55cd-443e-b643-3795a72e9e72",
+      "name": "Consultar Disponibilidad",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        160,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$node[\"Variables\"].json[\"base_url\"]}}/citas",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "f46a3ffc-b0fc-46bd-a9cb-7b2d075f1f51",
+      "name": "Crear Cita con Paciente",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        160,
+        432
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{$node[\"Variables\"].json[\"base_url\"]}}/centros",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "68c4d4e9-06c6-4d6e-9883-2be760faf410",
+      "name": "Obtener Centros",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        160,
+        48
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{$node[\"Variables\"].json[\"base_url\"]}}/especialidades",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "762c9af4-f5f3-48ef-bcb0-64e83b5e15f0",
+      "name": "Obtener Especialidades",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        384,
+        48
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{$node[\"Variables\"].json[\"base_url\"]}}/profesionales",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "1cc712dd-a69d-4cec-b6e8-c505ed6a2061",
+      "name": "Obtener Profesionales",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        608,
+        48
+      ]
+    },
+    {
+      "parameters": {
+        "content": "Configuración paso a paso:\n1. Variables Iniciales\nEn el nodo \"Variables\" debes configurar:\n\ntenant: Tu ID de tenant proporcionado por Igaleno\njwt_token: El token JWT firmado con tu clave privada RSA\ncompania_id: El ID de compañía de Chipcard\nbase_url: Se construye automáticamente\n\n2. Consultar Disponibilidad\nEste nodo hace una petición GET a /disponibilidad con parámetros:\n\ncompania: ID de la compañía (obligatorio)\nfechaInicio y fechaFin: Rango de fechas\nespecialidad: Filtro por especialidad (opcional)\nOtros parámetros opcionales: profesional, centro, actoMedico, horaInicio, horaFin\n\n3. Crear Cita con Paciente\nEste nodo hace POST a /citas con todos los datos del paciente:\n\nSi el paciente ya existe, puedes usar solo idPaciente\nSi es nuevo, todos los campos del paciente son obligatorios\nLos campos de la cita (fecha, hora, profesional, etc.) también son obligatorios\n\n4. Nodos de Consulta Auxiliares\n\nObtener Centros: Lista todos los centros disponibles\nObtener Especialidades: Lista especialidades por compañía\nObtener Profesionales: Lista profesionales filtrados por especialidad/centro\n\nConfiguración de Autenticación:\nPara cada nodo HTTP Request, debes:\n\nEn Headers, añadir:\nAuthorization: Bearer tu_jwt_token_aqui\nContent-Type: application/json\n\nPara generar el JWT token, necesitarás:\n\nTu clave privada RSA (2048 bits)\nIncluir en el payload: código de tenant, ID de empresa, token único de integración\n\n\n\nNotas Importantes:\n\nFormatos de fecha:\n\nDisponibilidad usa: yyyy-MM-dd\nCrear cita usa: DD-MM-AAAA o DD/MM/AAAA\n\n\nCódigos de respuesta importantes:\n\n201: Cita creada correctamente\n400: Parámetros incorrectos\n401: Fallo de autenticación\n403: No autorizado\n\n\nPersonalización: Ajusta los valores en el JSON del cuerpo de \"Crear Cita\" según tus necesidades específicas.",
+        "height": 1168,
+        "width": 608
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        816,
+        -288
+      ],
+      "typeVersion": 1,
+      "id": "d5f9cbb2-dcc4-40ce-9328-4943c8c5affc",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "### Consultar Disponibilidad\n\nEste nodo hace una petición GET a /disponibilidad con parámetros:\n\ncompania: ID de la compañía (obligatorio)\nfechaInicio y fechaFin: Rango de fechas\nespecialidad: Filtro por especialidad (opcional)\nOtros parámetros opcionales: profesional, centro, actoMedico, horaInicio, horaFin",
+        "height": 224,
+        "width": 448
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        336,
+        208
+      ],
+      "typeVersion": 1,
+      "id": "ab0166f2-2add-41d2-ba14-295a19c4ce05",
+      "name": "Sticky Note1"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-07-20T19:20:47.000Z",
+  "versionId": "a0c2e3fc-3231-4c4a-b5be-989a5be50b88"
+}
