@@ -1,0 +1,140 @@
+{
+  "active": false,
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-06-12T15:36:27.568Z",
+  "id": "ADYULX3R2CzmrZ2R",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "comprobar_hora_Clinic.IA",
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "id": "c055762a-8fe7-4141-a639-df2372f30060",
+      "typeVersion": 1.1,
+      "name": "When Executed by Another Workflow",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        260,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5614f076-778c-4db2-bd61-5bf3adf595ae",
+              "name": "Hora_solicitada",
+              "value": "={{ $json.query }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        480,
+        340
+      ],
+      "id": "b0197607-8fef-4978-8e1d-baaccc4b47f7",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=El usuario solicita la siguiente fecha:  {{ $json.Hora_solicitada }}\nHoy es: {{ $now.format('dd/MM/yy') }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "Eres un especialista en analizar fechas de clientes de la clinica Clinic.IA para comprobar si se ubican dentro de la hora de apertura del centro a la atención al público. Los horarios son:\n\nLunes a viernes de 09:00h a 20:00h ininterrumpidamente\nSábados de 09:00h a 14:00h\nDomingos cerrados\n\nDevuelve \"DENTRO DE HORARIO\" si la fecha coincide con las horas de apertura del centro\nDevuelve \"FUERA DE HORARIO\" si la fecha no coincide con las horas de apertura del centro"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        740,
+        340
+      ],
+      "id": "410769a6-5476-4d62-b27b-935784dc585c",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        800,
+        560
+      ],
+      "id": "47896584-ca2e-4a1e-8e21-5fe935cbb67f",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "DCNgLG2517avXWdE",
+          "name": "Cuenta Joel"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Europe/Madrid",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-06-12T15:58:14.000Z",
+  "versionId": "84cd05cf-67a4-4874-b6b0-4e1ed43a5109"
+}
