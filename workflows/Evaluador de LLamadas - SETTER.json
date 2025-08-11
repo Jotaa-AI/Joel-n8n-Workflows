@@ -1,6 +1,221 @@
 {
   "active": false,
-  "connections": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
+            "node": "Transcribe a recording",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transcribe a recording": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain7": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request15",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser7": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Basic LLM Chain7",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request15": {
+      "main": [
+        [
+          {
+            "node": "Append or update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model7": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain7",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Structured Output Parser7",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain7",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Append or update row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain7",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Basic LLM Chain7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
   "createdAt": "2025-08-04T12:41:51.500Z",
   "id": "ABBPtoNCa6ej8ITW",
   "isArchived": false,
@@ -8,7 +223,637 @@
     "templateCredsSetupCompleted": true
   },
   "name": "Evaluador de LLamadas - SETTER",
-  "nodes": [],
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "llamada-hair-solutions",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -1760,
+        224
+      ],
+      "id": "9f978b08-20e5-4c43-8666-878af68342fc",
+      "name": "Webhook",
+      "webhookId": "7c086147-2d41-4f96-a193-dada37d2a649"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.cloudconvert.com/v2/jobs",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"tasks\": {\n    \"import-1\": {\n      \"operation\": \"import/url\",\n      \"url\": \"{{ $('Webhook').item.json.body.mensaje }}\"\n    },\n    \"task-1\": {\n      \"operation\": \"convert\",\n      \"input\": [\n        \"import-1\"\n      ],\n      \"output_format\": \"mp3\"\n    },\n    \"export-1\": {\n      \"operation\": \"export/url\",\n      \"input\": [\n        \"task-1\"\n      ],\n      \"inline\": false,\n      \"archive_multiple_files\": false\n    }\n  },\n  \"tag\": \"jobbuilder\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -1312,
+        128
+      ],
+      "id": "fdfe13d7-771c-4a97-aa59-b74ecbcd6386",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.cloudconvert.com/v2/tasks/{{ $json.data.tasks[2].id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -640,
+        128
+      ],
+      "id": "8c155690-be9f-4ae7-b7e7-30c55d09a362",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "amount": 20
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -1088,
+        128
+      ],
+      "id": "0a8823de-cea1-4c76-8010-afa5079f0c7e",
+      "name": "Wait",
+      "webhookId": "f607992a-554b-41ac-ad63-626b764bdd51"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -864,
+        128
+      ],
+      "id": "1e02752b-2332-4698-8c79-f5773432c36f",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "dde0a466-9d25-4ead-9300-d97cc3737832",
+              "leftValue": "={{ $json.data.status }}",
+              "rightValue": "finished",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -416,
+        48
+      ],
+      "id": "b374e200-d75d-4968-aba4-ed32893b9104",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "amount": 10
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -192,
+        224
+      ],
+      "id": "c0e7752e-bd84-4ff3-b650-d05e110a8c72",
+      "name": "Wait1",
+      "webhookId": "01dcdda4-8956-4e5e-81e2-a117b75b8191"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.data.result.files[0].url }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -192,
+        0
+      ],
+      "id": "b02a8b1c-8089-44c4-bcf4-f19be19508fe",
+      "name": "HTTP Request2"
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "operation": "transcribe",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        32,
+        0
+      ],
+      "id": "e9d012dc-ae84-41c0-8a62-6451cd1cbfc0",
+      "name": "Transcribe a recording",
+      "credentials": {
+        "openAiApi": {
+          "id": "DCNgLG2517avXWdE",
+          "name": "Cuenta Joel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Transcripción de la llamada: {{ $('Transcribe a recording').first().json.text }}",
+        "hasOutputParser": true,
+        "needsFallback": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Actúa como un **evaluador experto en ventas**, especializado en analizar llamadas de SETTERS en clínicas o negocios de servicios.\n\nVas a recibir la transcripción (o resumen) de una llamada entre un SETTER y un LEAD. Tu tarea es **analizar la calidad de la calificación del lead** y devolver una evaluación estructurada en **formato JSON**, para poder mapearla automáticamente.\n\n---\n\n🎯 **Objetivo del setter en la llamada**:\nEl setter debe **calificar al lead como prospecto** únicamente si cumple los **3 criterios siguientes**:\n\n1. Tiene una **NECESIDAD** clara del servicio.\n2. Tiene un **DESEO** real y urgente de resolverlo.\n3. Tiene **CAPACIDAD FINANCIERA** o apertura a financiar.\n\n---\n\n👤 **Tu rol como evaluador**:\n- No vendes.\n- No haces suposiciones.\n- Solo analizas la llamada y das **feedback estructurado al equipo directivo**.\n\n---\n\n📌 **Criterios de evaluación**:\n\nEvalúa cada una de las siguientes variables como: `\"sí\"`, `\"no\":\n\n- `necesidad`: ¿Detectó el problema y entendió el motivo real por el que el lead busca el servicio?\n- `deseo`: ¿El lead mostró urgencia o una motivación clara por resolverlo ahora?\n- `capacidad_financiera`: ¿Mencionó presupuesto, capacidad de pago o apertura a financiación?\n\n---\n\n🧾 **Resultado general:**\n- `prospecto_calificado`: \n  - `\"sí\"` → si los tres criterios anteriores son `\"sí\"`.\n  - `\"no\"` → si al menos uno de los criterios es `\"no\"`.\n\n---\n\n📊 **Evaluación cuantitativa**:\n- `nota_setter`: Del 1 al 10. \n  - Basada en los 3 criterios anteriores **más**:\n    - Si el setter generó rapport.\n    - Si usó preguntas abiertas.\n    - Si escuchó más de lo que habló.\n    - Si llevó la conversación con estructura y claridad.\n\n---\n\n🧠 **Análisis adicional**:\n- `justificacion`: Escribe 3-4 frases explicando por qué consideras que el lead fue o no fue bien calificado.\n- `recomendaciones`: Incluye entre 2 y 5 recomendaciones concretas para mejorar en la siguiente llamada (en formato lista).\n\n---\n\n📦 **Ejemplo de salida JSON:**\n\n{\n  \"prospecto_calificado\": \"no\",\n  \"necesidad\": \"sí\",\n  \"deseo\": \"no\",\n  \"capacidad_financiera\": \"no\",\n  \"nota_setter\": 5,\n  \"justificacion\": \"El setter detectó una necesidad clara relacionada con su problema estético, pero no profundizó en la urgencia ni en las motivaciones del lead. Tampoco preguntó sobre presupuesto ni ofreció alternativas de financiación.\",\n  \"recomendaciones\": [\n    \"Profundizar en la urgencia del problema con preguntas como '¿Desde cuándo te preocupa esto?'\",\n    \"Incluir una pregunta directa sobre presupuesto o capacidad de pago.\",\n    \"Validar motivación emocional preguntando qué espera conseguir si lo resuelve.\"\n  ]\n}\n"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        480,
+        0
+      ],
+      "id": "8f3cf4f4-00e2-43f4-9735-774fc217a697",
+      "name": "Basic LLM Chain7"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"prospecto_calificado\": \"no\",\n  \"necesidad\": \"sí\",\n  \"deseo\": \"no\",\n  \"capacidad_financiera\": \"no\",\n  \"nota_setter\": 5,\n  \"justificacion\": \"El setter detectó una necesidad clara relacionada con su problema estético, pero no profundizó en la urgencia ni en las motivaciones del lead. Tampoco preguntó sobre presupuesto ni ofreció alternativas de financiación.\",\n  \"recomendaciones\": [\n    \"Profundizar en la urgencia del problema con preguntas como '¿Desde cuándo te preocupa esto?'\",\n    \"Incluir una pregunta directa sobre presupuesto o capacidad de pago.\",\n    \"Validar motivación emocional preguntando qué espera conseguir si lo resuelve.\"\n  ]\n}",
+        "autoFix": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        704,
+        224
+      ],
+      "id": "1e5015cf-fc71-4855-9823-66b83b76ae3e",
+      "name": "Structured Output Parser7"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://services.leadconnectorhq.com/contacts/<APIKEY>/notes",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "highLevelOAuth2Api",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Version",
+              "value": "2021-07-28"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "userId",
+              "value": "={{ $('Webhook').first().json.body.id }}"
+            },
+            {
+              "name": "body",
+              "value": "=📞 Llamada de Setter del {{ $now.format('DD - HH:mm') }}\n\n✅ Prospecto calificado: {{ $json.output.prospecto_calificado }}\n🔍 Necesidad detectada: {{ $json.output.necesidad }}\n💭 Deseo detectado: {{ $json.output.deseo }}\n💰 Tiene capacidad financiera: {{ $json.output.capacidad_financiera }}\n🎯 Nota de llamada: {{ $json.output.nota_setter }}\n\n🧠 Justificación: {{ $json.output.justificacion }}\n\n📌Recomendaciones:\n{{ $json.output.recomendaciones.map(r => `- ${r}`).join('\\n') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1104,
+        0
+      ],
+      "id": "ea11c9b9-0bde-4d4e-aeae-80cc36be22bc",
+      "name": "HTTP Request15",
+      "credentials": {
+        "highLevelOAuth2Api": {
+          "id": "FwnvqTtE3xuwrBjp",
+          "name": "HighLevel DinàmicSalut"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        640,
+        432
+      ],
+      "id": "bb8c945d-7117-4667-aced-d5be35662e1d",
+      "name": "Google Gemini Chat Model7"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"resultado\": \"{{ $json.Resultado }}\",\n  \"necesidad\": \"{{ $json.Necesidad }}\",\n  \"capacidad_financiera\": \"{{ $json['Capacidad financiera'] }}\",\n  \"deseo\": \"{{ $json.Deseo }}\",\n  \"puntuacion\": \"{{ $json['Puntuación '] }}\",\n  \"justificación\": \"{{ $json['Justificación'] }}\",\n  \"recomendaciones\": \"{{ $('Basic LLM Chain7').item.json.output.recomendaciones }}\"\n}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        1552,
+        0
+      ],
+      "id": "375aa441-eef2-484a-bb75-0ec6fe680f03",
+      "name": "Respond to Webhook6"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        576,
+        224
+      ],
+      "id": "00820900-1b44-4af1-a5fe-d87b4621fcb6",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "DCNgLG2517avXWdE",
+          "name": "Cuenta Joel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1gFgyoGcbu6gb62-UdBZ5Gnk_tc5CGgcccetpjB9mft0",
+          "mode": "list",
+          "cachedResultName": "Registro llamadas SolutechIA",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gFgyoGcbu6gb62-UdBZ5Gnk_tc5CGgcccetpjB9mft0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Setter",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gFgyoGcbu6gb62-UdBZ5Gnk_tc5CGgcccetpjB9mft0/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ID cliente": "={{ $('Webhook').item.json.body.id }}",
+            "Nombre completo": "={{ $('Webhook').item.json.body.name }}",
+            "Telefono": "={{ $('Webhook').item.json.body.phone }}",
+            "Email": "={{ $('Webhook').item.json.body.email }}",
+            "Resultado": "={{ $('Basic LLM Chain7').item.json.output.prospecto_calificado }}",
+            "Necesidad": "={{ $('Basic LLM Chain7').item.json.output.necesidad }}",
+            "Capacidad financiera": "={{ $('Basic LLM Chain7').item.json.output.capacidad_financiera }}",
+            "Deseo": "={{ $('Basic LLM Chain7').item.json.output.deseo }}",
+            "Puntuación ": "={{ $('Basic LLM Chain7').item.json.output.nota_setter }}",
+            "Justificación": "={{ $('Basic LLM Chain7').item.json.output.justificacion }}",
+            "Recomendaciones": "={{ $('Basic LLM Chain7').item.json.output.recomendaciones.map(r => `- ${r}`).join('\\n')  }}",
+            "ID_llamada": "={{ $('Webhook').item.json.body.ID_llamada }}",
+            "¿Quien llama?": "={{ $('Webhook').item.json.body.Miembro }}",
+            "ID_llamada_twilio": "={{ $('Webhook').item.json.body.mensaje }}"
+          },
+          "matchingColumns": [
+            "ID_llamada_twilio"
+          ],
+          "schema": [
+            {
+              "id": "¿Quien llama?",
+              "displayName": "¿Quien llama?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ID cliente",
+              "displayName": "ID cliente",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Nombre completo",
+              "displayName": "Nombre completo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Telefono",
+              "displayName": "Telefono",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID_llamada",
+              "displayName": "ID_llamada",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Resultado",
+              "displayName": "Resultado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Necesidad",
+              "displayName": "Necesidad",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Deseo",
+              "displayName": "Deseo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Capacidad financiera",
+              "displayName": "Capacidad financiera",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Puntuación ",
+              "displayName": "Puntuación ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Justificación",
+              "displayName": "Justificación",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Recomendaciones",
+              "displayName": "Recomendaciones",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ID_llamada_twilio",
+              "displayName": "ID_llamada_twilio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        1328,
+        0
+      ],
+      "id": "f1448983-1149-41f6-9551-9b616ce75d2c",
+      "name": "Append or update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "UlarRwVM0J58eFvD",
+          "name": "Sheets Joel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Webhook').item.json.body.Miembro }}",
+                    "rightValue": "=Luna Petercic",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "a6c9aea3-59d1-4621-8019-25effb000f66"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Setter"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "caa67359-dece-4d0d-82b0-5d1a893ad7a9",
+                    "leftValue": "={{ $('Webhook').item.json.body.Miembro }}",
+                    "rightValue": "Juan Cruz",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Setter"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "e1da171f-7f78-4d57-ac91-bacfaefa87ab",
+                    "leftValue": "={{ $('Webhook').item.json.body.Miembro }}",
+                    "rightValue": "Miguel Mori",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Closer"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        256,
+        -16
+      ],
+      "id": "4b49a179-7cc8-4ca3-8f84-3037725c77fb",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "d0f094b3-1a3f-4a21-982d-123a9f7ea9dd",
+              "leftValue": "={{ $json.body.Tiempo_llamada.toNumber() }}",
+              "rightValue": 20,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -1536,
+        224
+      ],
+      "id": "5cb20dd0-e012-488f-92fd-aaed6f3d3e81",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "respondWith": "noData",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        -1312,
+        320
+      ],
+      "id": "8e912d50-05bf-497d-8f24-a6da32cf29ff",
+      "name": "Respond to Webhook"
+    }
+  ],
   "pinData": {},
   "settings": {
     "executionOrder": "v1"
@@ -16,6 +861,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-08-11T09:30:18.000Z",
-  "versionId": "2d4e3e27-6ad4-4fbb-9e98-08ab1b877f27"
+  "updatedAt": "2025-08-11T09:31:26.000Z",
+  "versionId": "8552637e-90bc-4a05-a76e-58f4fbcdbf58"
 }
