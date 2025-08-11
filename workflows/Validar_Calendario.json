@@ -1,0 +1,219 @@
+{
+  "active": false,
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HighLevel": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "HighLevel",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        []
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-06-08T17:14:38.899Z",
+  "id": "aDrV6SgO42AYNQLx",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Validar_Calendario",
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "id": "c055762a-8fe7-4141-a639-df2372f30060",
+      "typeVersion": 1.1,
+      "name": "When Executed by Another Workflow",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        260,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "calendar",
+        "operation": "getFreeSlots",
+        "calendarId": "jdhpNPn6LWkpJOkdr3r6",
+        "startDate": "={{ $json.timestamp_inicio }}",
+        "endDate": "={{ $json.timestamp_fin }}",
+        "additionalFields": {},
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-base.highLevel",
+      "typeVersion": 2,
+      "position": [
+        700,
+        340
+      ],
+      "id": "842a38ca-7313-4787-881a-86419b451c14",
+      "name": "HighLevel",
+      "credentials": {
+        "highLevelOAuth2Api": {
+          "id": "FwnvqTtE3xuwrBjp",
+          "name": "HighLevel DinàmicSalut"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const query = $input.first().json.query;\n\n// Separar la cadena en fecha, hora y servicio\nconst [fechaStr, horaStr, ...servicioParts] = query.split(\" \");\nconst servicio = servicioParts.join(\" \");\n\n// Unir fecha y hora en formato compatible\nconst dateStr = `${fechaStr} ${horaStr}`; // \"09-06-2025 10:00\"\nconst [dia, mes, anio] = fechaStr.split(\"-\");\nconst fechaISO = `${anio}-${mes}-${dia}T${horaStr}:00+02:00`;\n\n// Crear objeto Date en UTC+2\nconst fecha = new Date(`${anio}-${mes}-${dia}T${horaStr}:00+02:00`);\nconst timestampInicio = fecha.getTime();\nconst timestampFin = timestampInicio + 30 * 60 * 1000; // +30 minutos\n\nreturn [\n  {\n    json: {\n      servicio_solicitado: servicio,\n      timestamp_inicio: timestampInicio,\n      timestamp_fin: timestampFin,\n      fecha_iso: fechaISO,\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        340
+      ],
+      "id": "6813e05d-372c-40f9-af4a-0344f2a96c2e",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=La fecha que solicita el cliente es: {{ $('Code').item.json.extractedDate }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Analiza las horas que vienen del calendario.\nAnaliza si en la fecha que solicita el cliente ({{ $('Code').item.json.extractedDate }}) hay dispoibilidad con las siguientes horas del calendario:\n{{ $json['2025-06-09'].slots }}\n\nSi está disponible, devuelve \"DISPONIBLE\"\nSi no está disponible, analiza las 3 horas más cercanas a las que solicita el cliente y devuelve \"Lo sentimos pero esa hora no está disponible, tenemos las siguientes horas más cercanas:\n- {primera hora más cercana}\n- {segunda hora más cercana}\n- {tercera hora más cercana}\n\n\n*IMPORTANTE* \nDevuelve la información de las horas disponibles en formato DD/MM HH:mm"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        1340,
+        560
+      ],
+      "id": "07983f68-39f0-49dc-84d3-5d87eeb85eba",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1020,
+        560
+      ],
+      "id": "6d6a455b-f1d9-425c-bf1f-20c28d6c71f6",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "DCNgLG2517avXWdE",
+          "name": "Cuenta Joel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "35676846-203b-45e2-9b54-ecc3bc42cf3d",
+              "name": "mensaje_devuelta",
+              "value": "={{ $json.estado }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1200,
+        340
+      ],
+      "id": "1d7ca9c3-c64b-4657-8238-48e0ed81c2ba",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Obtener la cadena con formato \"12-06-2025 10:00 fisioterapia\"\nconst cadenaCompleta = $('When Executed by Another Workflow').first().json.query;\n\n// Extraer fecha y hora (primeros 16 caracteres)\nconst fechaHora = cadenaCompleta.substring(0, 16);\n\n// Convertir formato DD-MM-YYYY HH:MM a YYYY-MM-DDTHH:MM:00\nconst [fechaParte, horaParte] = fechaHora.split(' ');\nconst [dia, mes, año] = fechaParte.split('-');\nconst fechaObjetivo = `${año}-${mes}-${dia}T${horaParte}:00`;\n\n// Obtener el array de slots para la fecha específica\nconst fechaClave = `${año}-${mes}-${dia}`; // formato YYYY-MM-DD para la clave\nconst slots = $input.first().json[fechaClave]?.slots || [];\n\n// Verificar si la fecha objetivo está en el array de slots\nconst coincide = slots.includes(fechaObjetivo);\n\n// Determinar estado: si coincide => OCUPADO, si no coincide => LIBRE\nconst estado = coincide ? \"OCUPADO\" : \"LIBRE\";\n\n// Extraer el tipo de servicio (todo después de la hora)\nconst tipoServicio = cadenaCompleta.substring(17); // \"fisioterapia\"\n\nreturn [\n  {\n    json: {\n      estado: estado,\n      fechaConsultada: fechaObjetivo,\n      tipoServicio: tipoServicio,\n      fechaOriginal: cadenaCompleta,\n      slotsEncontrados: slots.length,\n      coincidenciaExacta: coincide\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        960,
+        340
+      ],
+      "id": "5636d734-23ee-4294-b462-f857ccfae0e1",
+      "name": "Code1"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Europe/Madrid",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "NXAGfkOV6b6fn8LO"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-06-08T19:36:09.000Z",
+  "versionId": "e2593504-89f8-4268-bdd6-e5a25c123be7"
+}
