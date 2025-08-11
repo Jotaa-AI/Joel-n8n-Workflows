@@ -1,0 +1,476 @@
+{
+  "active": false,
+  "connections": {
+    "Code2": {
+      "main": [
+        [
+          {
+            "node": "AI Agent 3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "User Graph1": {
+      "main": [
+        [
+          {
+            "node": "Code2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent 3": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add Memory1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "set user",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent 3",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent 3",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "User Graph1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "set user": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Add Memory1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "User Graph3": {
+      "main": [
+        [
+          {
+            "node": "Code4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-11T21:48:57.938Z",
+  "id": "NBdqPTHfyaPVhIMh",
+  "isArchived": false,
+  "meta": null,
+  "name": "Añadir memoria de largo plazo",
+  "nodes": [
+    {
+      "parameters": {
+        "jsCode": "// n8n Code Node\n// This code extracts all facts from the JSON structure\n\n// Get the input data\nconst items = $input.all();\nconst facts = [];\n\n// Process each item\nfor (const item of items) {\n  try {\n    // Parse the data string if it exists\n    if (item.json.data) {\n      const parsedData = JSON.parse(item.json.data);\n      \n      // Check if edges array exists\n      if (parsedData.edges && Array.isArray(parsedData.edges)) {\n        // Extract facts from each edge\n        parsedData.edges.forEach(edge => {\n          if (edge.fact) {\n            facts.push(edge.fact);\n          }\n        });\n      }\n    }\n  } catch (error) {\n    // Handle parsing errors\n    console.error('Error parsing data:', error);\n  }\n}\n\n// Return all facts as an array in a single item\nreturn [{\n  json: {\n    facts: facts\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -176,
+        400
+      ],
+      "id": "d904b164-122d-43a5-a2dc-ac01896e1bd3",
+      "name": "Code2"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.getzep.com/api/v2/graph/search",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "zepApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"user_id\": \"{{ $('set user').item.json[\"user id\"] }}\",\n  \"query\": \"{{ $('When chat message received').item.json.chatInput }}\",\n  \"scope\": \"edges\",\n  \"limit\": 3,\n  \"search_filters\": {\n    \"min_relevance\": 0.7\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -384,
+        400
+      ],
+      "id": "f762aa01-05ae-4f74-b2e3-d910dbeed730",
+      "name": "User Graph1"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('When chat message received').item.json.sessionId }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        880,
+        672
+      ],
+      "id": "b9d31b87-43bf-4794-9bc7-5a253ad4a2ae",
+      "name": "Postgres Chat Memory"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('When chat message received').item.json.chatInput }}",
+        "options": {
+          "systemMessage": "=You are a helpful assistant.\n\nHere is some additional information about Nate:\n{{ $json.facts.join(\"\\n\") }}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        32,
+        400
+      ],
+      "id": "62e9c6a8-2c9f-4128-be9c-71bb58f9f9e0",
+      "name": "AI Agent 3"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.getzep.com/api/v2/sessions/{{ $('When chat message received').item.json.sessionId }}/memory",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "zepApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"user_id\": \"{{ $('set user').item.json[\"user id\"] }}\",\n  \"session_id\": \"{{ $('When chat message received').item.json.sessionId }}\",\n  \"messages\": [\n    {\n      \"role_type\": \"user\",\n      \"content\": \"{{ $('When chat message received').item.json.chatInput }}\"\n    },\n    {\n      \"role_type\": \"assistant\",\n      \"content\": \"{{ $('AI Agent 3').item.json.output }}\"\n    }\n  ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        624,
+        400
+      ],
+      "id": "e8bc395e-3cde-4579-a66d-804cddee2de0",
+      "name": "Add Memory1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -992,
+        400
+      ],
+      "id": "b4ddbec2-4aa6-4d46-950e-2d97c95989f1",
+      "name": "When chat message received",
+      "webhookId": "f4dd833c-3230-41dd-adf8-7074c87a2886"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -32,
+        624
+      ],
+      "id": "60358cf9-5178-4164-853e-d1dfcd4ca0d1",
+      "name": "OpenAI Chat Model"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('When chat message received').item.json.sessionId }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        144,
+        624
+      ],
+      "id": "e3baa08d-f324-4363-9db0-6a6f82f4a0dc",
+      "name": "Simple Memory1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ae7e09e3-ad98-4d73-8924-e049f34908f4",
+              "name": "output",
+              "value": "={{ $('AI Agent 3').item.json.output }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        832,
+        400
+      ],
+      "id": "93315a7c-e016-40b7-9855-6006119916ad",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "content": "https://help.getzep.com/sdk-reference/graph/search\n\n"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1264,
+        384
+      ],
+      "id": "77338128-5d64-4196-a636-fa778f6f173f",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.getzep.com/api/v2/users",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "zepApi",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "user_id",
+              "value": "={{ $json[\"user id\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -592,
+        400
+      ],
+      "id": "8766dc14-4852-4c8b-bdd3-710fcf66ff55",
+      "name": "HTTP Request",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d8e379d0-7d0e-4ee1-8966-34ada195f352",
+              "name": "user id",
+              "value": "1234",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -816,
+        400
+      ],
+      "id": "cee2feb1-d4e8-41c8-93b5-89e1b65e4669",
+      "name": "set user"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.getzep.com/api/v2/sessions",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "zepApi",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "session_id",
+              "value": "={{ $('When chat message received').item.json.sessionId }}"
+            },
+            {
+              "name": "user_id",
+              "value": "={{ $('set user').item.json[\"user id\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        416,
+        400
+      ],
+      "id": "0fd2a668-1977-4ce6-a375-77ed3d5fbcb3",
+      "name": "HTTP Request1",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.getzep.com/api/v2/graph/search",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "zepApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"user_id\": \"1234\",\n  \"query\": \"mi comida favorita\",\n  \"scope\": \"nodes\",\n  \"limit\": 3,\n  \"search_filters\": {\n    \"min_relevance\": 0.7\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -416,
+        832
+      ],
+      "id": "80f42375-931f-4978-92c9-3600098fde34",
+      "name": "User Graph2"
+    },
+    {
+      "parameters": {
+        "jsCode": "// n8n Code Node\n// This code extracts all facts from the JSON structure\n\n// Get the input data\nconst items = $input.all();\nconst facts = [];\n\n// Process each item\nfor (const item of items) {\n  try {\n    // Parse the data string if it exists\n    if (item.json.data) {\n      const parsedData = JSON.parse(item.json.data);\n      \n      // Check if edges array exists\n      if (parsedData.edges && Array.isArray(parsedData.edges)) {\n        // Extract facts from each edge\n        parsedData.edges.forEach(edge => {\n          if (edge.fact) {\n            facts.push(edge.fact);\n          }\n        });\n      }\n    }\n  } catch (error) {\n    // Handle parsing errors\n    console.error('Error parsing data:', error);\n  }\n}\n\n// Return all facts as an array in a single item\nreturn [{\n  json: {\n    facts: facts\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -208,
+        1008
+      ],
+      "id": "18226ea1-450e-469b-b290-fcaccd22b578",
+      "name": "Code4"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.getzep.com/api/v2/graph/search",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "zepApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"user_id\": \"1234\",\n  \"query\": \"mi comida favorita\",\n  \"scope\": \"episodes\",\n  \"limit\": 3,\n  \"search_filters\": {\n    \"min_relevance\": 0.7\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -416,
+        1008
+      ],
+      "id": "630ef561-5782-43b0-86c0-77b194c914fc",
+      "name": "User Graph3"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.getzep.com/api/v2/users",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "zepApi",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "user_id",
+              "value": "1234"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        192,
+        0
+      ],
+      "id": "99e4355a-1b9b-41a3-a590-4fd2b892e6e6",
+      "name": "HTTP Request2"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-08-11T21:49:11.534Z",
+      "updatedAt": "2025-08-11T21:49:11.534Z",
+      "id": "RmV5e83YZS24K52B",
+      "name": "IA Lab"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-08-11T21:49:17.000Z",
+  "versionId": "5b08e229-a4f4-4644-a1fa-d4b39fc7a996"
+}
