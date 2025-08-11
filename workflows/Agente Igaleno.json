@@ -1,0 +1,660 @@
+{
+  "active": false,
+  "connections": {
+    "Chat Trigger": {
+      "main": [
+        [
+          {
+            "node": "Agente IA Igaleno",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Agente IA Igaleno",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "comprobar_cliente": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente IA Igaleno",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "crear_cliente": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente IA Igaleno",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "comprobar_disponibilidad": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente IA Igaleno",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "agendar_cita": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente IA Igaleno",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "modificar_cita": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente IA Igaleno",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "cancelar_cita": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente IA Igaleno",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "consultar_citas_paciente": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente IA Igaleno",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "obtener_especialidades": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente IA Igaleno",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "obtener_centros": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente IA Igaleno",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "obtener_profesionales": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente IA Igaleno",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-04T10:24:14.096Z",
+  "id": "zQlONXM9uuzjAHTp",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Agente Igaleno",
+  "nodes": [
+    {
+      "parameters": {
+        "public": true,
+        "options": {}
+      },
+      "id": "ca4804af-2810-4e7f-b5af-3d348eb2658e",
+      "name": "Chat Trigger",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1024,
+        80
+      ],
+      "webhookId": "407c94b0-33bc-43ab-9090-f118949c6199"
+    },
+    {
+      "parameters": {
+        "toolDescription": "Herramienta para obtener la lista de especialidades médicas disponibles para una compañía específica.",
+        "url": "https://api.igaleno.com/tenant/{tenant}/api/ext/chipcard/hco/1/especialidades",
+        "sendQuery": true,
+        "parametersQuery": {
+          "values": [
+            {}
+          ]
+        },
+        "sendHeaders": true,
+        "parametersHeaders": {
+          "values": [
+            {}
+          ]
+        },
+        "placeholderDefinitions": {
+          "values": [
+            {
+              "name": "compania",
+              "description": "ID de la compañía (opcional)"
+            }
+          ]
+        },
+        "optimizeResponse": true
+      },
+      "id": "773ac3dc-18dc-48e2-9048-c45ada914953",
+      "name": "obtener_especialidades",
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1,
+      "position": [
+        224,
+        304
+      ]
+    },
+    {
+      "parameters": {
+        "toolDescription": "Herramienta para obtener la lista de centros médicos disponibles.",
+        "url": "https://api.igaleno.com/tenant/{tenant}/api/ext/chipcard/hco/1/centros",
+        "sendHeaders": true,
+        "parametersHeaders": {
+          "values": [
+            {}
+          ]
+        },
+        "optimizeResponse": true
+      },
+      "id": "fb4e71c2-e4ef-4521-aea8-6b2b518831e7",
+      "name": "obtener_centros",
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1,
+      "position": [
+        352,
+        304
+      ]
+    },
+    {
+      "parameters": {
+        "toolDescription": "Herramienta para obtener la lista de profesionales médicos disponibles, pudiendo filtrar por especialidad y/o centro.",
+        "url": "https://api.igaleno.com/tenant/{tenant}/api/ext/chipcard/hco/1/profesionales",
+        "sendQuery": true,
+        "parametersQuery": {
+          "values": [
+            {}
+          ]
+        },
+        "sendHeaders": true,
+        "parametersHeaders": {
+          "values": [
+            {}
+          ]
+        },
+        "placeholderDefinitions": {
+          "values": [
+            {
+              "name": "compania",
+              "description": "ID de la compañía (opcional)"
+            },
+            {
+              "name": "especialidad",
+              "description": "ID de especialidad para filtrar profesionales (opcional)"
+            },
+            {
+              "name": "centro",
+              "description": "ID del centro para filtrar profesionales (opcional)"
+            }
+          ]
+        },
+        "optimizeResponse": true
+      },
+      "id": "654a5ffd-1af0-4541-80d5-4b25882a555d",
+      "name": "obtener_profesionales",
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1,
+      "position": [
+        480,
+        304
+      ]
+    },
+    {
+      "parameters": {
+        "model": "gpt-4.1",
+        "options": {
+          "maxTokens": 2000,
+          "temperature": 0.7
+        }
+      },
+      "id": "5942f725-6f69-4666-871e-a2fc5dff45ca",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        -800,
+        304
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "DCNgLG2517avXWdE",
+          "name": "Cuenta Joel"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "Eres un asistente especializado en gestión de citas médicas para el sistema Igaleno. Tu función es ayudar a los pacientes a:\n\n1. Verificar si están registrados en el sistema\n2. Registrar nuevos pacientes si no existen\n3. Agendar nuevas citas médicas\n4. Modificar citas existentes\n5. Cancelar citas\n6. Responder preguntas sobre servicios\n\nSiempre solicita el teléfono del usuario al inicio de la conversación ya que es el ID único en el sistema. Sé amable, profesional y asegúrate de recopilar toda la información necesaria antes de realizar las acciones.\n\nCuando el usuario solicite una cita, pregunta por:\n- Fecha preferida\n- Especialidad o servicio que necesita\n- Cualquier preferencia específica\n\nUtiliza las herramientas disponibles para realizar las operaciones necesarias y proporciona confirmaciones claras al usuario.",
+          "maxIterations": 10,
+          "returnIntermediateSteps": false
+        }
+      },
+      "id": "e2152059-e89a-456a-af07-7688a647e525",
+      "name": "Agente IA Igaleno",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        -256,
+        64
+      ]
+    },
+    {
+      "parameters": {
+        "toolDescription": "Herramienta para comprobar si un cliente existe en el sistema Igaleno usando su número de teléfono como identificador único.",
+        "url": "https://api.igaleno.com/tenant/{tenant}/api/ext/chipcard/hco/1/cliente/verificar",
+        "sendQuery": true,
+        "parametersQuery": {
+          "values": [
+            {}
+          ]
+        },
+        "sendHeaders": true,
+        "parametersHeaders": {
+          "values": [
+            {}
+          ]
+        },
+        "placeholderDefinitions": {
+          "values": [
+            {
+              "name": "telefono",
+              "description": "Número de teléfono del cliente a verificar (requerido)"
+            },
+            {
+              "name": "compania",
+              "description": "ID de la compañía (opcional)"
+            }
+          ]
+        },
+        "optimizeResponse": true
+      },
+      "id": "b0b20b7a-fcc2-4e0a-ba0a-24de0c7f596f",
+      "name": "comprobar_cliente",
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1,
+      "position": [
+        -672,
+        304
+      ]
+    },
+    {
+      "parameters": {
+        "toolDescription": "Herramienta para registrar un nuevo cliente en el sistema Igaleno con su teléfono y nombre.",
+        "method": "POST",
+        "url": "https://api.igaleno.com/tenant/{tenant}/api/ext/chipcard/hco/1/cliente/crear",
+        "sendHeaders": true,
+        "parametersHeaders": {
+          "values": [
+            {}
+          ]
+        },
+        "sendBody": true,
+        "parametersBody": {
+          "values": [
+            {}
+          ]
+        },
+        "placeholderDefinitions": {
+          "values": [
+            {
+              "name": "telefono",
+              "description": "Número de teléfono del nuevo cliente (requerido)"
+            },
+            {
+              "name": "nombre",
+              "description": "Nombre completo del nuevo cliente (requerido)"
+            },
+            {
+              "name": "compania",
+              "description": "ID de la compañía (opcional)"
+            }
+          ]
+        },
+        "optimizeResponse": true
+      },
+      "id": "91279274-ead2-4781-a600-9b94bd7ea920",
+      "name": "crear_cliente",
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1,
+      "position": [
+        -544,
+        304
+      ]
+    },
+    {
+      "parameters": {
+        "toolDescription": "Herramienta para comprobar la disponibilidad de citas en una fecha específica, pudiendo filtrar por profesional, especialidad o centro.",
+        "url": "https://api.igaleno.com/tenant/{tenant}/api/ext/chipcard/hco/1/disponibilidad",
+        "sendQuery": true,
+        "parametersQuery": {
+          "values": [
+            {}
+          ]
+        },
+        "sendHeaders": true,
+        "parametersHeaders": {
+          "values": [
+            {}
+          ]
+        },
+        "placeholderDefinitions": {
+          "values": [
+            {
+              "name": "fecha",
+              "description": "Fecha para comprobar disponibilidad (YYYY-MM-DD) (requerido)"
+            },
+            {
+              "name": "especialidad",
+              "description": "ID de especialidad médica (opcional)"
+            },
+            {
+              "name": "profesional",
+              "description": "ID del profesional médico (opcional)"
+            },
+            {
+              "name": "centro",
+              "description": "ID del centro médico (opcional)"
+            },
+            {
+              "name": "compania",
+              "description": "ID de la compañía (opcional)"
+            }
+          ]
+        },
+        "optimizeResponse": true
+      },
+      "id": "7dfeff40-94d8-4c5d-acdf-3fa9c70c8499",
+      "name": "comprobar_disponibilidad",
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1,
+      "position": [
+        -416,
+        304
+      ]
+    },
+    {
+      "parameters": {
+        "toolDescription": "Herramienta para agendar una nueva cita médica para un cliente existente con todos los datos necesarios.",
+        "method": "POST",
+        "url": "https://api.igaleno.com/tenant/{tenant}/api/ext/chipcard/hco/1/citas",
+        "sendHeaders": true,
+        "parametersHeaders": {
+          "values": [
+            {}
+          ]
+        },
+        "sendBody": true,
+        "parametersBody": {
+          "values": [
+            {}
+          ]
+        },
+        "placeholderDefinitions": {
+          "values": [
+            {
+              "name": "telefono",
+              "description": "Número de teléfono del cliente (requerido)"
+            },
+            {
+              "name": "fecha",
+              "description": "Fecha de la cita (DD-MM-YYYY o DD/MM/YYYY) (requerido)"
+            },
+            {
+              "name": "hora",
+              "description": "Hora de inicio (HH:mm) (requerido)"
+            },
+            {
+              "name": "horaFin",
+              "description": "Hora de fin (HH:mm) (requerido)"
+            },
+            {
+              "name": "idProfesional",
+              "description": "ID del profesional médico (requerido)"
+            },
+            {
+              "name": "idCentro",
+              "description": "ID del centro médico (requerido)"
+            },
+            {
+              "name": "idEspecialidad",
+              "description": "ID de la especialidad médica (requerido)"
+            },
+            {
+              "name": "idTipoActoMedico",
+              "description": "ID del tipo de acto médico (opcional, por defecto 1)"
+            },
+            {
+              "name": "numeroAutorizacion",
+              "description": "Número de autorización si aplica (opcional)"
+            },
+            {
+              "name": "compania",
+              "description": "ID de la compañía (opcional)"
+            }
+          ]
+        },
+        "optimizeResponse": true
+      },
+      "id": "33c26654-f452-48e3-8460-407e21d67b91",
+      "name": "agendar_cita",
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1,
+      "position": [
+        -288,
+        304
+      ]
+    },
+    {
+      "parameters": {
+        "toolDescription": "Herramienta para modificar una cita existente, típicamente para cambiar la fecha u hora de la cita.",
+        "method": "PUT",
+        "url": "https://api.igaleno.com/tenant/{tenant}/api/ext/chipcard/hco/1/citas/{{$parameter.idCita}}",
+        "sendQuery": true,
+        "parametersQuery": {
+          "values": [
+            {}
+          ]
+        },
+        "sendHeaders": true,
+        "parametersHeaders": {
+          "values": [
+            {}
+          ]
+        },
+        "sendBody": true,
+        "parametersBody": {
+          "values": [
+            {}
+          ]
+        },
+        "placeholderDefinitions": {
+          "values": [
+            {
+              "name": "idCita",
+              "description": "ID de la cita a modificar (requerido)"
+            },
+            {
+              "name": "nuevaFecha",
+              "description": "Nueva fecha (DD-MM-YYYY) (requerido)"
+            },
+            {
+              "name": "nuevaHora",
+              "description": "Nueva hora de inicio (HH:mm) (requerido)"
+            },
+            {
+              "name": "nuevaHoraFin",
+              "description": "Nueva hora de fin (HH:mm) (requerido)"
+            },
+            {
+              "name": "compania",
+              "description": "ID de la compañía (opcional)"
+            }
+          ]
+        },
+        "optimizeResponse": true
+      },
+      "id": "4f16183f-8078-4b73-9f11-66c55c7672c3",
+      "name": "modificar_cita",
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        304
+      ]
+    },
+    {
+      "parameters": {
+        "toolDescription": "Herramienta para cancelar una cita existente usando el ID de la cita.",
+        "method": "DELETE",
+        "url": "https://api.igaleno.com/tenant/{tenant}/api/ext/chipcard/hco/1/citas/{{$parameter.idCita}}",
+        "sendQuery": true,
+        "parametersQuery": {
+          "values": [
+            {}
+          ]
+        },
+        "sendHeaders": true,
+        "parametersHeaders": {
+          "values": [
+            {}
+          ]
+        },
+        "placeholderDefinitions": {
+          "values": [
+            {
+              "name": "idCita",
+              "description": "ID de la cita a cancelar (requerido)"
+            },
+            {
+              "name": "compania",
+              "description": "ID de la compañía (opcional)"
+            }
+          ]
+        },
+        "optimizeResponse": true
+      },
+      "id": "7df13625-dec8-402a-b4e2-48a67c02b7ca",
+      "name": "cancelar_cita",
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1,
+      "position": [
+        -32,
+        304
+      ]
+    },
+    {
+      "parameters": {
+        "toolDescription": "Herramienta para consultar las citas existentes de un paciente usando su teléfono como identificador.",
+        "url": "https://api.igaleno.com/tenant/{tenant}/api/ext/chipcard/hco/1/citas",
+        "sendQuery": true,
+        "parametersQuery": {
+          "values": [
+            {}
+          ]
+        },
+        "sendHeaders": true,
+        "parametersHeaders": {
+          "values": [
+            {}
+          ]
+        },
+        "placeholderDefinitions": {
+          "values": [
+            {
+              "name": "telefono",
+              "description": "Número de teléfono del paciente (requerido)"
+            },
+            {
+              "name": "fechaInicio",
+              "description": "Fecha inicio (YYYY-MM-DD) (opcional)"
+            },
+            {
+              "name": "fechaFin",
+              "description": "Fecha fin (YYYY-MM-DD) (opcional)"
+            },
+            {
+              "name": "compania",
+              "description": "ID de la compañía (opcional)"
+            }
+          ]
+        },
+        "optimizeResponse": true
+      },
+      "id": "d37ce653-cbba-4771-9aa1-ba0381081617",
+      "name": "consultar_citas_paciente",
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1,
+      "position": [
+        96,
+        304
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-08-07T10:22:57.000Z",
+  "versionId": "bf815962-a566-49f4-b324-0ca2c9e6b8eb"
+}
