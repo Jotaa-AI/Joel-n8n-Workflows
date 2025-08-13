@@ -1,0 +1,905 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2025-08-13T10:53:25.197Z",
+  "id": "il69SRYwiTXXe25t",
+  "isArchived": false,
+  "meta": null,
+  "name": "My workflow 8",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## 🎯 WORKFLOW: Recuperación de Carritos Abandonados\n\n### Arquitectura del Sistema:\n**Shopify** → Webhook → **n8n** → **Retell AI** → **WhatsApp**\n\n### Flujo Principal:\n1. **Captura**: Webhook de Shopify (checkout abandonado)\n2. **Validación**: Verificar duplicados y teléfono\n3. **Llamada IA**: Retell contacta al cliente\n4. **Acción**: Según resultado → WhatsApp con link/cupón\n\n### Prerrequisitos:\n- Shopify Admin API + Webhooks\n- Retell AI Agent configurado\n- WhatsApp Cloud API\n- Airtable para tracking\n\n### Variables .env:\n- SHOPIFY_STORE\n- SHOPIFY_ACCESS_TOKEN\n- RETELL_API_KEY\n- RETELL_AGENT_ID\n- WABA_TOKEN\n- PHONE_NUMBER_ID\n- AIRTABLE_TOKEN\n- AIRTABLE_BASE_ID\n- SLACK_WEBHOOK_URL"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        304,
+        -32
+      ],
+      "id": "15f1b007-a081-49ac-8035-378bd7db785b",
+      "name": "📋 Información del Workflow"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "shopify/checkout",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        544,
+        368
+      ],
+      "id": "0db109a3-5bc1-4e65-8341-204a52ba2d6e",
+      "name": "Webhook - Shopify Abandoned",
+      "webhookId": "9e8bed19-9b1e-4978-9f55-2f3e3fab8855"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{ \"status\": \"received\", \"message\": \"Checkout procesado correctamente\" }",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        752,
+        368
+      ],
+      "id": "8dec9d09-110a-4d74-810b-613a71e27516",
+      "name": "Respuesta Webhook"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "checkout-not-completed",
+              "leftValue": "={{ $json.completed_at }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        944,
+        368
+      ],
+      "id": "4ed609d0-0077-416d-bd1d-155684c2b3ee",
+      "name": "¿Checkout Abandonado?"
+    },
+    {
+      "parameters": {
+        "amount": 3,
+        "unit": "minutes"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        1152,
+        288
+      ],
+      "id": "c0d103e4-bf69-4ee5-afaf-5aba8a1ca68b",
+      "name": "Espera Abandono Real",
+      "webhookId": "73901d1c-9d3d-4a4d-8814-f05291982b46"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Normalización y limpieza de datos del checkout\nconst checkout = $json;\nconst customer = checkout.customer || {};\nconst shipping = checkout.shipping_address || {};\nconst billing = checkout.billing_address || {};\n\nconst email = checkout.email || customer.email || '';\nconst firstName = customer.first_name || shipping.first_name || '';\nconst lastName  = customer.last_name || shipping.last_name || '';\n\n// Teléfono\nconst rawPhone = shipping.phone || billing.phone || customer.phone || '';\nconst cleanPhone = (rawPhone || '').replace(/[^\\d+]/g, '');\nlet phoneE164 = cleanPhone;\nif (phoneE164 && !phoneE164.startsWith('+')) {\n  phoneE164 = '+34' + phoneE164.replace(/^0+/, '');\n}\n\n// Items\nconst items = (checkout.line_items || []).map(i => ({\n  title: i.title || '',\n  quantity: Number(i.quantity) || 1,\n  price: String(i.price || '0'),\n  variant_title: i.variant_title || ''\n}));\n\nconst itemsText = items.map(i => {\n  const v = i.variant_title ? ` (${i.variant_title})` : '';\n  return `${i.title}${v} x${i.quantity} - ${i.price}€`;\n}).join('\\n');\n\nconst itemCount = items.reduce((s, i) => s + (i.quantity || 0), 0);\n\nconst subtotal = String(checkout.subtotal_price || checkout.total_price || '0');\nconst currency = checkout.currency || checkout.presentment_currency || 'EUR';\n\nconst normalizedData = {\n  shopDomain: checkout.shop_domain || 'default-shop',\n  checkoutId: checkout.id || checkout.checkout_id || '',\n  token: checkout.token || checkout.checkout_token || '',\n\n  customerId: customer.id || '',\n  email,\n  firstName,\n  lastName,\n  fullName: `${firstName} ${lastName}`.trim() || 'Cliente',\n\n  phoneRaw: rawPhone,\n  phoneE164,\n  hasPhone: (phoneE164 || '').length > 5,\n\n  items,\n  itemsText,\n  itemCount,\n\n  subtotal,\n  currency,\n  checkoutUrl: checkout.abandoned_checkout_url || checkout.web_url || '',\n\n  createdAt: checkout.created_at || new Date().toISOString(),\n  updatedAt: checkout.updated_at || new Date().toISOString(),\n  source: 'shopify_webhook'\n};\n\nreturn normalizedData;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1344,
+        288
+      ],
+      "id": "51bffdcc-4a3f-4469-af46-e5389c0634c6",
+      "name": "Normalizar Datos"
+    },
+    {
+      "parameters": {
+        "url": "https://api.airtable.com/v0/{{ $vars.AIRTABLE_BASE_ID }}/abandoned_calls",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "filterByFormula",
+              "value": "AND({checkoutId} = '{{ $json.checkoutId }}', OR({status} = 'called', {status} = 'completed', {status} = 'discount_sent'))"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{ $vars.AIRTABLE_TOKEN }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1552,
+        288
+      ],
+      "id": "1981f292-646d-4d37-97ab-98096ee0ac01",
+      "name": "Verificar Duplicados"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "no-duplicates",
+              "leftValue": "={{ $json.records.length }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "equal"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1744,
+        288
+      ],
+      "id": "68c5aee7-4bdf-4d88-8f56-98b898a2ac0f",
+      "name": "¿Sin Duplicados?"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "has-phone",
+              "leftValue": "={{ $('normalize-data').item.json.hasPhone }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equal"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1952,
+        208
+      ],
+      "id": "b0db6145-9513-4514-b893-4c7b8bc38ddc",
+      "name": "¿Tiene Teléfono?"
+    },
+    {
+      "parameters": {
+        "url": "https://api.airtable.com/v0/{{ $vars.AIRTABLE_BASE_ID }}/customers",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "filterByFormula",
+              "value": "OR({customerId} = '{{ $('normalize-data').item.json.customerId }}', {email} = '{{ $('normalize-data').item.json.email }}')"
+            },
+            {
+              "name": "fields",
+              "value": "phone,customerId,email"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{ $vars.AIRTABLE_TOKEN }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2144,
+        368
+      ],
+      "id": "e8c65890-bc3d-48cb-9f2e-2c521ed41aa6",
+      "name": "Buscar Teléfono"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Verificar ventana horaria para llamadas\nconst data = $json;\n\n// Configuración\nconst CALL_HOURS = { start: 10, end: 20, timezone: 'Europe/Madrid' };\n\nconst currentHour = new Date().toLocaleString('en-US', {\n  timeZone: CALL_HOURS.timezone,\n  hour12: false,\n  hour: 'numeric'\n});\n\nconst currentHourNum = parseInt(currentHour, 10);\nconst isInCallWindow = currentHourNum >= CALL_HOURS.start && currentHourNum < CALL_HOURS.end;\n\n// Si está fuera, calcular próxima hora de inicio\nlet nextCallTime = null;\nif (!isInCallWindow) {\n  const now = new Date();\n  const next = new Date(now.toLocaleString('en-US', { timeZone: CALL_HOURS.timezone }));\n  // si ya pasó hoy, agendar mañana\n  if (currentHourNum >= CALL_HOURS.end) {\n    next.setDate(next.getDate() + 1);\n  }\n  next.setHours(CALL_HOURS.start, 0, 0, 0);\n  nextCallTime = new Date(next.toLocaleString('en-US', { timeZone: 'UTC' })).toISOString();\n}\n\nreturn {\n  ...data,\n  currentHour: currentHourNum,\n  isInCallWindow,\n  nextCallTime,\n  callWindowStart: CALL_HOURS.start,\n  callWindowEnd: CALL_HOURS.end,\n  timezone: CALL_HOURS.timezone,\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2352,
+        208
+      ],
+      "id": "db8b36ec-eb73-4799-8e97-5b42f7045c6a",
+      "name": "Verificar Horario"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "in-call-window",
+              "leftValue": "={{ $json.isInCallWindow }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equal"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        2544,
+        208
+      ],
+      "id": "3a423a9b-c7d1-4efd-a8df-f896306f513f",
+      "name": "¿En Horario?"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2752,
+        368
+      ],
+      "id": "eb913a17-8da4-4cae-9dc8-10719bf946aa",
+      "name": "Esperar Horario",
+      "webhookId": "a87b2302-38f4-4a1f-9e2a-e70dba0fa292"
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = $json;\n\nconst itemsDescription = (data.items || []).map(item => {\n  const variant = item.variant_title ? ` (${item.variant_title})` : '';\n  return `${item.title}${variant} x${item.quantity} - ${item.price}€`;\n}).join('\\n');\n\nconst totalItems = (data.items || []).reduce((sum, item) => sum + (item.quantity || 0), 0);\nconst avgItemPrice = totalItems > 0 ? (parseFloat(data.subtotal || '0') / totalItems).toFixed(2) : '0';\n\nconst agentVariables = {\n  customer_name: data.fullName,\n  customer_first_name: data.firstName,\n  items: itemsDescription,\n  items_count: totalItems,\n  subtotal: data.subtotal,\n  currency: data.currency,\n  avg_item_price: avgItemPrice,\n  checkout_url: data.checkoutUrl,\n  shipping_policy: '2-4 días hábiles, envío gratis >50€',\n  return_policy: '15 días desde la entrega, devolución gratuita',\n  payment_security: 'Pago seguro con SSL y 3D Secure',\n  max_discount_percent: 10,\n  discount_code_prefix: 'RECALL',\n  whatsapp_consent: true,\n  phone_number: data.phoneE164\n};\n\nreturn { ...data, agentVariables };"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2944,
+        208
+      ],
+      "id": "fc30f7c4-d70c-415b-97e9-50c03cb39f3f",
+      "name": "Preparar Variables Agente"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.retell.ai/v2/phone-calls",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{ $vars.RETELL_API_KEY }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3152,
+        208
+      ],
+      "id": "0442352a-d124-4e31-ae00-eea26ea53944",
+      "name": "Crear Llamada Retell"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.airtable.com/v0/{{ $vars.AIRTABLE_BASE_ID }}/abandoned_calls",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{ $vars.AIRTABLE_TOKEN }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3344,
+        208
+      ],
+      "id": "138ee459-2952-4357-bc32-bc82cce62174",
+      "name": "Guardar Registro Llamada"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "retell/events",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        3744,
+        208
+      ],
+      "id": "d2682573-ce7e-4050-8191-c478da0411a4",
+      "name": "Webhook - Eventos Retell",
+      "webhookId": "3bd72647-32b0-45cb-a210-785305ed44ac"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{ \"status\": \"received\", \"event_processed\": true }",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        3952,
+        208
+      ],
+      "id": "c2cd9837-51da-4c19-bdaa-1579d05c02ea",
+      "name": "Respuesta Webhook Retell"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "call-ended-event",
+              "leftValue": "={{ $json.event_type }}",
+              "rightValue": "call.ended",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        4144,
+        208
+      ],
+      "id": "6f5ad338-8049-4b48-8479-53aa8e4e273f",
+      "name": "¿Llamada Terminada?"
+    },
+    {
+      "parameters": {
+        "jsCode": "const event = $json;\n\nconst callId = event.call_id || '';\nconst outcome = event.outcome || (event.summary && event.summary.tags && event.summary.tags[0]) || 'unknown';\nconst summary = (event.summary && event.summary.text) || '';\nconst duration = event.duration_ms || 0;\nconst transcript = event.transcript || '';\nconst success = !!event.success;\n\nconst outcomeMapping = {\n  'send_link': 'send_whatsapp_link',\n  'ask_discount': 'send_discount_link',\n  'no_answer': 'schedule_retry',\n  'human_handover': 'escalate_to_human',\n  'not_interested': 'mark_closed',\n  'completed_purchase': 'mark_success',\n  'technical_issue': 'schedule_retry'\n};\n\nconst actionRequired = outcomeMapping[outcome] || 'manual_review';\n\nreturn {\n  call_id: callId,\n  outcome,\n  action_required: actionRequired,\n  summary,\n  duration_seconds: Math.round(duration / 1000),\n  transcript_url: event.transcript_url || '',\n  success,\n  processed_at: new Date().toISOString(),\n  needs_whatsapp: ['send_link', 'ask_discount'].includes(outcome),\n  needs_retry: ['no_answer', 'technical_issue'].includes(outcome),\n  needs_escalation: outcome === 'human_handover',\n  is_closed: ['not_interested', 'completed_purchase'].includes(outcome)\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4352,
+        112
+      ],
+      "id": "dfa1224d-9aff-4976-84c1-7ac4e8e9d88f",
+      "name": "Procesar Resultado"
+    },
+    {
+      "parameters": {
+        "url": "https://api.airtable.com/v0/{{ $vars.AIRTABLE_BASE_ID }}/abandoned_calls",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "filterByFormula",
+              "value": "{call_id} = '{{ $('process-call-result').item.json.call_id }}'"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{ $vars.AIRTABLE_TOKEN }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4544,
+        112
+      ],
+      "id": "9862312f-a7df-4bd6-b45d-d35cec6018e6",
+      "name": "Buscar Registro Llamada"
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "https://api.airtable.com/v0/{{ $vars.AIRTABLE_BASE_ID }}/abandoned_calls",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{ $vars.AIRTABLE_TOKEN }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        4752,
+        112
+      ],
+      "id": "19a4c792-a18a-4082-8c78-8c173a3973ab",
+      "name": "Actualizar Registro"
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch"
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        4944,
+        112
+      ],
+      "id": "ea025dc9-c8b1-4d3a-8758-513f726596a2",
+      "name": "Routing por Outcome"
+    },
+    {
+      "parameters": {
+        "url": "https://api.airtable.com/v0/{{ $vars.AIRTABLE_BASE_ID }}/abandoned_calls",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "filterByFormula",
+              "value": "{call_id} = '{{ $('process-call-result').item.json.call_id }}'"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{ $vars.AIRTABLE_TOKEN }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        5152,
+        656
+      ],
+      "id": "f536ce0b-eeb9-47f9-b892-3c1631e6ab5d",
+      "name": "Obtener Datos Checkout"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v19.0/{{ $vars.PHONE_NUMBER_ID }}/messages",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{ $vars.WABA_TOKEN }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        5344,
+        240
+      ],
+      "id": "331abe3c-e625-4d0f-93eb-246b80ddd43d",
+      "name": "Enviar WhatsApp Link"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://{{ $vars.SHOPIFY_STORE }}.myshopify.com/admin/api/2023-10/price_rules.json",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-Shopify-Access-Token",
+              "value": "{{ $vars.SHOPIFY_ACCESS_TOKEN }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        5344,
+        368
+      ],
+      "id": "57f28df2-9976-4299-8a63-fc74b7bf98f0",
+      "name": "Crear Price Rule"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://{{ $vars.SHOPIFY_STORE }}.myshopify.com/admin/api/2023-10/price_rules/{{ $json.price_rule.id }}/discount_codes.json",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-Shopify-Access-Token",
+              "value": "{{ $vars.SHOPIFY_ACCESS_TOKEN }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        5552,
+        368
+      ],
+      "id": "aec46aa9-d443-4e82-a9f7-aedeaefc4b05",
+      "name": "Crear Código Descuento"
+    },
+    {
+      "parameters": {
+        "jsCode": "const checkoutData = $('get-checkout-data-discount').item.json.records[0].fields;\nconst discountCode = $json.discount_code.code;\nconst baseUrl = checkoutData.checkoutUrl || '';\n\nconst separator = baseUrl.includes('?') ? '&' : '?';\nconst finalUrl = `${baseUrl}${separator}discount=${discountCode}`;\n\nreturn {\n  customer_name: checkoutData.fullName,\n  checkout_url: finalUrl,\n  discount_code: discountCode,\n  discount_percent: '10',\n  subtotal: checkoutData.subtotal,\n  currency: checkoutData.currency,\n  phone: checkoutData.phoneE164,\n  expires_in: '48 horas'\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        5744,
+        368
+      ],
+      "id": "9fa0db3c-a48a-4f3c-ba30-bee23360ce1c",
+      "name": "Construir URL Descuento"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v19.0/{{ $vars.PHONE_NUMBER_ID }}/messages",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{ $vars.WABA_TOKEN }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        5952,
+        368
+      ],
+      "id": "2125aaa0-4af5-45e1-8080-9bd704f25871",
+      "name": "Enviar WhatsApp Descuento"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "max-attempts",
+              "leftValue": "={{ $('get-checkout-data-discount').item.json.records[0].fields.attempts }}",
+              "rightValue": 3,
+              "operator": {
+                "type": "number",
+                "operation": "smaller"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        5152,
+        512
+      ],
+      "id": "b52d9565-514e-43a6-9e20-7f1447130273",
+      "name": "¿Menos de 3 intentos?"
+    },
+    {
+      "parameters": {
+        "amount": 2
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        5344,
+        448
+      ],
+      "id": "7b88a5d0-bf22-4694-84b0-54eb3cbfa071",
+      "name": "Esperar 2h",
+      "webhookId": "aa8ec595-8719-4d1b-8f2c-3dce33cf50b3"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.retell.ai/v2/phone-calls",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{ $vars.RETELL_API_KEY }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        5552,
+        448
+      ],
+      "id": "385629c4-5afd-4d73-acf7-73cecbb80575",
+      "name": "Reintentar Llamada"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v19.0/{{ $vars.PHONE_NUMBER_ID }}/messages",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{ $vars.WABA_TOKEN }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        5344,
+        576
+      ],
+      "id": "e9f400de-8b98-4680-989f-57fa4a9b9260",
+      "name": "WhatsApp Final"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://hooks.slack.com/services/{{ $vars.SLACK_WEBHOOK_URL }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        5344,
+        656
+      ],
+      "id": "c85ceabc-5523-442f-b402-86d26904c668",
+      "name": "Notificar Slack"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-08-13T10:53:25.197Z",
+  "versionId": "d77d95a2-8c80-40a6-be78-5c560409f064"
+}
