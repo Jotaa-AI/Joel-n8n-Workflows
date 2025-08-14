@@ -5,29 +5,7 @@
       "main": [
         [
           {
-            "node": "Edit Fields",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Code": {
-      "main": [
-        [
-          {
-            "node": "HighLevel1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "HighLevel1": {
-      "main": [
-        [
-          {
-            "node": "Code1",
+            "node": "HighLevel",
             "type": "main",
             "index": 0
           }
@@ -35,9 +13,9 @@
       ]
     }
   },
-  "createdAt": "2025-06-08T19:38:10.875Z",
-  "id": "tqwVhMvCBriEfY7T",
-  "isArchived": false,
+  "createdAt": "2025-06-08T17:36:33.493Z",
+  "id": "CMbd6c97cPINYhHt",
+  "isArchived": true,
   "meta": {
     "templateCredsSetupCompleted": true
   },
@@ -52,27 +30,24 @@
       "name": "When Executed by Another Workflow",
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "position": [
-        -60,
-        320
+        260,
+        340
       ]
     },
     {
       "parameters": {
         "resource": "calendar",
         "calendarId": "jdhpNPn6LWkpJOkdr3r6",
-        "locationId": "Zqv4sQ9tr1dO9ssNB9jj",
-        "contactId": "9Q9y3tDWwgZKThMJ4n7N",
-        "startTime": "={{ $json.Startime_agendamiento }}",
         "additionalFields": {},
         "requestOptions": {}
       },
       "type": "n8n-nodes-base.highLevel",
       "typeVersion": 2,
       "position": [
-        1040,
+        460,
         340
       ],
-      "id": "52ed4999-11e6-470b-a4c2-8819c6384642",
+      "id": "962d0197-ccf6-405b-8e7d-3e3e5b726cea",
       "name": "HighLevel",
       "credentials": {
         "highLevelOAuth2Api": {
@@ -80,99 +55,15 @@
           "name": "HighLevel DinàmicSalut"
         }
       }
-    },
-    {
-      "parameters": {
-        "jsCode": "// Obtener los datos de la variable\nconst datosCompletos = $input.first().json.query;\n\n// Dividir por comas para separar cada campo\nconst campos = datosCompletos.split(', ');\n\n// Inicializar variables\nlet nombreCliente = '';\nlet startimeAgendamiento = '';\nlet contactId = '';\n\n// Procesar cada campo\ncampos.forEach(campo => {\n  const campoLimpio = campo.trim();\n  \n  if (campoLimpio.startsWith('Nombre_Cliente:')) {\n    nombreCliente = campoLimpio.replace('Nombre_Cliente:', '').trim();\n  } else if (campoLimpio.startsWith('Startime_agendamiento:')) {\n    startimeAgendamiento = campoLimpio.replace('Startime_agendamiento:', '').trim();\n  } else if (campoLimpio.startsWith('Contact_id:')) {\n    contactId = campoLimpio.replace('Contact_id:', '').trim();\n  }\n});\n\nreturn [\n  {\n    json: {\n      \"Nombre_Cliente\": nombreCliente,\n      \"Startime_agendamiento\": startimeAgendamiento,\n      \"Contact_id\": contactId\n    }\n  }\n];"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        420,
-        340
-      ],
-      "id": "c6a5ddb7-c812-4b3d-aaf9-d81406d87b0d",
-      "name": "Code"
-    },
-    {
-      "parameters": {
-        "operation": "getAll",
-        "filters": {
-          "query": "={phone}"
-        },
-        "options": {},
-        "requestOptions": {}
-      },
-      "type": "n8n-nodes-base.highLevel",
-      "typeVersion": 2,
-      "position": [
-        640,
-        340
-      ],
-      "id": "6d2dd0d1-24e6-4c4c-ac37-979454ec3709",
-      "name": "HighLevel1",
-      "credentials": {
-        "highLevelOAuth2Api": {
-          "id": "FwnvqTtE3xuwrBjp",
-          "name": "HighLevel DinàmicSalut"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        860,
-        340
-      ],
-      "id": "c3499e95-c195-45d0-aff3-6ae3b971252c",
-      "name": "Code1"
-    },
-    {
-      "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "1cb7d6f9-f58d-4aa9-879c-8be39dafcc9f",
-              "name": "Cita agendad",
-              "value": "Cita agendada exitosamente!",
-              "type": "string"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        160,
-        320
-      ],
-      "id": "f8d2b71a-f259-4d71-bf38-b7895bb686a7",
-      "name": "Edit Fields"
     }
   ],
-  "pinData": {
-    "When Executed by Another Workflow": [
-      {
-        "json": {
-          "query": "Nombre_Cliente: Joel Jiménez, Startime_agendamiento: 2025-06-11T12:00:00, Contact_id: +34653035525"
-        }
-      }
-    ]
-  },
+  "pinData": {},
   "settings": {
-    "executionOrder": "v1",
-    "timezone": "Europe/Madrid",
-    "callerPolicy": "workflowsFromSameOwner",
-    "errorWorkflow": "NXAGfkOV6b6fn8LO"
+    "executionOrder": "v1"
   },
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-06-09T07:54:39.000Z",
-  "versionId": "26cac756-77a9-471a-9a51-44eeea670857"
+  "updatedAt": "2025-06-08T19:37:47.000Z",
+  "versionId": "4e4368cf-26b0-4037-832d-b46a29d1c2c7"
 }
